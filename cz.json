@@ -1,0 +1,107 @@
+{
+  "commitizen": {
+    "name": "cz_customize",
+    "style": [
+      ["qmark", "fg:#ff9d00 bold"],
+      ["question", "bold"],
+      ["answer", "fg:#ff9d00 bold"],
+      ["pointer", "fg:#ff9d00 bold"],
+      ["highlighted", "fg:#ff9d00 bold"],
+      ["selected", "fg:#cc5454"],
+      ["separator", "fg:#cc5454"],
+      ["instruction", ""],
+      ["text", ""],
+      ["disabled", "fg:#858585 italic"]
+    ],
+    "customize": {
+      "message_template": "{{change_type}}{% if scope|length > 0 %}({{scope}}){% endif %}: {% if card|length > 0 %}SQAPP-{{card}} {% endif %}{{message}}{% if coauthored|length > 0 %}\n\nCo-authored-by: {{coauthored}}{% endif %}",
+      "example": "feature(buttons): fiz uma nova feature no componente buttons",
+      "change_type_order": [
+        "DOCS",
+        "REFACTOR",
+        "FIX",
+        "STYLE",
+        "FEAT",
+        "BREAKING",
+        "OPS",
+        "TEST",
+        "CHORE"
+      ],
+      "change_scope_order": ["null", "internal", "release"],
+      "questions": [
+        {
+          "message": "Indique a natureza das mudanças do commit:",
+          "type": "list",
+          "name": "change_type",
+          "choices": [
+            {
+              "value": "DOCS",
+              "name": "DOCS: Alterações na documentação (README, comentários e etc)"
+            },
+            {
+              "value": "REFACTOR",
+              "name": "REFACTOR: Mudanças que alteram a qualidade do código porém não seu comportamento"
+            },
+            {
+              "value": "FIX",
+              "name": "FIX: Correções de bugs"
+            },
+            {
+              "value": "STYLE",
+              "name": "STYLE: Mudanças que afetam a aparência de componentes"
+            },
+            {
+              "value": "FEAT",
+              "name": "FEAT: Novas features e componentes"
+            },
+            {
+              "value": "BREAKING",
+              "name": "BREAKING: Mudanças que quebrão compatibilidade com versões anteriores"
+            },
+            {
+              "value": "OPS",
+              "name": "OPS: Mudanças nas configurações do projeto"
+            },
+            {
+              "value": "TEST",
+              "name": "TEST: Mudanças nos testes do projeto"
+            },
+            {
+              "value": "CHORE",
+              "name": "CHORE: Mudanças que não têm impacto e não se encaixam nas categorias acima"
+            }
+          ]
+        },
+        {
+          "message": "Se o commit tem uma tarefa, informe seu número:",
+          "type": "input",
+          "name": "card"
+        },
+        {
+          "message": "Informe o título do commit:",
+          "type": "input",
+          "name": "message"
+        },
+        {
+          "message": "Informe o escopo do commit:",
+          "type": "list",
+          "name": "scope",
+          "choices": [
+            {
+              "value": "",
+              "name": "null: Nenhum escopo será adicionado ao commit"
+            },
+            {
+              "value": "internal",
+              "name": "internal: Mudanças internas, nenhuma release será feita independente do tipo"
+            },
+            {
+              "value": "release",
+              "name": "release: Uma release será feita independente do tipo"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
