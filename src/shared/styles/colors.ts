@@ -6,6 +6,11 @@ export const Colors = {
     grey: "#b7b7c8",
     silver: "#f8f8f8",
     white: "#FFFFFF",
+    title: "#EFEFEF",
+  },
+  text: {
+    title: "#EFEFEF",
+    subtitle: "#A4A4A4",
   },
   gradients: {
     blue: {
@@ -33,8 +38,8 @@ export const Colors = {
       bottom: "#000000",
     },
     dark: {
-      top: "rgba(0,0,0,0.4)",
-      bottom: "#000000",
+      top: "rgba(0,0,0,0.14)",
+      bottom: "rgba(0,0,0,1)",
     },
   },
 };
