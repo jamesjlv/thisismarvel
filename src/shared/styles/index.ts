@@ -3,5 +3,4 @@ export * from "./fonts";
 export * from "./moderateSize";
 export * from "./scale";
 export * from "./sizes";
-export * from "./theme";
 export * from "./Dimension";

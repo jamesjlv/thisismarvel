@@ -1,11 +1,11 @@
 import "styled-components/native";
-import { Color, Size, AppText, ModerateSize, Dimension } from "@/shared/styles";
+import { Colors, Size, Font, ModerateSize, Dimension } from "@/shared/styles";
 
 declare module "styled-components/native" {
   export interface DefaultTheme {
-    colors: typeof Color;
+    colors: typeof Colors;
     sizes: typeof Size;
-    text: typeof AppText;
+    text: typeof Font;
     moderateSize: typeof ModerateSize;
     dimension: typeof Dimension;
   }
