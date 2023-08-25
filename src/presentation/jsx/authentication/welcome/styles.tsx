@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimension, scale } from "@/shared/styles";
-import { Title, Subtitle, Input } from "@/presentation/components";
+import { Title, Subtitle, Input, LinkButton } from "@/presentation/components";
 
 export const Container = styled.View`
   flex: 1;
@@ -71,8 +71,21 @@ export const Header = styled.View``;
 export const FormContainer = styled.View`
   flex: 1;
   align-items: center;
+  margin-top: ${({ theme }) => theme.moderateSize.medium};
 `;
 
 export const UserInput = styled(Input)`
   max-width: ${scale(314)}px;
+`;
+export const PasswordInput = styled(Input).attrs({
+  isPassword: true,
+  iconName: "Key",
+  type: "primary",
+})`
+  max-width: ${scale(314)}px;
+`;
+
+export const ForgetPassword = styled(LinkButton)`
+  flex-direction: row-reverse;
+  width: ${scale(314)}px;
 `;

@@ -7,12 +7,14 @@ import {
   BlackGradient,
   Container,
   Content,
+  ForgetPassword,
   FormContainer,
   Header,
   LittleObjects,
   LoginBackground,
   LoginDescription,
   LoginTitle,
+  PasswordInput,
   UserInput,
   WrapperForm,
 } from "./styles";
@@ -48,13 +50,12 @@ export function WelcomeScreen() {
                 type="primary"
                 iconName="Person"
               />
-              <UserInput
+              <PasswordInput
                 title="Senha"
                 placeHolder="Informe sua senha"
                 type="primary"
-                iconName="Key"
-                isPassword
               />
+              <ForgetPassword text="Forgot Password?" onPress={() => {}} />
             </FormContainer>
           </Content>
         </WrapperForm>
