@@ -1,7 +1,8 @@
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
 import { ThemeProviderProps } from "./props";
+import { Theme } from "@/shared/styles";
 
 export const AppThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
-}) => <ThemeProvider theme={{}}>{children}</ThemeProvider>;
+}) => <ThemeProvider theme={Theme}>{children}</ThemeProvider>;
