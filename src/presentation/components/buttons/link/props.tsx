@@ -3,7 +3,7 @@ import { SubtitleProps } from "../../words/subtitle/props";
 
 export type LinkButtonProps = TouchableOpacityProps & {
   text: string;
-  onPress: () => {};
+  onPress: () => void;
   elements?: {
     textProps?: SubtitleProps;
   };
