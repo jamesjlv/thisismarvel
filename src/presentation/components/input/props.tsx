@@ -1,7 +1,7 @@
 import { TextInputProps } from "react-native";
 import { IconProps } from "../icons/props";
 
-export type InputProps = TextInputProps & {
+export interface InputProps extends TextInputProps {
   errorMessage?: string;
   hasError?: boolean;
   mask?: "email" | "text";
@@ -10,7 +10,7 @@ export type InputProps = TextInputProps & {
   type: "primary" | "secondary";
   iconName?: IconProps["iconName"];
   isPassword?: boolean;
-};
+}
 
 export type ContainerInputStyleProps = {
   hasError: boolean;

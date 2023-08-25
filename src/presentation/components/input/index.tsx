@@ -33,7 +33,7 @@ export const Input: React.FC<InputProps> = ({
         )}
         <InputText
           placeholder={placeHolder}
-          secureTextEntry={!isPasswordVisible}
+          secureTextEntry={isPasswordVisible}
         />
         {isPassword && (
           <Icon
