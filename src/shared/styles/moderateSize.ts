@@ -26,6 +26,9 @@ export const ModerateSize = {
   /** 16 */
   medium: `${scale(Size.medium)}px`,
 
+  /** 18 */
+  xxMedium: `${scale(Size.xxMedium)}px`,
+
   /** 20 */
   xMedium: `${scale(Size.xMedium)}px`,
 

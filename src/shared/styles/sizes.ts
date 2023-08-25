@@ -7,6 +7,7 @@ export const Size = {
   regular: 12,
   xRegular: 14,
   medium: 16,
+  xxMedium: 16,
   xMedium: 20,
   large: 24,
   xLarge: 32,
