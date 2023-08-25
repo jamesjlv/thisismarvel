@@ -7,7 +7,16 @@
     "allowJs": true,
     "strictPropertyInitialization": false,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@domain": ["./src/domain"],
+      "@": ["./src"],
+      "@shared": ["./src/shared"],
+      "@presentation": ["./src/presentation"],
+      "@main": ["./src/main"],
+      "@infra": ["./src/infra"],
+      "@data": ["./src/data"],
+      "@assets/*": ["./src/assets/*"],
+      "@constants": ["./src/constants"]
     },
     "esModuleInterop": true,
     "experimentalDecorators": true,
