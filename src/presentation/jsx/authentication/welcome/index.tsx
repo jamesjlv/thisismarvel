@@ -1,20 +1,24 @@
 import React from "react";
 import { StatusBar } from "react-native";
+import { useTheme } from "styled-components/native";
 
 import {
   BackGroundImage,
   BlackGradient,
   Container,
   Content,
+  FormContainer,
   Header,
   LittleObjects,
   LoginBackground,
   LoginDescription,
   LoginTitle,
+  UserInput,
   WrapperForm,
 } from "./styles";
 
 export function WelcomeScreen() {
+  const theme = useTheme();
   return (
     <>
       <StatusBar hidden />
@@ -22,7 +26,9 @@ export function WelcomeScreen() {
         <BackGroundImage
           source={require("../../../../assets/images/BlackPanther.png")}
         />
-        <BlackGradient />
+        <BlackGradient
+          colors={["transparent", theme.colors.gradients.dark.bottom]}
+        />
         <WrapperForm>
           <LoginBackground
             source={require("../../../../assets/images/Login.png")}
@@ -35,6 +41,21 @@ export function WelcomeScreen() {
               <LoginTitle text="Faça Login" />
               <LoginDescription text="seja bem-vindo novamente" />
             </Header>
+            <FormContainer>
+              <UserInput
+                title="Usuário"
+                placeHolder="exemplo@mail.com.br"
+                type="primary"
+                iconName="Person"
+              />
+              <UserInput
+                title="Senha"
+                placeHolder="Informe sua senha"
+                type="primary"
+                iconName="Key"
+                isPassword
+              />
+            </FormContainer>
           </Content>
         </WrapperForm>
       </Container>

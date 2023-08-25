@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimension, scale } from "@/shared/styles";
-import { Title, Subtitle } from "@/presentation/components";
+import { Title, Subtitle, Input } from "@/presentation/components";
 
 export const Container = styled.View`
   flex: 1;
@@ -17,7 +17,6 @@ export const BackGroundImage = styled.ImageBackground.attrs({
 `;
 
 export const BlackGradient = styled(LinearGradient).attrs(({ theme }) => ({
-  colors: ["transparent", theme.colors.gradients.dark.bottom],
   locations: [0.02, 0.45],
 }))`
   flex: 1;
@@ -39,7 +38,7 @@ export const WrapperForm = styled.View`
   bottom: 0;
   height: ${scale(Dimension.screenHeight * 0.8)}px;
   width: 100%;
-  background-color: #151316;
+  background-color: #000000;
   border-top-left-radius: ${scale(59)}px;
   border-top-right-radius: ${scale(33)}px;
 `;
@@ -68,3 +67,12 @@ export const LoginDescription = styled(Subtitle)`
 `;
 
 export const Header = styled.View``;
+
+export const FormContainer = styled.View`
+  flex: 1;
+  align-items: center;
+`;
+
+export const UserInput = styled(Input)`
+  max-width: ${scale(314)}px;
+`;
