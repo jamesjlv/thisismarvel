@@ -6,8 +6,7 @@ import { ContainerInputStyleProps, InputWrapperStyleProps } from "./props";
 
 export const Container = styled.View<ContainerInputStyleProps>`
   flex: 1;
-  max-height: ${({ hasError }) => (hasError ? scale(109) : scale(88))}px;
-
+  min-height: ${({ hasError }) => (hasError ? scale(109) : scale(88))}px;
   width: 100%;
   margin-bottom: ${({ theme }) => theme.moderateSize.regular};
 `;
