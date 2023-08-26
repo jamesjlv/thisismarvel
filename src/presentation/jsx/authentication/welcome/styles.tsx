@@ -11,6 +11,7 @@ import {
 } from "@/presentation/components";
 import { ButtonProps } from "@/presentation/components";
 import { LinkButtonProps } from "@/presentation/components";
+import { ButtonIcon } from "@/presentation/components/buttons/buttonIcon";
 
 export const Container = styled.View`
   flex: 1;
@@ -123,3 +124,34 @@ export const ConfirmButton = styled(Button).attrs(
 export const SocialLoginDivider = styled(Divider)`
   margin: ${({ theme }) => theme.moderateSize.xxMedium} 0;
 `;
+
+export const SocialLoginWrapper = styled.View`
+  flex-direction: row;
+  width: ${scale(215)}px;
+  justify-content: space-between;
+  margin-bottom: ${({ theme }) => theme.moderateSize.largest};
+`;
+
+export const Google = styled(ButtonIcon)``;
+export const Facebook = styled(ButtonIcon).attrs({
+  elements: {
+    imageContainer: {
+      source: require("@assets/images/Facebook.png"),
+      style: {
+        width: scale(19),
+        height: scale(19),
+      },
+    },
+  },
+})``;
+export const Apple = styled(ButtonIcon).attrs({
+  elements: {
+    imageContainer: {
+      source: require("@assets/images/Apple.png"),
+      style: {
+        width: scale(16.336),
+        height: scale(19.39),
+      },
+    },
+  },
+})``;

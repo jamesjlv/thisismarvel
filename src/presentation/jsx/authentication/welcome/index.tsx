@@ -3,14 +3,17 @@ import { StatusBar } from "react-native";
 import { useTheme } from "styled-components/native";
 
 import {
+  Apple,
   BackGroundImage,
   BlackGradient,
   ConfirmButton,
   Container,
   Content,
   CreateAccount,
+  Facebook,
   ForgetPassword,
   FormContainer,
+  Google,
   Header,
   LittleObjects,
   LoginBackground,
@@ -18,6 +21,7 @@ import {
   LoginTitle,
   PasswordInput,
   SocialLoginDivider,
+  SocialLoginWrapper,
   UserInput,
   WrapperForm,
 } from "./styles";
@@ -61,6 +65,11 @@ export function WelcomeScreen() {
               <ForgetPassword text="Forgot Password?" onPress={() => {}} />
               <ConfirmButton title="entrar" />
               <SocialLoginDivider text="Faça login com" />
+              <SocialLoginWrapper>
+                <Google onPress={() => {}} />
+                <Apple onPress={() => {}} />
+                <Facebook onPress={() => {}} />
+              </SocialLoginWrapper>
               <CreateAccount
                 text="Não tem uma conta ainda? Cadastre-se"
                 onPress={() => {}}
