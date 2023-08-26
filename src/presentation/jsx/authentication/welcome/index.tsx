@@ -5,6 +5,7 @@ import { useTheme } from "styled-components/native";
 import {
   BackGroundImage,
   BlackGradient,
+  ConfirmButton,
   Container,
   Content,
   ForgetPassword,
@@ -56,6 +57,7 @@ export function WelcomeScreen() {
                 type="primary"
               />
               <ForgetPassword text="Forgot Password?" onPress={() => {}} />
+              <ConfirmButton title="entrar" />
             </FormContainer>
           </Content>
         </WrapperForm>

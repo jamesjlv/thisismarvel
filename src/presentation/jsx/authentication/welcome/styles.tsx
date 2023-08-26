@@ -1,7 +1,14 @@
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Dimension, scale } from "@/shared/styles";
-import { Title, Subtitle, Input, LinkButton } from "@/presentation/components";
+import {
+  Title,
+  Subtitle,
+  Input,
+  LinkButton,
+  Button,
+} from "@/presentation/components";
+import { ButtonProps } from "@/presentation/components/buttons/button/props";
 
 export const Container = styled.View`
   flex: 1;
@@ -89,3 +96,17 @@ export const ForgetPassword = styled(LinkButton)`
   flex-direction: row-reverse;
   width: ${scale(314)}px;
 `;
+
+export const ConfirmButton = styled(Button).attrs(
+  ({ theme }) =>
+    ({
+      elements: {
+        containerProps: {
+          style: {
+            marginTop: scale(theme.sizes.large),
+            width: scale(314),
+          },
+        },
+      },
+    }) as ButtonProps,
+)``;
