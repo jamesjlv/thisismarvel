@@ -10,6 +10,7 @@ import {
   Divider,
 } from "@/presentation/components";
 import { ButtonProps } from "@/presentation/components/buttons/button/props";
+import { LinkButtonProps } from "@/presentation/components/buttons/link/props";
 
 export const Container = styled.View`
   flex: 1;
@@ -96,6 +97,13 @@ export const PasswordInput = styled(Input).attrs({
 export const ForgetPassword = styled(LinkButton)`
   flex-direction: row-reverse;
   width: ${scale(314)}px;
+`;
+
+export const CreateAccount = styled(LinkButton).attrs({
+  elements: { textProps: { style: { textDecorationLine: "underline" } } },
+} as LinkButtonProps)`
+  align-self: center;
+  font-size: ${({ theme }) => theme.moderateSize.regular};
 `;
 
 export const ConfirmButton = styled(Button).attrs(

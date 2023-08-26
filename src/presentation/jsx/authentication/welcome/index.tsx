@@ -8,6 +8,7 @@ import {
   ConfirmButton,
   Container,
   Content,
+  CreateAccount,
   ForgetPassword,
   FormContainer,
   Header,
@@ -60,6 +61,10 @@ export function WelcomeScreen() {
               <ForgetPassword text="Forgot Password?" onPress={() => {}} />
               <ConfirmButton title="entrar" />
               <SocialLoginDivider text="Faça login com" />
+              <CreateAccount
+                text="Não tem uma conta ainda? Cadastre-se"
+                onPress={() => {}}
+              />
             </FormContainer>
           </Content>
         </WrapperForm>
