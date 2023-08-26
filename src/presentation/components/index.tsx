@@ -12,3 +12,5 @@ export * from "./buttons/button";
 export * from "./buttons/button/props";
 export * from "./divider";
 export * from "./divider/props";
+export * from "./buttons/buttonIcon";
+export * from "./buttons/buttonIcon/props";
