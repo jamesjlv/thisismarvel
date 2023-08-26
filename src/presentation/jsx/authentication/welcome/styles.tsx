@@ -7,6 +7,7 @@ import {
   Input,
   LinkButton,
   Button,
+  Divider,
 } from "@/presentation/components";
 import { ButtonProps } from "@/presentation/components/buttons/button/props";
 
@@ -110,3 +111,7 @@ export const ConfirmButton = styled(Button).attrs(
       },
     }) as ButtonProps,
 )``;
+
+export const SocialLoginDivider = styled(Divider)`
+  margin: ${({ theme }) => theme.moderateSize.xxMedium} 0;
+`;

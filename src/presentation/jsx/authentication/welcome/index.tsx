@@ -16,6 +16,7 @@ import {
   LoginDescription,
   LoginTitle,
   PasswordInput,
+  SocialLoginDivider,
   UserInput,
   WrapperForm,
 } from "./styles";
@@ -58,6 +59,7 @@ export function WelcomeScreen() {
               />
               <ForgetPassword text="Forgot Password?" onPress={() => {}} />
               <ConfirmButton title="entrar" />
+              <SocialLoginDivider text="Faça login com" />
             </FormContainer>
           </Content>
         </WrapperForm>
