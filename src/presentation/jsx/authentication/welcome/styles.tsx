@@ -13,9 +13,16 @@ import { ButtonProps } from "@/presentation/components";
 import { LinkButtonProps } from "@/presentation/components";
 import { ButtonIcon } from "@/presentation/components/buttons/buttonIcon";
 
-export const Container = styled.View`
+export const Container = styled.ScrollView.attrs({
+  keyboardShouldPersistTaps: "handled",
+  contentContainerStyle: {
+    flex: 1,
+    flexGrow: 1,
+  },
+  scrollEnabled: false,
+})`
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.primary.white};
+  background-color: ${({ theme }) => theme.colors.primary.dark};
 `;
 
 export const BackGroundImage = styled.ImageBackground.attrs({
@@ -37,7 +44,7 @@ export const LoginBackground = styled.Image.attrs({
 })`
   position: absolute;
   width: ${scale(447)}px;
-  height: ${scale(803)}px;
+  height: 100%;
   border-top-left-radius: ${scale(59)}px;
   border-top-right-radius: ${scale(59)}px;
 `;
@@ -46,7 +53,6 @@ export const WrapperForm = styled.View`
   flex: 1;
   position: absolute;
   bottom: 0;
-  height: ${scale(Dimension.screenHeight * 0.8)}px;
   width: 100%;
   background-color: #000000;
   border-top-left-radius: ${scale(59)}px;
@@ -67,6 +73,7 @@ export const Content = styled.View`
   border-top-left-radius: ${scale(59)}px;
   border-top-right-radius: ${scale(33)}px;
   padding-top: ${scale(32)}px;
+  padding-bottom: ${({ theme }) => theme.moderateSize.xxLarge};
 `;
 
 export const LoginTitle = styled(Title)`

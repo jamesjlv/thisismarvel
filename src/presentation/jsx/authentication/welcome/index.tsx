@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "react-native";
 import { useTheme } from "styled-components/native";
 
@@ -45,7 +45,7 @@ export function WelcomeScreen() {
           <LittleObjects
             source={require("../../../../assets/images/Objects.png")}
           />
-          <Content>
+          <Content onLayout={(e) => console.log(e.nativeEvent.layout.height)}>
             <Header>
               <LoginTitle text="Faça Login" />
               <LoginDescription text="seja bem-vindo novamente" />
