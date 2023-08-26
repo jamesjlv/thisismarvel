@@ -9,8 +9,8 @@ import {
   Button,
   Divider,
 } from "@/presentation/components";
-import { ButtonProps } from "@/presentation/components/buttons/button/props";
-import { LinkButtonProps } from "@/presentation/components/buttons/link/props";
+import { ButtonProps } from "@/presentation/components";
+import { LinkButtonProps } from "@/presentation/components";
 
 export const Container = styled.View`
   flex: 1;
