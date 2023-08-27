@@ -34,6 +34,7 @@ export const Input: React.FC<InputProps> = ({
         <InputText
           placeholder={placeHolder}
           secureTextEntry={isPasswordVisible}
+          {...rest}
         />
         {isPassword && (
           <Icon
