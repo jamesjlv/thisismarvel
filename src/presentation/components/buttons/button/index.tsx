@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Background,
+  COLORS,
   Container,
   Gradient,
   SecondaryContainer,
@@ -29,7 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
         </Background>
       )}
       {types === "secondary" && (
-        <Gradient>
+        <Gradient colors={COLORS}>
           <SecondaryContainer {...rest}>
             <TextSecondary text={title} />
           </SecondaryContainer>

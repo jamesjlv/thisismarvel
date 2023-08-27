@@ -1,7 +1,16 @@
 import styled from "styled-components/native";
 import { Subtitle } from "../../words/subtitle";
 import { scale } from "@/shared/styles";
-import { LinearGradient } from "expo-linear-gradient";
+import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
+
+export const COLORS = [
+  "#00FFFF",
+  "#17C8FF",
+  "#329BFF",
+  "#4C64FF",
+  "#6536FF",
+  "#8000FF",
+];
 
 export const Container = styled.TouchableOpacity.attrs({
   activeOpacity: 0.7,
@@ -44,7 +53,6 @@ export const TextSecondary = styled(Subtitle)`
 `;
 
 export const Gradient = styled(LinearGradient).attrs({
-  colors: ["#00FFFF", "#17C8FF", "#329BFF", "#4C64FF", "#6536FF", "#8000FF"],
   start: { x: 0.0, y: 1.0 },
   end: { x: 1.0, y: 1.0 },
   style: {
@@ -52,9 +60,9 @@ export const Gradient = styled(LinearGradient).attrs({
     alignItems: "center",
     justifyContent: "center",
   },
-})`
+} as LinearGradientProps)<{ colors: string[] }>`
   align-items: center;
   border-radius: ${scale(15)}px;
   height: ${scale(50)}px;
   padding: 1px;
-`;
+` as unknown as typeof LinearGradient;
