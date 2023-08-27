@@ -19,7 +19,8 @@ export type IconProps = TouchableOpacityProps & {
     | "Universe"
     | "Villain"
     | "Weight"
-    | "EyeOutline";
+    | "EyeOutline"
+    | "Mail";
   size: Sizes;
   color: Colors;
 };

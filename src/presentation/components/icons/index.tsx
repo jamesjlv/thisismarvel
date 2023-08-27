@@ -20,6 +20,7 @@ import SVGUniverse from "@/assets/icons/Universe.svg";
 import SVGVillain from "@/assets/icons/Villain.svg";
 import SVGWeight from "@/assets/icons/Weight.svg";
 import SVGEyeOutline from "@/assets/icons/eye-outline.svg";
+import SVGMail from "@assets/icons/Mail.svg";
 
 export const Icons: React.FC<IconProps> = ({
   iconName,
@@ -45,6 +46,7 @@ export const Icons: React.FC<IconProps> = ({
     Universe: SVGUniverse,
     Villain: SVGVillain,
     Weight: SVGWeight,
+    Mail: SVGMail,
   };
 
   const IconSelected = iconsMatch[iconName];
