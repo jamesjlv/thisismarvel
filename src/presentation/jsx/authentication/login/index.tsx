@@ -70,10 +70,6 @@ export function LoginScreen() {
                 <Apple onPress={() => {}} />
                 <Facebook onPress={() => {}} />
               </SocialLoginWrapper>
-              <CreateAccount
-                text="Não tem uma conta ainda? Cadastre-se"
-                onPress={() => {}}
-              />
             </FormContainer>
           </Content>
         </WrapperForm>
