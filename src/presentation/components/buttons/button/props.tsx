@@ -5,4 +5,5 @@ export type ButtonProps = TouchableOpacityProps & {
   elements?: {
     containerProps?: ImageBackgroundProps;
   };
+  types?: "primary" | "secondary" | "third";
 };
