@@ -45,7 +45,7 @@ export function LoginScreen() {
           <LittleObjects
             source={require("../../../../assets/images/Objects.png")}
           />
-          <Content onLayout={(e) => console.log(e.nativeEvent.layout.height)}>
+          <Content>
             <Header>
               <LoginTitle text="Faça Login" />
               <LoginDescription text="seja bem-vindo novamente" />
