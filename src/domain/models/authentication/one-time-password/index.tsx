@@ -7,3 +7,7 @@ export type IOneTimePasswordModel = {
 export enum IOneTimePasswordMasterCodeModal {
   MASTER = Config.MASTER_CODE_OTP,
 }
+
+export type IOneTimePasswordDataTransferObjectModel = {
+  code: string;
+};
