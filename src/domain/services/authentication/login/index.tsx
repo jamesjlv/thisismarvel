@@ -3,15 +3,15 @@ import {
   ILoginDataTransferObjectModel,
 } from "@/domain/models";
 
-interface IRemoteAuthenticationLoginAccount {
+interface IRemoteAuthenticationLoginAccountService {
   exec: ({
     email,
     password,
-  }: RemoteAuthenticationLoginAccount.Params) => Promise<RemoteAuthenticationLoginAccount.Model>;
+  }: RemoteAuthenticationLoginAccountNamespace.Params) => Promise<RemoteAuthenticationLoginAccountNamespace.Model>;
 }
 
-export namespace RemoteAuthenticationLoginAccount {
+export namespace RemoteAuthenticationLoginAccountNamespace {
   export type Params = ILoginDataTransferObjectModel;
   export type Model = ILoginAccountModel;
-  export type Interface = IRemoteAuthenticationLoginAccount;
+  export type Interface = IRemoteAuthenticationLoginAccountService;
 }
