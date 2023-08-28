@@ -8,7 +8,11 @@ import {
 import { scale } from "@/shared/styles";
 import styled from "styled-components/native";
 
-export const Container = styled.ImageBackground`
+export const Wrapper = styled.ImageBackground`
+  flex: 1;
+`;
+
+export const Container = styled.ScrollView`
   flex: 1;
 `;
 
@@ -18,7 +22,7 @@ export const Description = styled(Subtitle)``;
 
 export const Header = styled.View`
   align-items: center;
-  margin-top: ${scale(130)}px;
+  margin-top: ${scale(80)}px;
   margin-bottom: ${({ theme }) => theme.moderateSize.xLarge};
 `;
 
@@ -49,6 +53,6 @@ export const FormContent = styled.View`
 `;
 
 export const ButtonContainer = styled.View`
-  padding: ${({ theme }) => theme.moderateSize.large};
+  padding: 0 ${({ theme }) => theme.moderateSize.large};
   margin-bottom: ${({ theme }) => theme.moderateSize.large};
 `;
