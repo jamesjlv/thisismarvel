@@ -4,6 +4,7 @@ import {
   Container,
   Description,
   ErrorMessage,
+  Gradient,
   Icon,
   InputText,
   InputWrapper,
@@ -24,27 +25,29 @@ export const Input: React.FC<InputProps> = ({
   return (
     <Container hasError={hasError} {...rest}>
       {title && <Description text={title} />}
-      <InputWrapper
-        source={require("../../../assets/images/InputBackGround.png")}
+      <Gradient
+        colors={["rgba(255, 255, 255, 0.231)", "rgba(16, 14, 14, 0.244)"]}
         hasError={hasError}
       >
-        {iconName && (
-          <Icon iconName={iconName} color="silver" size="large" disabled />
-        )}
-        <InputText
-          placeholder={placeHolder}
-          secureTextEntry={isPasswordVisible}
-          {...rest}
-        />
-        {isPassword && (
-          <Icon
-            iconName={isPasswordVisible ? "EyeOutline" : "Eye"}
-            color="silver"
-            size="large"
-            onPress={() => setIsPasswordVisible((prevState) => !prevState)}
+        <>
+          {iconName && (
+            <Icon iconName={iconName} color="silver" size="large" disabled />
+          )}
+          <InputText
+            placeholder={placeHolder}
+            secureTextEntry={isPasswordVisible}
+            {...rest}
           />
-        )}
-      </InputWrapper>
+          {isPassword && (
+            <Icon
+              iconName={isPasswordVisible ? "EyeOutline" : "Eye"}
+              color="silver"
+              size="large"
+              onPress={() => setIsPasswordVisible((prevState) => !prevState)}
+            />
+          )}
+        </>
+      </Gradient>
       {hasError && <ErrorMessage text={errorMessage} />}
     </Container>
   );

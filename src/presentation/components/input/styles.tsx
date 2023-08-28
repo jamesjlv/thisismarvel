@@ -3,6 +3,7 @@ import { Subtitle } from "../words/subtitle";
 import { Icons } from "../icons";
 import { scale } from "@/shared/styles";
 import { ContainerInputStyleProps, InputWrapperStyleProps } from "./props";
+import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 
 export const Container = styled.View<ContainerInputStyleProps>`
   flex: 1;
@@ -32,8 +33,30 @@ export const InputWrapper = styled.ImageBackground.attrs({
   align-items: center;
   padding: ${({ theme }) => theme.moderateSize.medium};
   border-color: ${({ hasError, theme }) =>
-    hasError ? theme.colors.primary.red : "transparent"};
+    hasError ? theme.colors.primary.red : "#FFFFFF"};
   border-width: 1px;
+`;
+
+export const Gradient = styled(LinearGradient).attrs({
+  start: { x: 0.0, y: 1.0 },
+  end: { x: 1.0, y: 1.0 },
+  style: {
+    width: 200,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+} as LinearGradientProps)<InputWrapperStyleProps>`
+  flex: 1;
+  flex-direction: row;
+  margin-top: ${({ theme }) => theme.moderateSize.regular};
+  max-height: ${scale(55)}px;
+  border-radius: ${({ theme }) => theme.moderateSize.small};
+  overflow: hidden;
+  align-items: center;
+  padding: ${({ theme }) => theme.moderateSize.medium};
+  border-color: ${({ hasError, theme }) =>
+    hasError ? theme.colors.primary.red : "#A09CA0"};
+  border-width: 0.3px;
 `;
 
 export const InputText = styled.TextInput.attrs(({ theme }) => ({
