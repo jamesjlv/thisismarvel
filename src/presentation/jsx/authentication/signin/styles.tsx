@@ -22,8 +22,8 @@ export const Description = styled(Subtitle)``;
 
 export const Header = styled.View`
   align-items: center;
-  margin-top: ${scale(80)}px;
-  margin-bottom: ${({ theme }) => theme.moderateSize.xLarge};
+  margin-top: ${scale(150)}px;
+  margin-bottom: ${({ theme }) => theme.moderateSize.large};
 `;
 
 export const TextInput = styled(Input).attrs({
