@@ -32,7 +32,7 @@ export const WelcomeScreen: React.FC = () => {
 
   return (
     <>
-      <StatusBar hidden />
+      <StatusBar hidden backgroundColor="transparent" translucent />
       <Container source={require("@assets/images/Welcome.jpg")}>
         <WelcomeWrapper>
           <WelcomeTitle text="O universo Marvel na palma da sua mão." />
