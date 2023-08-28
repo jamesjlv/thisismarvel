@@ -13,6 +13,7 @@
     "@babel/plugin-proposal-decorators": "^7.22.10",
     "@babel/preset-typescript": "^7.22.11",
     "@react-native-firebase/app": "^18.3.1",
+    "@react-native-firebase/firestore": "^18.3.1",
     "@react-native/metro-config": "^0.72.11",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
