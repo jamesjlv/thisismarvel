@@ -1,6 +1,7 @@
 import React from "react";
 import { StatusBar } from "react-native";
 import { useTheme } from "styled-components/native";
+import { useRoute } from "@react-navigation/core";
 
 import {
   Apple,
@@ -9,7 +10,6 @@ import {
   ConfirmButton,
   Container,
   Content,
-  CreateAccount,
   Facebook,
   ForgetPassword,
   FormContainer,
@@ -25,9 +25,12 @@ import {
   UserInput,
   WrapperForm,
 } from "./styles";
+import { LoginRouteParams } from "./props";
 
 export function LoginScreen() {
   const theme = useTheme();
+  const params = useRoute().params as LoginRouteParams;
+
   return (
     <>
       <StatusBar hidden />
@@ -56,11 +59,13 @@ export function LoginScreen() {
                 placeHolder="exemplo@mail.com.br"
                 type="primary"
                 iconName="Person"
+                defaultValue={params?.email}
               />
               <PasswordInput
                 title="Senha"
                 placeHolder="Informe sua senha"
                 type="primary"
+                defaultValue={params?.password}
               />
               <ForgetPassword text="Forgot Password?" onPress={() => {}} />
               <ConfirmButton title="entrar" />
