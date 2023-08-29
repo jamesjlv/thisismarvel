@@ -4,8 +4,8 @@ export type IUserModel = {
   password: string;
   email: string;
   confirmed: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at: number;
+  updated_at: number;
 };
 
 export type IUserDataTransferObjectModel = {
@@ -13,6 +13,5 @@ export type IUserDataTransferObjectModel = {
   password: string;
   email: string;
   confirmed?: boolean;
-  created_at: Date;
-  updated_at: Date;
+  created_at: number;
 };
