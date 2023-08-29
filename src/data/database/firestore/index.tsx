@@ -1,13 +1,12 @@
 export type DatabaseRequest = {
   collection: string;
-  method: DatabaseMethods;
   body?: any;
   filters?: {
     condition: DatabaseFilterCondition;
     leftCondition: string;
     rightCondition: string;
   }[];
-  filterBehavior: "and" | "unique" | "or";
+  filterBehavior?: "and" | "unique" | "or";
   documentId?: string;
 };
 
@@ -29,28 +28,24 @@ export enum DatabaseReturnStatusCode {
 
 export interface DatabaseClient<R = any> {
   request: ({
-    method,
     collection,
     body,
     filters,
     documentId,
   }: DatabaseRequest) => Promise<DatabaseResponse<R>>;
   update: ({
-    method,
     collection,
     body,
     filters,
     documentId,
   }: DatabaseRequest) => Promise<DatabaseResponse<R>>;
   delete: ({
-    method,
     collection,
     body,
     filters,
     documentId,
   }: DatabaseRequest) => Promise<DatabaseResponse<R>>;
   create: ({
-    method,
     collection,
     body,
     filters,
