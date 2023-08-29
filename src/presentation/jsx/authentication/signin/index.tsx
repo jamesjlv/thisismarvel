@@ -14,9 +14,11 @@ import {
   Wrapper,
 } from "./styles";
 import { useNavigation } from "@react-navigation/native";
-import { SignInFormInputs } from "./props";
+import { SignInFormInputs, SignInScreenProps } from "./props";
 
-export const SignInScreen = () => {
+export const SignInScreen: React.FC<SignInScreenProps> = ({
+  handleCreateNewUserAccount,
+}) => {
   const { goBack } = useNavigation();
   const {
     control,
