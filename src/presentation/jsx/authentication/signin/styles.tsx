@@ -28,9 +28,7 @@ export const Header = styled.View`
 
 export const TextInput = styled(Input).attrs({
   type: "primary",
-})`
-  max-height: ${scale(88)}px;
-`;
+})``;
 
 export const ButtonConfirm = styled(Button).attrs(
   ({ theme }) =>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import CryptoJS from "crypto-js/md5";
 import { useNavigation } from "@react-navigation/native";
-
+import { yupResolver } from "@hookform/resolvers/yup";
 import {
   ButtonConfirm,
   ButtonContainer,
@@ -17,6 +17,7 @@ import {
 } from "./styles";
 import { SignInFormInputs, SignInScreenProps } from "./props";
 import { Routes } from "@/main/routes/enums/Routes";
+import { YUP_VALIDATION } from "./helpers";
 
 export const SignInScreen: React.FC<SignInScreenProps> = ({
   handleCreateNewUserAccount,
@@ -34,6 +35,7 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
       password: "",
       confirmPassword: "",
     },
+    resolver: yupResolver(YUP_VALIDATION),
   });
 
   const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
@@ -80,6 +82,8 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
                 onChangeText={(e) => onChange(e)}
                 onBlur={onBlur}
                 value={value}
+                hasError={!!errors?.name?.message}
+                errorMessage={errors?.name?.message}
               />
             )}
             name="name"
@@ -99,6 +103,8 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
                 onBlur={onBlur}
                 value={value}
                 textContentType="emailAddress"
+                hasError={!!errors?.email?.message}
+                errorMessage={errors?.email?.message}
               />
             )}
             name="email"
@@ -119,6 +125,8 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
                 onBlur={onBlur}
                 value={value}
                 isPassword
+                hasError={!!errors?.password?.message}
+                errorMessage={errors?.password?.message}
               />
             )}
             name="password"
@@ -139,6 +147,8 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
                 onChangeText={(e) => onChange(e)}
                 onBlur={onBlur}
                 value={value}
+                hasError={!!errors?.confirmPassword?.message}
+                errorMessage={errors?.confirmPassword?.message}
               />
             )}
             name="confirmPassword"
