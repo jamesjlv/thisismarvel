@@ -26,11 +26,9 @@ export const Container = styled.ScrollView.attrs({
 `;
 
 export const BackGroundImage = styled.ImageBackground.attrs({
-  resizeMode: "contain",
+  resizeMode: "cover",
 })`
-  height: ${scale(712)}px;
-  width: 100%;
-  position: absolute;
+  flex: 1;
 `;
 
 export const BlackGradient = styled(LinearGradient).attrs(({ theme }) => ({
