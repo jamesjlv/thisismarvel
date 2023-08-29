@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import CryptoJS from "crypto-js/md5";
+import { useNavigation } from "@react-navigation/native";
 
 import {
   ButtonConfirm,
@@ -13,7 +15,6 @@ import {
   TextInput,
   Wrapper,
 } from "./styles";
-import { useNavigation } from "@react-navigation/native";
 import { SignInFormInputs, SignInScreenProps } from "./props";
 
 export const SignInScreen: React.FC<SignInScreenProps> = ({
@@ -33,7 +34,21 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
     },
   });
 
-  const onSubmit: SubmitHandler<SignInFormInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
+    try {
+      const currentDate = new Date().getTime();
+      const { password, name, email } = data;
+
+      await handleCreateNewUserAccount.exec({
+        password: CryptoJS(password).toString(),
+        name,
+        email,
+        created_at: currentDate,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Wrapper source={require("@assets/images/SignIn.jpg")}>
