@@ -1,2 +1,2 @@
-export * from "./config/api";
-export * from "./http/axios";
+export * from "./config";
+export * from "./http/axios/index";
