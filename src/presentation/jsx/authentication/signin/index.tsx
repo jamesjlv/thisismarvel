@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import CryptoJS from "crypto-js/md5";
 import { useNavigation } from "@react-navigation/native";
@@ -16,11 +16,13 @@ import {
   Wrapper,
 } from "./styles";
 import { SignInFormInputs, SignInScreenProps } from "./props";
+import { Routes } from "@/main/routes/enums/Routes";
 
 export const SignInScreen: React.FC<SignInScreenProps> = ({
   handleCreateNewUserAccount,
 }) => {
-  const { goBack } = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
+  const { goBack, navigate } = useNavigation();
   const {
     control,
     handleSubmit,
@@ -36,6 +38,7 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
 
   const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
     try {
+      setIsLoading(true);
       const currentDate = new Date().getTime();
       const { password, name, email } = data;
 
@@ -46,7 +49,12 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
         created_at: currentDate,
       });
     } catch (error) {
+      setIsLoading(false);
       console.log(error);
+      return;
+    } finally {
+      setIsLoading(false);
+      navigate(Routes.Login, { password: data?.password, email: data?.email });
     }
   };
 
@@ -110,6 +118,7 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
                 onChangeText={(e) => onChange(e)}
                 onBlur={onBlur}
                 value={value}
+                isPassword
               />
             )}
             name="password"
@@ -125,6 +134,7 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
                 iconName="Key"
                 title="Confirmação de Senha"
                 secureTextEntry
+                isPassword
                 type="primary"
                 onChangeText={(e) => onChange(e)}
                 onBlur={onBlur}
@@ -135,8 +145,17 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
           />
         </FormContent>
         <ButtonContainer>
-          <ButtonConfirm title="Cadastrar" onPress={handleSubmit(onSubmit)} />
-          <GoBackButton types="secondary" title="Voltar" onPress={goBack} />
+          <ButtonConfirm
+            title="Cadastrar"
+            onPress={handleSubmit(onSubmit)}
+            loading={isLoading}
+          />
+          <GoBackButton
+            types="secondary"
+            title="Voltar"
+            onPress={goBack}
+            disabled={isLoading}
+          />
         </ButtonContainer>
       </Container>
     </Wrapper>
