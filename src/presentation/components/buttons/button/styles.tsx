@@ -2,6 +2,7 @@ import styled from "styled-components/native";
 import { Subtitle } from "../../words/subtitle";
 import { scale } from "@/shared/styles";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
+import { ActivityIndicator } from "react-native";
 
 export const COLORS = [
   "#00FFFF",
@@ -66,3 +67,7 @@ export const Gradient = styled(LinearGradient).attrs({
   height: ${scale(50)}px;
   padding: 1px;
 ` as unknown as typeof LinearGradient;
+
+export const Spinner = styled(ActivityIndicator)`
+  height: ${scale(47)}px;
+`;

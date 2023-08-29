@@ -6,6 +6,7 @@ import {
   Container,
   Gradient,
   SecondaryContainer,
+  Spinner,
   Text,
   TextSecondary,
 } from "./styles";
@@ -14,6 +15,7 @@ import { ButtonProps } from "./props";
 export const Button: React.FC<ButtonProps> = ({
   title = "Button",
   types = "primary",
+  loading = false,
   elements,
   ...rest
 }) => {
@@ -25,14 +27,14 @@ export const Button: React.FC<ButtonProps> = ({
           {...elements?.containerProps}
         >
           <Container {...rest}>
-            <Text text={title} />
+            {loading ? <Spinner /> : <Text text={title} />}
           </Container>
         </Background>
       )}
       {types === "secondary" && (
         <Gradient colors={COLORS}>
           <SecondaryContainer {...rest}>
-            <TextSecondary text={title} />
+            {loading ? <Spinner /> : <TextSecondary text={title} />}
           </SecondaryContainer>
         </Gradient>
       )}
