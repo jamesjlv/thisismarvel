@@ -46,7 +46,6 @@ export const Gradient = styled(LinearGradient).attrs({
     justifyContent: "center",
   },
 } as LinearGradientProps)<InputWrapperStyleProps>`
-  flex: 1;
   flex-direction: row;
   margin-top: ${({ theme }) => theme.moderateSize.regular};
   max-height: ${scale(55)}px;
