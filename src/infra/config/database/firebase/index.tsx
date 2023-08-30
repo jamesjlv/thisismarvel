@@ -67,8 +67,8 @@ export class FirestoreClient implements DatabaseClient<any> {
     return {
       statusCode,
       body: {
-        ...databaseResponse.docs[0].data(),
-        documentId: databaseResponse.docs[0].ref.id,
+        ...databaseResponse?.docs?.[0]?.data(),
+        documentId: databaseResponse?.docs?.[0]?.ref?.id,
       },
     };
   }
@@ -90,7 +90,7 @@ export class FirestoreClient implements DatabaseClient<any> {
     return {
       statusCode,
       body: {
-        documentId: databaseResponse.id,
+        documentId: databaseResponse?.id,
       },
     };
   }
