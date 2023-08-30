@@ -6,6 +6,7 @@ import { AlertProvider } from "../methods/alert";
 import { GlobalComponents } from "@/presentation/components/global-components";
 import { RealmProvider } from "@realm/react";
 import { RealDatabaseProvider } from "@/infra/config/database";
+import { AuthProvider } from "./auth";
 interface ApplicationContextProviderManagementProps {
   children: ReactNode;
 }
@@ -16,16 +17,18 @@ export const ApplicationContextProviderManagement: React.FC<
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <RealDatabaseProvider>
-        <AppThemeProvider>
-          <AlertProvider>
-            <NavigationProvider>
-              <>
-                {children}
-                <GlobalComponents />
-              </>
-            </NavigationProvider>
-          </AlertProvider>
-        </AppThemeProvider>
+        <AuthProvider>
+          <AppThemeProvider>
+            <AlertProvider>
+              <NavigationProvider>
+                <>
+                  {children}
+                  <GlobalComponents />
+                </>
+              </NavigationProvider>
+            </AlertProvider>
+          </AppThemeProvider>
+        </AuthProvider>
       </RealDatabaseProvider>
     </GestureHandlerRootView>
   );
