@@ -7,8 +7,9 @@ import { LogBox } from "react-native";
 
 export default function App() {
   LogBox.ignoreLogs([
-    "Warning: Sending `onAnimatedValueUpdate` with no listeners registered.",
+    "Sending `onAnimatedValueUpdate` with no listeners registered.",
   ]);
+
   const [loaded] = useFonts({
     "Gilroy-ExtraBold": require("../assets/fonts/Gilroy-ExtraBold.otf"),
     "Gilroy-Light": require("../assets/fonts/Gilroy-Light.otf"),
