@@ -1,67 +1,75 @@
-import firestore, { Filter } from "@react-native-firebase/firestore";
+import firestore, {
+  Filter,
+  FirebaseFirestoreTypes,
+} from "@react-native-firebase/firestore";
 
 import { DatabaseResponse } from "@/data";
 import { DatabaseClient, DatabaseRequest } from "@/data";
 
 export class FirestoreClient implements DatabaseClient<any> {
   async request(params: DatabaseRequest): Promise<DatabaseResponse<any>> {
-    let databaseResponse: any;
-
-    function handleFilter(): typeof Filter {
-      switch (params?.filterBehavior) {
-        case "and":
-          return Filter.and.apply(
-            params?.filters?.map((filter) =>
-              Filter(
-                filter.leftCondition,
-                filter.condition,
-                filter.rightCondition,
-              ),
-            ),
-          );
-        case "unique":
-          const FilterUnique = params?.filters?.[0];
-          return Filter(
-            FilterUnique?.leftCondition,
-            FilterUnique?.condition,
-            FilterUnique?.rightCondition,
-          );
-        case "or":
-          return Filter.or.apply(
-            params?.filters?.map((filter) =>
-              Filter(
-                filter.leftCondition,
-                filter.condition,
-                filter.rightCondition,
-              ),
-            ),
-          );
-        default:
-          return Filter.and.apply(
-            params?.filters?.map((filter) =>
-              Filter(
-                filter.leftCondition,
-                filter.condition,
-                filter.rightCondition,
-              ),
-            ),
-          );
-      }
-    }
-
+    let databaseResponse: FirebaseFirestoreTypes.QuerySnapshot<FirebaseFirestoreTypes.DocumentData>;
+    let statusCode = 500;
     try {
+      function handleFilter(): typeof Filter {
+        switch (params?.filterBehavior) {
+          case "and":
+            const filters = params?.filters?.map((filter) =>
+              firestore.Filter(
+                filter.leftCondition,
+                filter.condition,
+                filter.rightCondition,
+              ),
+            );
+            //@ts-ignore
+            return firestore.Filter.and(...filters);
+          case "unique":
+            const FilterUnique = params?.filters?.[0];
+            return firestore.Filter(
+              //@ts-ignore
+              FilterUnique?.leftCondition,
+              FilterUnique?.condition,
+              FilterUnique?.rightCondition,
+            );
+          case "or":
+            return firestore.Filter.or(
+              ...params?.filters?.map((filter) =>
+                firestore.Filter(
+                  filter.leftCondition,
+                  filter.condition,
+                  filter.rightCondition,
+                ),
+              ),
+            );
+          default:
+            return firestore.Filter.and(
+              ...params?.filters?.map((filter) =>
+                firestore.Filter(
+                  filter.leftCondition,
+                  filter.condition,
+                  filter.rightCondition,
+                ),
+              ),
+            );
+        }
+      }
+
       databaseResponse = await firestore()
         .collection(params.collection)
         .where(handleFilter())
         .get();
-      databaseResponse["status"] = 200;
+
+      statusCode = 200;
     } catch (error) {
       databaseResponse = error.response;
-      databaseResponse["status"] = 500;
     }
+
     return {
-      statusCode: databaseResponse.status,
-      body: databaseResponse,
+      statusCode,
+      body: {
+        ...databaseResponse.docs[0].data(),
+        documentId: databaseResponse.docs[0].ref.id,
+      },
     };
   }
 
@@ -69,18 +77,21 @@ export class FirestoreClient implements DatabaseClient<any> {
     collection,
     body,
   }: DatabaseRequest): Promise<DatabaseResponse<any>> {
-    let databaseResponse: any;
-
+    let databaseResponse: FirebaseFirestoreTypes.DocumentReference<FirebaseFirestoreTypes.DocumentData>;
+    let statusCode: number;
     try {
       databaseResponse = await firestore().collection(collection).add(body);
-      databaseResponse["status"] = 200;
+      statusCode = 200;
     } catch (error) {
       databaseResponse = error.response;
-      databaseResponse["status"] = 500;
+      statusCode = 500;
     }
+
     return {
-      statusCode: databaseResponse.status,
-      body: databaseResponse,
+      statusCode,
+      body: {
+        documentId: databaseResponse.id,
+      },
     };
   }
 
