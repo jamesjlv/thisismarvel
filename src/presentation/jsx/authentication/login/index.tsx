@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "react-native";
-import { useTheme } from "styled-components/native";
 import { useRoute } from "@react-navigation/core";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import CryptoJS from "crypto-js/md5";
+import { useNavigation } from "@react-navigation/native";
 
 import {
   Apple,
   BackGroundImage,
-  BlackGradient,
   ConfirmButton,
   Container,
   Content,
@@ -25,11 +27,49 @@ import {
   UserInput,
   WrapperForm,
 } from "./styles";
-import { LoginRouteParams } from "./props";
+import { LoginRouteParams, LoginScreenProps, UserLoginParams } from "./props";
+import { YUP_VALIDATION } from "./helpers";
+import { Routes, Stacks } from "@/main/routes/enums/Routes";
 
-export function LoginScreen() {
-  const theme = useTheme();
-  const params = useRoute().params as LoginRouteParams;
+export const LoginScreen: React.FC<LoginScreenProps> = ({
+  handleUserSimpleAuthentication,
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const params = useRoute()?.params as LoginRouteParams;
+  const { navigate } = useNavigation();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<UserLoginParams>({
+    defaultValues: {
+      email: params?.email,
+      password: params?.password,
+    },
+    resolver: yupResolver(YUP_VALIDATION),
+  });
+
+  const handleSimpleLogin: SubmitHandler<UserLoginParams> = async ({
+    email,
+    password,
+  }): Promise<void> => {
+    try {
+      setIsLoading(true);
+      const userExists = await handleUserSimpleAuthentication.exec({
+        email,
+        password: CryptoJS(password).toString(),
+      });
+
+      if (userExists.itsAllowed) {
+        navigate(Stacks.Authorized, { screen: Routes.Home });
+      }
+    } catch (error) {
+      console.log("error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -51,21 +91,57 @@ export function LoginScreen() {
                 <LoginDescription text="seja bem-vindo novamente" />
               </Header>
               <FormContainer>
-                <UserInput
-                  title="Usuário"
-                  placeHolder="exemplo@mail.com.br"
-                  type="primary"
-                  iconName="Person"
-                  defaultValue={params?.email}
+                <Controller
+                  control={control}
+                  rules={{
+                    required: true,
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <UserInput
+                      title="Usuário"
+                      placeHolder="exemplo@mail.com.br"
+                      type="primary"
+                      iconName="Person"
+                      defaultValue={params?.email}
+                      onChangeText={(e) => onChange(e.toLowerCase())}
+                      onBlur={onBlur}
+                      value={value}
+                      hasError={!!errors?.email?.message}
+                      errorMessage={errors?.email?.message}
+                      autoCapitalize="none"
+                    />
+                  )}
+                  name="email"
                 />
-                <PasswordInput
-                  title="Senha"
-                  placeHolder="Informe sua senha"
-                  type="primary"
-                  defaultValue={params?.password}
+
+                <Controller
+                  control={control}
+                  rules={{
+                    required: true,
+                  }}
+                  render={({ field: { onChange, onBlur, value } }) => (
+                    <PasswordInput
+                      placeHolder="Informe sua senha"
+                      iconName="Key"
+                      title="Senha"
+                      secureTextEntry
+                      type="primary"
+                      onChangeText={(e) => onChange(e)}
+                      onBlur={onBlur}
+                      value={value}
+                      isPassword
+                      hasError={!!errors?.password?.message}
+                      errorMessage={errors?.password?.message}
+                    />
+                  )}
+                  name="password"
                 />
                 <ForgetPassword text="Forgot Password?" onPress={() => {}} />
-                <ConfirmButton title="entrar" />
+                <ConfirmButton
+                  title="entrar"
+                  onPress={handleSubmit(handleSimpleLogin)}
+                  loading={isLoading}
+                />
                 <SocialLoginDivider text="Faça login com" />
                 <SocialLoginWrapper>
                   <Google onPress={() => {}} />
@@ -79,4 +155,4 @@ export function LoginScreen() {
       </Container>
     </>
   );
-}
+};
