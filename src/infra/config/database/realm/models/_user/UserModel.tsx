@@ -1,14 +1,14 @@
 import Realm from "realm";
 
 export class UserModel extends Realm.Object<UserModel> {
-  _id!: Realm.BSON.ObjectId;
+  _id!: string;
   name!: string;
   email!: string;
 
   static schema = {
     name: "User",
     properties: {
-      _id: "objectId",
+      _id: "string",
       name: "string",
       email: "string",
     },

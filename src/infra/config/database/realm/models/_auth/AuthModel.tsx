@@ -1,13 +1,13 @@
 import Realm from "realm";
 
 export class AuthModel extends Realm.Object<AuthModel> {
-  _id!: Realm.BSON.ObjectId;
+  _id!: string;
   token!: string;
 
   static schema = {
     name: "Auth",
     properties: {
-      _id: "objectId",
+      _id: "string",
       token: "string",
     },
     primaryKey: "_id",
