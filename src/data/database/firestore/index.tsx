@@ -2,8 +2,8 @@ export type DatabaseRequest = {
   collection: string;
   body?: any;
   filters?: {
-    condition: DatabaseFilterCondition;
-    leftCondition: string;
+    condition: DatabaseFilterConditions;
+    leftCondition: string | number | symbol;
     rightCondition: string;
   }[];
   filterBehavior?: "and" | "unique" | "or";
@@ -15,6 +15,18 @@ export enum DatabaseFilterCondition {
   Equal = "==",
   LessThan = "<=",
 }
+
+export type DatabaseFilterConditions =
+  | "<"
+  | "<="
+  | "=="
+  | ">"
+  | ">="
+  | "!="
+  | "array-contains"
+  | "array-contains-any"
+  | "in"
+  | "not-in";
 
 export enum DatabaseReturnStatusCode {
   success = 200,
@@ -62,5 +74,5 @@ export enum DatabaseMethods {
 
 export type DatabaseResponse<T = any> = {
   statusCode: DatabaseReturnStatusCode;
-  body?: T;
+  body: T;
 };
