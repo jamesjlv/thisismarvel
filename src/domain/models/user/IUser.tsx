@@ -15,3 +15,8 @@ export type IUserDataTransferObjectModel = {
   confirmed?: boolean;
   created_at: number;
 };
+
+export type IUserRepositoryModel = {
+  name: string;
+  email: string;
+};
