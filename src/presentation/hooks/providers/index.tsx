@@ -2,6 +2,8 @@ import React, { ReactNode } from "react";
 import { AppThemeProvider } from "./theme";
 import { NavigationProvider } from "./navigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { AlertProvider } from "../methods/alert";
+import { GlobalComponents } from "@/presentation/components/global-components";
 
 interface ApplicationContextProviderManagementProps {
   children: ReactNode;
@@ -13,7 +15,14 @@ export const ApplicationContextProviderManagement: React.FC<
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <AppThemeProvider>
-        <NavigationProvider>{children}</NavigationProvider>
+        <AlertProvider>
+          <NavigationProvider>
+            <>
+              {children}
+              <GlobalComponents />
+            </>
+          </NavigationProvider>
+        </AlertProvider>
       </AppThemeProvider>
     </GestureHandlerRootView>
   );
