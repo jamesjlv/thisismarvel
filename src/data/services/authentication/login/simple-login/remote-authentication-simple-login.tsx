@@ -12,7 +12,7 @@ export class GetRemoteAuthenticationSimpleLoginService
   implements RemoteAuthenticationLoginAccountNamespace.Interface
 {
   constructor(
-    private readonly databaseClient: DatabaseClient<SetRegisterUserNamespace.Model>,
+    private readonly databaseClient: DatabaseClient<RemoteAuthenticationLoginAccountNamespace.Model>,
   ) {}
 
   async exec(
@@ -20,7 +20,7 @@ export class GetRemoteAuthenticationSimpleLoginService
   ): Promise<RemoteAuthenticationLoginAccountNamespace.Model> {
     const { email, password } = data;
 
-    const response = await this.databaseClient.request({
+    let response = await this.databaseClient.request({
       collection: "users",
       filterBehavior: "and",
       filters: [
@@ -36,6 +36,10 @@ export class GetRemoteAuthenticationSimpleLoginService
         },
       ],
     });
+
+    const isAllowed =
+      email === response.body?.email && password === response.body.password;
+    response.body["itsAllowed"] = isAllowed;
 
     switch (response.statusCode) {
       case DatabaseReturnStatusCode.success:
