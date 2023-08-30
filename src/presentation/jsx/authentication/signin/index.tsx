@@ -99,7 +99,7 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
                 title="E-mail"
                 iconName="Mail"
                 type="primary"
-                onChangeText={(e) => onChange(e)}
+                onChangeText={(e) => onChange(e.toLocaleLowerCase())}
                 onBlur={onBlur}
                 value={value}
                 textContentType="emailAddress"
