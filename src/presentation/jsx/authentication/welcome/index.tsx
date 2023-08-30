@@ -1,4 +1,6 @@
 import React from "react";
+import { StatusBar } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import {
   ButtonWrapper,
@@ -8,8 +10,6 @@ import {
   WelcomeTitle,
   WelcomeWrapper,
 } from "./styles";
-import { StatusBar } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { Routes } from "@/main/routes/enums/Routes";
 
 export const WelcomeScreen: React.FC = () => {
@@ -22,6 +22,7 @@ export const WelcomeScreen: React.FC = () => {
       console.error("Não foi possível redirecionar para o login.");
     }
   };
+
   const handleNavigateNewAccount = () => {
     try {
       navigate(Routes.SignIn);
