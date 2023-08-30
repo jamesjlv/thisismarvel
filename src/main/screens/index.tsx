@@ -1,3 +1,2 @@
-export * from "./authentication/login";
-export * from "./authentication/welcome";
-export * from "./signin";
+export * from "./authentication";
+export * from "./authorized";
