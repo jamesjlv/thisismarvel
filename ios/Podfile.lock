@@ -1189,6 +1189,8 @@ PODS:
     - React-jsi (= 0.72.4)
     - React-logger (= 0.72.4)
     - React-perflogger (= 0.72.4)
+  - RealmJS (12.1.0):
+    - React
   - RNFBApp (18.3.1):
     - Firebase/CoreOnly (= 10.14.0)
     - React-Core
@@ -1291,6 +1293,7 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RealmJS (from `../node_modules/realm`)
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
   - "RNFlashList (from `../node_modules/@shopify/flash-list`)"
@@ -1420,6 +1423,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/react/utils"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RealmJS:
+    :path: "../node_modules/realm"
   RNFBApp:
     :path: "../node_modules/@react-native-firebase/app"
   RNFBFirestore:
@@ -1502,6 +1507,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: 63e4b31fae8f1b6738b8f79d90e8d317bb3bc04b
   React-utils: fa1c8e9f45590d37343bf8a3dd4fb272b1789cfd
   ReactCommon: 3fd63a6834011e5005d862504ba9b8e87b89a4ec
+  RealmJS: 62267ccc7bec0b40dcd5a64cd63a21346648230c
   RNFBApp: 73795c4680eba994f9639c6bb8e0aed3c0a14394
   RNFBFirestore: 022e84bf1d17a498bb558a746df2a13eeab4b03c
   RNFlashList: 25b0e092b4470c84db0386d4f5316dc34123bb6d
