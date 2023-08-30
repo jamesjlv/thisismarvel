@@ -12,21 +12,17 @@ import { Routes } from "../enums/Routes";
 
 const Stack = createStackNavigator();
 
-export const InitialAuthenticationRoutes: React.FC = () => (
+export const InitialAuthentizationRoutes: React.FC = () => (
   <Stack.Navigator
-    initialRouteName="Welcome"
+    initialRouteName={Routes.Welcome}
     screenOptions={{
+      headerShown: false,
       gestureEnabled: true,
       ...TransitionPresets.ScaleFromCenterAndroid,
     }}
   >
-    <Stack.Group screenOptions={{ headerShown: false }}>
-      <Stack.Screen
-        name={Routes.Welcome}
-        component={ManufactureWelcomeScreen}
-      />
-      <Stack.Screen name={Routes.Login} component={ManufactureLoginScreen} />
-      <Stack.Screen name={Routes.SignIn} component={ManufactureSignInScreen} />
-    </Stack.Group>
+    <Stack.Screen name={Routes.Welcome} component={ManufactureWelcomeScreen} />
+    <Stack.Screen name={Routes.Login} component={ManufactureLoginScreen} />
+    <Stack.Screen name={Routes.SignIn} component={ManufactureSignInScreen} />
   </Stack.Navigator>
 );
