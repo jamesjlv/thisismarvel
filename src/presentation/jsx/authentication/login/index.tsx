@@ -86,6 +86,14 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     }
   };
 
+  const handleNavigateForgotPassword = () => {
+    try {
+      navigate(Stacks.Authorization, { screen: Routes.ForgotPassword });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <StatusBar hidden />
@@ -151,7 +159,10 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                   )}
                   name="password"
                 />
-                <ForgetPassword text="Forgot Password?" onPress={() => {}} />
+                <ForgetPassword
+                  text="Forgot Password?"
+                  onPress={handleNavigateForgotPassword}
+                />
                 <ConfirmButton
                   title="entrar"
                   onPress={handleSubmit(handleSimpleLogin)}
