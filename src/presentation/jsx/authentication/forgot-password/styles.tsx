@@ -1,5 +1,11 @@
 import styled from "styled-components/native";
-import { Button, Input, Subtitle, Title } from "@/presentation/components";
+import {
+  Button,
+  ButtonProps,
+  Input,
+  Subtitle,
+  Title,
+} from "@/presentation/components";
 import { scale } from "@/shared/styles";
 
 export const Container = styled.ImageBackground`
@@ -35,4 +41,15 @@ export const EmailInput = styled(Input).attrs({
   max-width: ${scale(314)}px;
 `;
 
-export const NextButton = styled(Button)``;
+export const NextButton = styled(Button).attrs(
+  ({ theme }) =>
+    ({
+      elements: {
+        containerProps: {
+          style: {
+            marginTop: scale(theme.sizes.small),
+          },
+        },
+      },
+    }) as ButtonProps,
+)``;
