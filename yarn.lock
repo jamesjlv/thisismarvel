@@ -3364,6 +3364,11 @@ crypt@0.0.2, crypt@~0.0.1:
   resolved "https://registry.yarnpkg.com/crypt/-/crypt-0.0.2.tgz#88d7ff7ec0dfb86f713dc87bbb42d044d3e6c41b"
   integrity sha512-mCxBlsHFYh9C+HVpiEacem8FEBnMXgU9gy4zmNC+SXAZNB/1idgp/aulFJ4FgCi7GPEVbfyng092GqL2k2rmow==
 
+crypto-js@^3.1.9-1:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-3.3.0.tgz#846dd1cce2f68aacfa156c8578f926a609b7976b"
+  integrity sha512-DIT51nX0dCfKltpRiXV+/TVZq+Qq2NgF4644+K7Ttnla7zEzqc+kjJyiB96BHNyUTBxyjzRcZYpUdZa+QAqi6Q==
+
 crypto-js@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/crypto-js/-/crypto-js-4.1.1.tgz#9e485bcf03521041bd85844786b83fb7619736cf"
@@ -4164,6 +4169,13 @@ expo-font@^11.4.0, expo-font@~11.4.0:
   integrity sha512-nkmezCFD7gR/I6R+e3/ry18uEfF8uYrr6h+PdBJu+3dawoLOpo+wFb/RG9bHUekU1/cPanR58LR7G5MEMKHR2w==
   dependencies:
     fontfaceobserver "^2.1.0"
+
+expo-jwt@^1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/expo-jwt/-/expo-jwt-1.6.3.tgz#5e493913a455cd1f42ffa8e610181406a39bd24e"
+  integrity sha512-K4xGbtrUK2O+zVhf3V31tR4+QhIGp4aFbznP47Gm15L9AVDJ/QpK0pKDQ8ZAu5wyVSbsfWudy72+De7ZCzdZZg==
+  dependencies:
+    crypto-js "^3.1.9-1"
 
 expo-keep-awake@~12.3.0:
   version "12.3.0"
