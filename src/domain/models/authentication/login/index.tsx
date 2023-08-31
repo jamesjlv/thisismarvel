@@ -4,6 +4,7 @@ export type ILoginAccountModel = {
   password: string;
   name: string;
   itsAllowed: boolean;
+  token?: string;
 };
 
 export type ILoginDataTransferObjectModel = {

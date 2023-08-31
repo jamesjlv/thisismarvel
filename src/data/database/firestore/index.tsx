@@ -1,3 +1,5 @@
+import { IUserRepositoryModel } from "@/domain";
+
 export type DatabaseRequest = {
   collection: string;
   body?: any;
@@ -63,6 +65,10 @@ export interface DatabaseClient<R = any> {
     filters,
     documentId,
   }: DatabaseRequest) => Promise<DatabaseResponse<R>>;
+}
+
+export interface DatabaseEncode<R = any> {
+  encode: (params: R) => Promise<string>;
 }
 
 export enum DatabaseMethods {
