@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   Container,
@@ -11,14 +11,19 @@ import {
   NextButton,
 } from "./styles";
 import { ForgotPasswordScreenProps } from "./props";
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { YUP_VALIDATION } from "./helpers";
+import { useAlert } from "@/presentation/hooks/methods/alert";
+import { Routes, Stacks } from "@/main/routes/enums/Routes";
 
 export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
   handleSendEmailWithCodeForResetingPassword,
 }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { alert } = useAlert();
+  const { navigate } = useNavigation();
   const {
     control,
     handleSubmit,
@@ -34,12 +39,23 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
     email: string;
   }> = async ({ email }) => {
     try {
+      setIsLoading(true);
       const data = await handleSendEmailWithCodeForResetingPassword.exec({
         email,
       });
-      console.log("Enviou");
+
+      navigate(Stacks.Authorization, {
+        screen: Routes.OneTimeCodePassword,
+        params: data,
+      });
     } catch (error) {
       console.log(error);
+      alert({
+        type: "error",
+        message: "Não foi possível prosseguir.",
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -76,6 +92,8 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
             title="avançar"
             types="primary"
             onPress={handleSubmit(handleSendEmailOneTimeCodePassword)}
+            loading={isLoading}
+            disabled={isLoading}
           />
         </FormContainer>
       </Content>
