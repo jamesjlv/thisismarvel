@@ -10,6 +10,7 @@ import {
   AuthenticationProviderProps,
   HandleUpdateTokenProps,
 } from "./props";
+import { JWTExpValidator } from "@/shared";
 
 export const AuthContext = createContext<AuthenticationContextData>(
   {} as AuthenticationContextData,
@@ -26,13 +27,14 @@ export const AuthProvider: React.FC<AuthenticationProviderProps> = ({
   const authData = useQuery(AuthModel);
   const userData = useQuery(UserModel);
 
-  const handleUpdateToken = async ({ token }: HandleUpdateTokenProps) => {
+  const handleUpdateToken = async ({ token, id }: HandleUpdateTokenProps) => {
     try {
       const mode = authData?.[0]?.token
         ? UpdateMode.Modified
         : UpdateMode.Never;
 
-      realm.write(() => realm.create("Auth", { token, _id: "1" }, mode));
+      realm.write(() => realm.create("Auth", { token, _id: id }, mode));
+      setToken(token);
     } catch (error) {
       console.log("error", error);
     }
@@ -43,30 +45,42 @@ export const AuthProvider: React.FC<AuthenticationProviderProps> = ({
       realm.write(() => {
         realm.delete(authData);
       });
+      setToken("");
+      setProfile({} as AuthenticationContextData["profile"]);
     } catch (error) {}
   };
 
   const handleUpdateProfile = async ({ name, email }: IUserRepositoryModel) => {
     try {
       const mode = userData?.[0]?.name ? UpdateMode.Modified : UpdateMode.Never;
-
       realm.write(() => realm.create("User", { name, email, _id: "1" }, mode));
+      setProfile({ name, email });
     } catch (error) {
       console.log("error", error);
     }
   };
 
-  useEffect(() => {
-    if (authData?.[0]?.token) {
-      setToken(authData?.[0]?.token);
+  const handleInicialization = async () => {
+    try {
+      if (authData?.[0]?.token) {
+        const isExpired = JWTExpValidator(authData?.[0]?.token);
+        if (isExpired) {
+          await handleLogoff();
+        } else {
+          setToken(authData?.[0]?.token);
+        }
+      }
+      if (userData?.[0]?.name) {
+        setProfile(userData?.[0]);
+      }
+    } catch (error) {
+      console.error(error);
     }
-  }, [authData]);
+  };
 
   useEffect(() => {
-    if (userData?.[0]?.name) {
-      setProfile(userData?.[0]);
-    }
-  }, [userData]);
+    handleInicialization();
+  }, []);
 
   return (
     <AuthContext.Provider

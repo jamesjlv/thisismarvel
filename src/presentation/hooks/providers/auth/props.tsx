@@ -15,4 +15,5 @@ export interface AuthenticationProviderProps {
 
 export type HandleUpdateTokenProps = {
   token: string;
+  id: string;
 };
