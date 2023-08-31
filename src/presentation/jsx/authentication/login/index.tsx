@@ -31,6 +31,7 @@ import { LoginRouteParams, LoginScreenProps, UserLoginParams } from "./props";
 import { YUP_VALIDATION } from "./helpers";
 import { Routes, Stacks } from "@/main/routes/enums/Routes";
 import { useAlert } from "@/presentation/hooks/methods/alert";
+import { useAuthHook } from "@/presentation/hooks/providers/auth";
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({
   handleUserSimpleAuthentication,
@@ -39,6 +40,8 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const params = useRoute()?.params as LoginRouteParams;
   const { navigate } = useNavigation();
   const { alert } = useAlert();
+  const { handleUpdateProfile, handleUpdateToken, token, handleLogoff } =
+    useAuthHook();
 
   const {
     control,
@@ -63,7 +66,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
         password: CryptoJS(password).toString(),
       });
 
-      if (userExists.itsAllowed) {
+      if (userExists.itsAllowed && userExists?.token) {
+        await handleUpdateProfile({
+          email: userExists.email,
+          name: userExists.name,
+        });
+        await handleUpdateToken({
+          id: userExists.documentId,
+          token: userExists.token,
+        });
         navigate(Stacks.Authorized, { screen: Routes.Home });
       } else {
         alert({ message: "E-mail e ou senha inválidos." });
