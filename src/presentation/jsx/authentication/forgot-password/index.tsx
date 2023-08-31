@@ -8,6 +8,7 @@ import {
   ForgotTitle,
   FormContainer,
   Header,
+  KeyboardAvoid,
   NextButton,
 } from "./styles";
 import { ForgotPasswordScreenProps } from "./props";
@@ -52,7 +53,7 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
       console.log(error);
       alert({
         type: "error",
-        message: "Não foi possível prosseguir.",
+        message: "Usuário não encontrado, verifique o email.",
       });
     } finally {
       setIsLoading(false);
@@ -61,42 +62,45 @@ export const ForgotPasswordScreen: React.FC<ForgotPasswordScreenProps> = ({
 
   return (
     <Container source={require("@assets/images/ForgotPassword.png")}>
-      <Content>
-        <Header>
-          <ForgotTitle text="Esqueceu sua senha?" />
-          <ForgotDescription text="Informe seu usuário para prosseguir" />
-        </Header>
-        <FormContainer>
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <EmailInput
-                title="Usuário"
-                placeHolder="exemplo@mail.com.br"
-                type="primary"
-                iconName="Person"
-                onChangeText={(e) => onChange(e.toLowerCase())}
-                onBlur={onBlur}
-                value={value}
-                hasError={!!errors?.email?.message}
-                errorMessage={errors?.email?.message}
-                autoCapitalize="none"
-              />
-            )}
-            name="email"
-          />
-          <NextButton
-            title="avançar"
-            types="primary"
-            onPress={handleSubmit(handleSendEmailOneTimeCodePassword)}
-            loading={isLoading}
-            disabled={isLoading}
-          />
-        </FormContainer>
-      </Content>
+      <KeyboardAvoid>
+        <Content>
+          <Header>
+            <ForgotTitle text="Esqueceu sua senha?" />
+            <ForgotDescription text="Informe seu usuário para prosseguir" />
+          </Header>
+          <FormContainer>
+            <Controller
+              control={control}
+              rules={{
+                required: true,
+              }}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <EmailInput
+                  title="Usuário"
+                  placeHolder="exemplo@mail.com.br"
+                  type="primary"
+                  iconName="Person"
+                  onChangeText={(e) => onChange(e.toLowerCase())}
+                  onBlur={onBlur}
+                  value={value}
+                  hasError={!!errors?.email?.message}
+                  errorMessage={errors?.email?.message}
+                  autoCapitalize="none"
+                  keyboardType="email-address"
+                />
+              )}
+              name="email"
+            />
+            <NextButton
+              title="avançar"
+              types="primary"
+              onPress={handleSubmit(handleSendEmailOneTimeCodePassword)}
+              loading={isLoading}
+              disabled={isLoading}
+            />
+          </FormContainer>
+        </Content>
+      </KeyboardAvoid>
     </Container>
   );
 };

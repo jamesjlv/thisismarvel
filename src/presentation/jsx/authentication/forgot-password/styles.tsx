@@ -7,14 +7,28 @@ import {
   Title,
 } from "@/presentation/components";
 import { scale } from "@/shared/styles";
+import { Platform } from "react-native";
 
 export const Container = styled.ImageBackground`
   flex: 1;
 `;
 
-export const Content = styled.View`
+export const KeyboardAvoid = styled.KeyboardAvoidingView.attrs({
+  behavior: Platform.OS === "ios" ? "padding" : "height",
+})`
   flex: 1;
-  justify-content: center;
+`;
+
+export const Content = styled.ScrollView.attrs({
+  keyboardShouldPersistTaps: "handled",
+  contentContainerStyle: {
+    flex: 1,
+    flexGrow: 1,
+    justifyContent: "center",
+  },
+  scrollEnabled: false,
+})`
+  flex: 1;
   width: 100%;
 `;
 
