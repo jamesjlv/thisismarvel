@@ -42,14 +42,16 @@ export class SetRemoteForgotPasswordService
         },
       });
       response.body.code = code;
-      response.statusCode = 200;
+      response.statusCode = DatabaseReturnStatusCode.success;
+    } else {
+      response.statusCode = DatabaseReturnStatusCode.notFound;
     }
 
     switch (response.statusCode) {
       case DatabaseReturnStatusCode.success:
         return response.body as RemoteForgotPasswordServiveNamespace.Model;
-      case DatabaseReturnStatusCode.forbidden:
-        throw new Error("Problem to recover your password.");
+      case DatabaseReturnStatusCode.notFound:
+        throw new Error("Email not found.");
       default:
         throw new Error("Unknown error, please try again later.");
     }
