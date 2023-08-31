@@ -1,6 +1,6 @@
 export type IForgotPasswordModel = {
   email: string;
-  code: string;
+  code: number;
 };
 
 export type IForgotPasswordDataTransferObjectModel = {
