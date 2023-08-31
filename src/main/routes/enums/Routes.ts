@@ -3,6 +3,7 @@ export enum Routes {
   Welcome = "Welcome",
   Login = "Login",
   Home = "Home",
+  ForgotPassword = "ForgotPassword",
 }
 export enum Stacks {
   Authorized = "Authorized",

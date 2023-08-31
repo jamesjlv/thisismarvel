@@ -4,6 +4,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import {
+  ManufactureForgotPasswordScreen,
   ManufactureLoginScreen,
   ManufactureSignInScreen,
   ManufactureWelcomeScreen,
@@ -24,5 +25,9 @@ export const InitialAuthentizationRoutes: React.FC = () => (
     <Stack.Screen name={Routes.Welcome} component={ManufactureWelcomeScreen} />
     <Stack.Screen name={Routes.Login} component={ManufactureLoginScreen} />
     <Stack.Screen name={Routes.SignIn} component={ManufactureSignInScreen} />
+    <Stack.Screen
+      name={Routes.ForgotPassword}
+      component={ManufactureForgotPasswordScreen}
+    />
   </Stack.Navigator>
 );
