@@ -6,6 +6,7 @@ import {
 import {
   ManufactureForgotPasswordScreen,
   ManufactureLoginScreen,
+  ManufactureOneTimeCodePasswordScreen,
   ManufactureSignInScreen,
   ManufactureWelcomeScreen,
 } from "@/main/screens";
@@ -25,6 +26,10 @@ export const InitialAuthentizationRoutes: React.FC = () => (
     <Stack.Screen name={Routes.Welcome} component={ManufactureWelcomeScreen} />
     <Stack.Screen name={Routes.Login} component={ManufactureLoginScreen} />
     <Stack.Screen name={Routes.SignIn} component={ManufactureSignInScreen} />
+    <Stack.Screen
+      name={Routes.OneTimeCodePassword}
+      component={ManufactureOneTimeCodePasswordScreen}
+    />
     <Stack.Screen
       name={Routes.ForgotPassword}
       component={ManufactureForgotPasswordScreen}
