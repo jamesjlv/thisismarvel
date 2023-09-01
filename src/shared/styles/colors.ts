@@ -7,6 +7,7 @@ export const Colors = {
     silver: "#f8f8f8",
     white: "#FFFFFF",
     title: "#EFEFEF",
+    green: "#3CBA92",
   },
   text: {
     title: "#EFEFEF",
