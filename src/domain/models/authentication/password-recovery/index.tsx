@@ -7,4 +7,5 @@ export type IPasswordRecoveryModel = {
 export type IPasswordRecoveryDataTransferObjectModel = {
   password: string;
   confirmPassword: string;
+  documentId: string;
 };
