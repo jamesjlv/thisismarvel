@@ -8,7 +8,7 @@ export const Alert: React.FC<AlertProps> = ({
   type = "error",
 }) => {
   return (
-    <Container>
+    <Container type={type}>
       <ErrorSVG color="#FFFFFF" />
       <ErrorMessage text={message} />
     </Container>
