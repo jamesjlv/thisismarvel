@@ -41,7 +41,6 @@ export const OTPDescription = styled(Subtitle)`
 export const FormContainer = styled.View`
   margin: 0 ${scale(32)}px;
   min-height: ${scale(90)}px;
-  /* background-color: red; */
 `;
 
 export const InputContainer = styled.View`
@@ -64,6 +63,7 @@ export const CodeInput = styled(Input).attrs({
   align-items: center;
   padding-left: 0px;
 `;
+
 export const ButtonContainer = styled.View`
   margin: 0 ${scale(58)}px;
 `;
