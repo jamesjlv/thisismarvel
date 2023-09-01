@@ -6,6 +6,7 @@ import {
   Title,
 } from "@/presentation/components";
 import { scale } from "@/shared/styles";
+import { Platform } from "react-native";
 import styled from "styled-components/native";
 
 export const Wrapper = styled.ImageBackground`
@@ -13,6 +14,12 @@ export const Wrapper = styled.ImageBackground`
 `;
 
 export const Container = styled.ScrollView`
+  flex: 1;
+`;
+
+export const KeyboardAvoid = styled.KeyboardAvoidingView.attrs({
+  behavior: Platform.OS === "ios" ? "padding" : "height",
+})`
   flex: 1;
 `;
 
