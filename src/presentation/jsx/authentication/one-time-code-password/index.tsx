@@ -34,6 +34,7 @@ import {
 } from "react-native";
 import { scale } from "@/shared/styles";
 import { Routes, Stacks } from "@/main/routes/enums/Routes";
+import { useAlert } from "@/presentation/hooks/methods/alert";
 
 export const OneTimeCodePasswordScreen: React.FC<OTPScreenParams> = ({
   handleVerifyOTP,
@@ -41,6 +42,7 @@ export const OneTimeCodePasswordScreen: React.FC<OTPScreenParams> = ({
   const [isLoading, setIsLoading] = useState(false);
   const params = useRoute()?.params as OTPRouteParams;
   const { navigate } = useNavigation();
+  const { alert } = useAlert();
   const lengthInput = 6;
   let clockCall: NodeJS.Timeout;
 
@@ -134,6 +136,11 @@ export const OneTimeCodePasswordScreen: React.FC<OTPScreenParams> = ({
             code,
             documentId: verified.documentId,
           },
+        });
+      } else {
+        alert({
+          type: "error",
+          message: "Código invalido, tente novamente",
         });
       }
     } catch (error) {
