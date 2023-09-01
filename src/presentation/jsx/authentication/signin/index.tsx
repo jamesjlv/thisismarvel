@@ -16,13 +16,15 @@ import {
   TextInput,
   Wrapper,
 } from "./styles";
-import { SignInFormInputs, SignInScreenProps } from "./props";
+import { ErrorData, SignInFormInputs, SignInScreenProps } from "./props";
 import { Routes } from "@/main/routes/enums/Routes";
-import { YUP_VALIDATION } from "./helpers";
+import { ErrorTranslate, YUP_VALIDATION } from "./helpers";
+import { useAlert } from "@/presentation/hooks/methods/alert";
 
 export const SignInScreen: React.FC<SignInScreenProps> = ({
   handleCreateNewUserAccount,
 }) => {
+  const { alert } = useAlert();
   const [isLoading, setIsLoading] = useState(false);
   const { goBack, navigate } = useNavigation();
   const {
@@ -51,9 +53,13 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
         email,
         created_at: currentDate,
       });
-    } catch (error) {
+    } catch (error: unknown) {
       setIsLoading(false);
-      console.log(error);
+      alert({
+        type: "error",
+        //@ts-ignore
+        message: ErrorTranslate[error?.message || "default"],
+      });
       return;
     } finally {
       setIsLoading(false);

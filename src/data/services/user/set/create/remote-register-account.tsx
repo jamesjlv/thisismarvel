@@ -1,5 +1,6 @@
 import {
   DatabaseClient,
+  DatabaseResponse,
   DatabaseReturnStatusCode,
 } from "@/data/database/firestore";
 import { SetRegisterUserNamespace } from "@/domain";
@@ -14,6 +15,22 @@ export class SetRemoteRegisterUserService
   async exec(
     data: SetRegisterUserNamespace.Params,
   ): Promise<SetRegisterUserNamespace.Model> {
+    const hasUser = (await this.databaseClient.request({
+      collection: "users",
+      filterBehavior: "unique",
+      filters: [
+        {
+          leftCondition: "email",
+          condition: "==",
+          rightCondition: data?.email,
+        },
+      ],
+    })) as unknown as DatabaseResponse<SetRegisterUserNamespace.Model>;
+
+    if (hasUser.body.email) {
+      throw new Error("Error, found another user with same e-mail.");
+    }
+
     const response = await this.databaseClient.create({
       collection: "users",
       body: data,

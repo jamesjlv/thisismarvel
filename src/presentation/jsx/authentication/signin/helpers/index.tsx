@@ -18,3 +18,8 @@ export const YUP_VALIDATION = yup
       .required("Obrigatório confirmar a senha"),
   })
   .required();
+
+export enum ErrorTranslate {
+  "Error, found another user with same e-mail." = "Já existe um usuário com o e-mail cadastrado.",
+  default = "Erro desconhecido, tente novamente.",
+}

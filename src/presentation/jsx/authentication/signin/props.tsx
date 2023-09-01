@@ -10,3 +10,7 @@ export interface SignInFormInputs {
 export interface SignInScreenProps {
   handleCreateNewUserAccount: SetRegisterUserNamespace.Interface;
 }
+
+export type ErrorData = {
+  message: string;
+};
