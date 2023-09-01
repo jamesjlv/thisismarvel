@@ -43,7 +43,7 @@ export const ButtonConfirm = styled(Button).attrs(
       elements: {
         containerProps: {
           style: {
-            marginBottom: scale(theme.sizes.large),
+            marginBottom: scale(theme.sizes.medium),
           },
         },
       },
@@ -54,10 +54,10 @@ export const GoBackButton = styled(Button)``;
 
 export const FormContent = styled.View`
   flex: 1;
-  margin: ${({ theme }) => theme.moderateSize.large};
+  margin: ${({ theme }) => theme.moderateSize.large} ${scale(58)}px;
 `;
 
 export const ButtonContainer = styled.View`
-  padding: 0 ${({ theme }) => theme.moderateSize.large};
+  margin: 0 ${scale(58)}px;
   margin-bottom: ${({ theme }) => theme.moderateSize.large};
 `;
