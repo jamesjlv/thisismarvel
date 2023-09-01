@@ -7,6 +7,7 @@ import {
   ManufactureForgotPasswordScreen,
   ManufactureLoginScreen,
   ManufactureOneTimeCodePasswordScreen,
+  ManufacturePasswordRecoveryScreen,
   ManufactureSignInScreen,
   ManufactureWelcomeScreen,
 } from "@/main/screens";
@@ -33,6 +34,10 @@ export const InitialAuthentizationRoutes: React.FC = () => (
     <Stack.Screen
       name={Routes.ForgotPassword}
       component={ManufactureForgotPasswordScreen}
+    />
+    <Stack.Screen
+      name={Routes.ResetPassword}
+      component={ManufacturePasswordRecoveryScreen}
     />
   </Stack.Navigator>
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import { PasswordRecoveryScreen } from "@/presentation";
 
-export const ManufacturePasswordRecoveryScreen = () => (
+export const ManufacturePasswordRecoveryScreen: React.FC = () => (
   <PasswordRecoveryScreen />
 );
