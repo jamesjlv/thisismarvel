@@ -6,7 +6,7 @@ export type DatabaseRequest = {
   filters?: {
     condition: DatabaseFilterConditions;
     leftCondition: string | number | symbol;
-    rightCondition: string;
+    rightCondition: string | string[] | number;
   }[];
   filterBehavior?: "and" | "unique" | "or";
   documentId?: string;
