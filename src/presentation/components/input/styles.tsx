@@ -17,7 +17,9 @@ export const ErrorMessage = styled(Subtitle)`
   color: ${({ theme }) => theme.colors.primary.red};
 `;
 
-export const Icon = styled(Icons)``;
+export const Icon = styled(Icons)`
+  margin: ${({ theme }) => theme.moderateSize.medium};
+`;
 
 export const InputWrapper = styled.ImageBackground.attrs({
   resizeMode: "stretch",
@@ -51,7 +53,7 @@ export const Gradient = styled(LinearGradient).attrs({
   border-radius: ${({ theme }) => theme.moderateSize.small};
   overflow: hidden;
   align-items: center;
-  padding: ${({ theme }) => theme.moderateSize.medium};
+
   border-color: ${({ hasError, theme }) =>
     hasError ? theme.colors.primary.red : "#A09CA0"};
   border-width: 0.3px;
@@ -63,10 +65,10 @@ export const InputText = styled.TextInput.attrs(({ theme }) => ({
   placeholderTextColor: theme.colors.text.subtitle,
 }))`
   flex: 1;
-  padding-left: ${scale(20)}px;
   color: ${({ theme }) => theme.colors.text.subtitle};
   ${({ theme }) => theme.text.Gilroy.Medium}
   font-size: ${({ theme }) => theme.moderateSize.xRegular};
+  min-height: ${scale(55)}px;
 `;
 
 export const ErrorWrapper = styled.View``;
