@@ -1,5 +1,6 @@
-import { TextInputProps } from "react-native";
+import { TextInput, TextInputProps, ViewProps } from "react-native";
 import { IconProps } from "../icons/props";
+import { LinearGradientProps } from "expo-linear-gradient";
 
 export interface InputProps extends TextInputProps {
   errorMessage?: string;
@@ -10,6 +11,12 @@ export interface InputProps extends TextInputProps {
   type: "primary" | "secondary";
   iconName?: IconProps["iconName"];
   isPassword?: boolean;
+  elements?: {
+    textInput?: TextInputProps;
+    container?: ViewProps;
+    gradient?: LinearGradientProps;
+  };
+  ref?: React.RefObject<TextInput>;
 }
 
 export type ContainerInputStyleProps = {

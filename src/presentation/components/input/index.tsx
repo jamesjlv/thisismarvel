@@ -18,16 +18,18 @@ export const Input: React.FC<InputProps> = ({
   isPassword = false,
   hasError = false,
   errorMessage = "Campo inválido",
+  elements,
   ...rest
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(isPassword);
 
   return (
-    <Container hasError={hasError} {...rest}>
+    <Container hasError={hasError} {...rest} {...elements?.container}>
       {title && <Description text={title} />}
       <Gradient
         colors={["rgba(255, 255, 255, 0.231)", "rgba(16, 14, 14, 0.244)"]}
         hasError={hasError}
+        {...elements?.gradient}
       >
         <>
           {iconName && (
@@ -37,6 +39,7 @@ export const Input: React.FC<InputProps> = ({
             placeholder={placeHolder}
             secureTextEntry={isPasswordVisible}
             {...rest}
+            {...elements?.textInput}
           />
           {isPassword && (
             <Icon
