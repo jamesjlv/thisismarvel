@@ -1,7 +1,9 @@
 import Config from "react-native-config";
 
 export type IOneTimePasswordModel = {
-  code: string;
+  code: number;
+  documentId: string;
+  isValid: boolean;
 };
 
 export enum IOneTimePasswordMasterCodeModal {
@@ -9,5 +11,6 @@ export enum IOneTimePasswordMasterCodeModal {
 }
 
 export type IOneTimePasswordDataTransferObjectModel = {
-  code: string;
+  code: number;
+  email: string;
 };
