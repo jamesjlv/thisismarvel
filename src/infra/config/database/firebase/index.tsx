@@ -124,19 +124,19 @@ export class FirestoreClient implements DatabaseClient<any> {
     documentId,
   }: DatabaseRequest): Promise<DatabaseResponse<any>> {
     let databaseResponse: any;
-
+    let statusCode = 200;
     try {
       databaseResponse = await firestore()
         .collection(collection)
         .doc(documentId)
         .update(body);
-      databaseResponse["status"] = 200;
+      statusCode = 200;
     } catch (error) {
       databaseResponse = error.response;
-      databaseResponse["status"] = 500;
+      statusCode = 500;
     }
     return {
-      statusCode: databaseResponse.status,
+      statusCode,
       body: databaseResponse,
     };
   }
