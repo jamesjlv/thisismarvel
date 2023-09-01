@@ -94,6 +94,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     }
   };
 
+  const handleGoogleLogin = () =>
+    alert({ type: "error", message: "Login com Google não disponível." });
+  const handleAppleLogin = () =>
+    alert({ type: "error", message: "Login com Apple não disponível." });
+  const handleFacebookLogin = () =>
+    alert({ type: "error", message: "Login com Facebook disponível." });
+
   return (
     <>
       <StatusBar hidden />
@@ -170,9 +177,9 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                 />
                 <SocialLoginDivider text="Faça login com" />
                 <SocialLoginWrapper>
-                  <Google onPress={() => {}} />
-                  <Apple onPress={() => {}} />
-                  <Facebook onPress={() => {}} />
+                  <Google onPress={handleGoogleLogin} />
+                  <Apple onPress={handleAppleLogin} />
+                  <Facebook onPress={handleFacebookLogin} />
                 </SocialLoginWrapper>
               </FormContainer>
             </Content>
