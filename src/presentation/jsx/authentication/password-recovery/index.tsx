@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import CryptoJS from "crypto-js/md5";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import {
   ButtonContainer,
@@ -12,14 +15,23 @@ import {
   PasswordRecoveryTitle,
   RecoverButton,
 } from "./styles";
-import { PasswordRecoveryForm, PasswordRecoveryScreenProps } from "./props";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  PasswordRecoveryForm,
+  PasswordRecoveryRouteParams,
+  PasswordRecoveryScreenProps,
+} from "./props";
 import { YUP_VALIDATION } from "./helpers";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useAlert } from "@/presentation/hooks/methods/alert";
+import { Routes, Stacks } from "@/main/routes/enums/Routes";
 
-export const PasswordRecoveryScreen: React.FC<
-  PasswordRecoveryScreenProps
-> = () => {
+export const PasswordRecoveryScreen: React.FC<PasswordRecoveryScreenProps> = ({
+  handleUpdatePassword,
+}) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { alert } = useAlert();
+  const { navigate } = useNavigation();
+  const params = useRoute()?.params as unknown as PasswordRecoveryRouteParams;
   const {
     control,
     handleSubmit,
@@ -37,8 +49,21 @@ export const PasswordRecoveryScreen: React.FC<
     confirmPassword,
   }): Promise<void> => {
     try {
-      console.log(password, confirmPassword);
-    } catch (error) {}
+      setIsLoading(true);
+
+      const response = await handleUpdatePassword.exec({
+        confirmPassword: CryptoJS(confirmPassword).toString(),
+        password: CryptoJS(password).toString(),
+        documentId: params?.documentId,
+      });
+      alert({ type: "success", message: "Senha recuperada com sucesso." });
+      navigate(Stacks.Authorization, { screen: Routes.Login });
+    } catch (error) {
+      alert({ type: "error", message: "Não foi possível recuperar a senha." });
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -98,6 +123,8 @@ export const PasswordRecoveryScreen: React.FC<
               <RecoverButton
                 title="recuperar"
                 onPress={handleSubmit(handleRecoveryPassword)}
+                loading={isLoading}
+                disabled={isLoading}
               />
             </ButtonContainer>
           </FormContainer>
