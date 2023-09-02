@@ -5,7 +5,7 @@ export interface ICharactersModel {
   attributionText: string;
   attributionHTML: string;
   etag: string;
-  data: IDataCharactersModel;
+  data?: IDataCharactersModel;
 }
 export interface IDataCharactersModel {
   offset: number;

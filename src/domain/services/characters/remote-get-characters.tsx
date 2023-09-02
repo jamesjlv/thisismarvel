@@ -3,7 +3,7 @@ import { ICharactersModel } from "@/domain/models";
 interface IGetCharactersService {
   exec: (
     params: GetCharacterServiceNamespace.Params,
-  ) => Promise<GetCharacterServiceNamespace.Model>;
+  ) => Promise<GetCharacterServiceNamespace.Model["data"]>;
 }
 
 export namespace GetCharacterServiceNamespace {

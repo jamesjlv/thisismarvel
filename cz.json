@@ -14,7 +14,7 @@
       ["disabled", "fg:#858585 italic"]
     ],
     "customize": {
-      "message_template": "{{change_type}}{% if scope|length > 0 %}({{scope}}){% endif %}: {% if card|length > 0 %}SQAPP-{{card}} {% endif %}{{message}}{% if coauthored|length > 0 %}\n\nCo-authored-by: {{coauthored}}{% endif %}",
+      "message_template": "{{change_type}}{% if scope|length > 0 %}({{scope}}){% endif %}: {% if card|length > 0 %}TIM-{{card}} {% endif %}{{message}}{% if coauthored|length > 0 %}\n\nCo-authored-by: {{coauthored}}{% endif %}",
       "example": "feature(buttons): fiz uma nova feature no componente buttons",
       "change_type_order": [
         "DOCS",
