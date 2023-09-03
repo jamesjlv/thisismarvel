@@ -1,6 +1,6 @@
 export const APIsConfig = {
   MarvelAPI: {
-    baseURL: "https://gateway.marvel.com:443",
+    baseURL: "https://gateway.marvel.com",
     release: "v1",
   },
 };

@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import axios, { AxiosResponse } from "axios";
 import { HttpRequest, HttpResponse, HttpClient } from "@/data/protocols/http";
 import Config from "react-native-config";
@@ -6,29 +5,28 @@ import Crypto from "crypto-js/md5";
 
 export class AxiosHttpClient implements HttpClient {
   async request(data: HttpRequest): Promise<HttpResponse> {
-    const currentDate = new Date();
-    const timestamp = currentDate.toISOString();
-
-    axios.interceptors.request.use((config) => {
-      config.params = config.params || {};
-      config.params["apikey"] = Config.MARVEL_API_PUBLIC;
-      config.params["ts"] = timestamp;
-      config.params["hash"] = Crypto(
-        `${timestamp}${Config.MARVEL_API_PRIVATE}${Config.MARVEL_API_PUBLIC}`,
-      );
-      return config;
-    });
+    const ts = Date.now();
+    const hash = Crypto(
+      `${ts}${Config.MARVEL_API_PRIVATE}${Config.MARVEL_API_PUBLIC}`,
+    ).toString();
+    const apikey = Config.MARVEL_API_PUBLIC;
 
     let axiosResponse: AxiosResponse;
 
     try {
       axiosResponse = await axios.request({
-        url: data.url,
-        method: data.method,
-        data: data.body,
-        headers: data.headers,
+        url: data?.url,
+        method: data?.method,
+        data: data?.body,
+        headers: data?.headers,
+        params: {
+          ts,
+          hash,
+          apikey,
+        },
       });
     } catch (error) {
+      console.error(error);
       axiosResponse = error?.message as unknown as AxiosResponse<string>;
     }
 
