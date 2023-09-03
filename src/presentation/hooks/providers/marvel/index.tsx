@@ -4,11 +4,13 @@ import {
   manufactureRemoteGetCharacters,
   manufactureRemoteGetComics,
   manufactureRemoteGetSeries,
+  manufactureRemoteGetEvents,
 } from "@/main";
 import {
   GetCharacterServiceNamespace,
   GetComicsServiceNamespace,
   GetSeriesServiceNamespace,
+  GetEventsServiceNamespace,
 } from "@/domain";
 
 export const MarvelContext = createContext<MarvelContextData>(
@@ -22,6 +24,8 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
     useState<GetComicsServiceNamespace.Model["data"]>();
   const [series, setSeries] =
     useState<GetSeriesServiceNamespace.Model["data"]>();
+  const [events, setEvents] =
+    useState<GetEventsServiceNamespace.Model["data"]>();
 
   const handleGetMarvelData = async () => {
     try {
@@ -29,10 +33,15 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
         manufactureRemoteGetCharacters().exec(),
         manufactureRemoteGetComics().exec(),
         manufactureRemoteGetSeries().exec(),
+        manufactureRemoteGetEvents().exec(),
       ];
 
-      const [charactersResponse, comicsResponse, seriesResponse] =
-        await Promise.allSettled(promises);
+      const [
+        charactersResponse,
+        comicsResponse,
+        seriesResponse,
+        eventsResponse,
+      ] = await Promise.allSettled(promises);
 
       if (charactersResponse.status === "fulfilled") {
         setCharacters(
@@ -49,6 +58,11 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
           seriesResponse.value as GetSeriesServiceNamespace.Model["data"],
         );
       }
+      if (eventsResponse.status === "fulfilled") {
+        setEvents(
+          eventsResponse.value as GetEventsServiceNamespace.Model["data"],
+        );
+      }
     } catch (error) {}
   };
 
@@ -58,7 +72,7 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
 
   return (
     <MarvelContext.Provider
-      value={{ characters, handleGetMarvelData, comics, series }}
+      value={{ characters, handleGetMarvelData, comics, series, events }}
     >
       {children}
     </MarvelContext.Provider>
