@@ -43,7 +43,7 @@ export interface IComicsResultsModel {
   creators: ICreatorsModel;
   characters: IComicsCharactersModel;
   stories: IStoriesModel;
-  events: IEventsModel;
+  events: IComicsEventModel;
 }
 export interface IImageUrlsModel {
   type: string;
@@ -93,7 +93,7 @@ export interface IStoriesModel {
   items?: IItemsModel[] | null;
   returned: number;
 }
-export interface IEventsModel {
+export interface IComicsEventModel {
   available: number;
   collectionURI: string;
   items?: any[] | null;
