@@ -4,9 +4,10 @@ import { NavigationProvider } from "./navigation";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AlertProvider } from "../methods/alert";
 import { GlobalComponents } from "@/presentation/components/global-components";
-import { RealmProvider } from "@realm/react";
+
 import { RealDatabaseProvider } from "@/infra/config/database";
 import { AuthProvider } from "./auth";
+import { MarvelProvider } from "./marvel";
 interface ApplicationContextProviderManagementProps {
   children: ReactNode;
 }
@@ -21,10 +22,12 @@ export const ApplicationContextProviderManagement: React.FC<
           <AppThemeProvider>
             <AlertProvider>
               <NavigationProvider>
-                <>
-                  {children}
-                  <GlobalComponents />
-                </>
+                <MarvelProvider>
+                  <>
+                    {children}
+                    <GlobalComponents />
+                  </>
+                </MarvelProvider>
               </NavigationProvider>
             </AlertProvider>
           </AppThemeProvider>
