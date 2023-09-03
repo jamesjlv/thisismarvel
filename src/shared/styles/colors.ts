@@ -12,6 +12,8 @@ export const Colors = {
   text: {
     title: "#EFEFEF",
     subtitle: "#A4A4A4",
+    grey: "#B7B7B7",
+    dark: "#313140",
   },
   gradients: {
     blue: {
