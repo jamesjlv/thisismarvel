@@ -6,6 +6,7 @@ export enum Routes {
   ForgotPassword = "ForgotPassword",
   OneTimeCodePassword = "OneTimeCodePassword",
   ResetPassword = "ResetPassword",
+  Details = "Details",
 }
 export enum Stacks {
   Authorized = "Authorized",
