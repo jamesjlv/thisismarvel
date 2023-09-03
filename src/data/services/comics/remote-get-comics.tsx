@@ -19,7 +19,7 @@ export class GetRemoteComicsService
       case HttpStatusCode.success:
         return response?.body?.data;
       case HttpStatusCode.notFound:
-        throw new Error("Cannot find characters, try again later.");
+        throw new Error("Cannot find comics, try again later.");
       default:
         throw new Error("Cannot fetch data on marvels api.");
     }

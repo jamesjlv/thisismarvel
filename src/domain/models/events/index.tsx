@@ -5,7 +5,7 @@ export interface IEventsModel {
   attributionText: string;
   attributionHTML: string;
   etag: string;
-  data: IEventsDataModel;
+  data?: IEventsDataModel;
 }
 export interface IEventsDataModel {
   offset: number;

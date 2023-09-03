@@ -1,15 +1,15 @@
 import { HttpClient, HttpMethod, HttpStatusCode } from "@/data/protocols";
-import { GetSeriesServiceNamespace } from "@/domain";
+import { GetEventsServiceNamespace } from "@/domain";
 
-export class GetRemoteSeriesService
-  implements GetSeriesServiceNamespace.Interface
+export class GetRemoteEventsService
+  implements GetEventsServiceNamespace.Interface
 {
   constructor(
-    private readonly httpClient: HttpClient<GetSeriesServiceNamespace.Model>,
+    private readonly httpClient: HttpClient<GetEventsServiceNamespace.Model>,
     private readonly url: string,
   ) {}
 
-  async exec(): Promise<GetSeriesServiceNamespace.Model["data"]> {
+  async exec(): Promise<GetEventsServiceNamespace.Model["data"]> {
     let response = await this.httpClient.request({
       method: HttpMethod.Get,
       url: this.url,
@@ -19,7 +19,7 @@ export class GetRemoteSeriesService
       case HttpStatusCode.success:
         return response?.body?.data;
       case HttpStatusCode.notFound:
-        throw new Error("Cannot find series, try again later.");
+        throw new Error("Cannot find events, try again later.");
       default:
         throw new Error("Cannot fetch data on marvels api.");
     }
