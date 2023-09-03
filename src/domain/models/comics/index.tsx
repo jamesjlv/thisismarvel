@@ -32,7 +32,7 @@ export interface IComicsResultsModel {
   textObjects?: ITextObjectsModel[] | null;
   resourceURI: string;
   urls?: IImageUrlsModel[] | null;
-  series: ISeriesModel;
+  series: IComicsSeriesModel;
   variants?: any[] | null;
   collections?: any[] | null;
   collectedIssues?: any[] | null;
@@ -49,7 +49,7 @@ export interface IImageUrlsModel {
   type: string;
   url: string;
 }
-export interface ISeriesModel {
+export interface IComicsSeriesModel {
   resourceURI: string;
   name: string;
 }
