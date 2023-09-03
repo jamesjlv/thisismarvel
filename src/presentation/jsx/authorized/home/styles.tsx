@@ -67,7 +67,9 @@ export const Content = styled.View`
   width: 100%;
 `;
 
-export const CardContainer = styled.View``;
+export const CardContainer = styled.View`
+  margin-bottom: ${({ theme }) => theme.moderateSize.xxLarge};
+`;
 
 export const CardTitleHeader = styled.Text`
   ${({ theme }) => css`

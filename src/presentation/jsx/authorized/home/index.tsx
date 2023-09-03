@@ -22,7 +22,7 @@ import { scale } from "@/shared/styles";
 import { ICharactersResultsModel } from "@/domain";
 
 export const HomeScreen: React.FC = () => {
-  const { characters } = useMarvel();
+  const { characters, comics } = useMarvel();
 
   const handleCreateUrlImage = (item: ICharactersResultsModel["thumbnail"]) => {
     try {
@@ -60,6 +60,26 @@ export const HomeScreen: React.FC = () => {
                 <ShortCardInfo
                   url={handleCreateUrlImage(item.thumbnail)}
                   title={item.name}
+                />
+              )}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              contentContainerStyle={{
+                paddingHorizontal: scale(16),
+              }}
+            />
+          )}
+        </CardContainer>
+        <CardContainer>
+          <CardTitleHeader>Quadrinhos</CardTitleHeader>
+          {comics?.results && (
+            <FlatList
+              data={comics?.results?.slice(0, 22)}
+              renderItem={({ item }) => (
+                <ShortCardInfo
+                  url={handleCreateUrlImage(item.thumbnail)}
+                  title={item.title}
                 />
               )}
               showsVerticalScrollIndicator={false}
