@@ -5,7 +5,7 @@ export interface ISeriesModel {
   attributionText: string;
   attributionHTML: string;
   etag: string;
-  data: ISeriesDataModel;
+  data?: ISeriesDataModel;
 }
 export interface ISeriesDataModel {
   offset: number;
