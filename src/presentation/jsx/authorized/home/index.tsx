@@ -60,6 +60,8 @@ export const HomeScreen: React.FC = () => {
                 <ShortCardInfo
                   url={handleCreateUrlImage(item.thumbnail)}
                   title={item.name}
+                  type="characters"
+                  data={item}
                 />
               )}
               showsVerticalScrollIndicator={false}
@@ -80,6 +82,8 @@ export const HomeScreen: React.FC = () => {
                 <ShortCardInfo
                   url={handleCreateUrlImage(item.thumbnail)}
                   title={item.title}
+                  type="comics"
+                  data={item}
                 />
               )}
               showsVerticalScrollIndicator={false}
@@ -100,6 +104,8 @@ export const HomeScreen: React.FC = () => {
                 <ShortCardInfo
                   url={handleCreateUrlImage(item.thumbnail)}
                   title={item.title}
+                  type="series"
+                  data={item}
                 />
               )}
               showsVerticalScrollIndicator={false}
@@ -120,6 +126,8 @@ export const HomeScreen: React.FC = () => {
                 <ShortCardInfo
                   url={handleCreateUrlImage(item.thumbnail)}
                   title={item.title}
+                  type="events"
+                  data={item}
                 />
               )}
               showsVerticalScrollIndicator={false}
