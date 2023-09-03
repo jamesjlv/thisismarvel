@@ -1,15 +1,15 @@
 import { HttpClient, HttpMethod, HttpStatusCode } from "@/data/protocols";
-import { GetComicsServiceNamespace } from "@/domain";
+import { GetSeriesServiceNamespace } from "@/domain";
 
-export class GetRemoteComicsService
-  implements GetComicsServiceNamespace.Interface
+export class GetRemoteSeriesService
+  implements GetSeriesServiceNamespace.Interface
 {
   constructor(
-    private readonly httpClient: HttpClient<GetComicsServiceNamespace.Model>,
+    private readonly httpClient: HttpClient<GetSeriesServiceNamespace.Model>,
     private readonly url: string,
   ) {}
 
-  async exec(): Promise<GetComicsServiceNamespace.Model["data"]> {
+  async exec(): Promise<GetSeriesServiceNamespace.Model["data"]> {
     let response = await this.httpClient.request({
       method: HttpMethod.Get,
       url: this.url,
