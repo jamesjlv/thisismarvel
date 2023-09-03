@@ -5,7 +5,7 @@ export interface ICharacterComicsByIdModel {
   attributionText: string;
   attributionHTML: string;
   etag: string;
-  data: ICharacterComicsDataModel;
+  data?: ICharacterComicsDataModel;
 }
 export interface ICharacterComicsDataModel {
   offset: number;

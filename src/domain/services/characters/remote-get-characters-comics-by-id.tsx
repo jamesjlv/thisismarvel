@@ -7,7 +7,11 @@ interface IGetCharactersComicsByIdService {
 }
 
 export namespace GetCharacterComicsByIdServiceNamespace {
-  export type Params = { id: string; orderBy: "ASC" | "DES"; qtd: number };
+  export type Params = {
+    id: string;
+    orderBy: "onsaleDate" | "-onsaleDate";
+    qtd: number;
+  };
 
   export type Model = ICharacterComicsByIdModel;
 
