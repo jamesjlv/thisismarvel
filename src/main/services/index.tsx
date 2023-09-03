@@ -5,3 +5,4 @@ export * from "./authentication/one-time-password/remote-one-time-password-code-
 export * from "./authentication/password-recovery/remote-password-recovery";
 export * from "./characters/remote-get-characters";
 export * from "./comics/remote-get-comics";
+export * from "./series/remote-get-series";
