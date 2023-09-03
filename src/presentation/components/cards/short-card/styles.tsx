@@ -3,6 +3,8 @@ import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 
 import styled, { css } from "styled-components/native";
 
+export const Press = styled.TouchableOpacity.attrs({ activeOpacity: 0.7 })``;
+
 export const Card = styled.ImageBackground`
   width: ${scale(140)}px;
   height: ${scale(230)}px;
