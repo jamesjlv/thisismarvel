@@ -5,7 +5,7 @@ export interface IComicsModel {
   attributionText: string;
   attributionHTML: string;
   etag: string;
-  data: IComicsDataModel;
+  data?: IComicsDataModel;
 }
 export interface IComicsDataModel {
   offset: number;
