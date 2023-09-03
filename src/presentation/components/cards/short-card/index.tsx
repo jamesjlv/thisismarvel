@@ -9,9 +9,9 @@ export const ShortCardInfo: React.FC<ShortCardInfoProps> = ({
   return (
     <Card
       source={{
-        uri: url
-          ? url
-          : "https://place-hold.it/140x230/b7b7b7?text=Sem%20imagem",
+        uri: url.includes("image_not_available")
+          ? "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_incredible.jpg"
+          : url,
       }}
     >
       <CardOpacity colors={["rgba(0, 0, 0, 0.00)", "rgba(0, 0, 0, 0.41)"]}>
