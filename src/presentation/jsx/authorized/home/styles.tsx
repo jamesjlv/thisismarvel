@@ -1,13 +1,13 @@
 import styled, { css } from "styled-components/native";
-import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 import { scale } from "@/shared/styles";
 import { Icons } from "@/presentation/components";
 import MarvelLogoSVG from "@assets/icons/App-Bar-Logo.svg";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
-export const Container = styled.View`
+
+export const Container = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})`
   flex: 1;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const Header = styled.View`
