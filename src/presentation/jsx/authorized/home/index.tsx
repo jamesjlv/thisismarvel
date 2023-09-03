@@ -1,7 +1,77 @@
 import React from "react";
 
-import { Container } from "./styles";
+import {
+  Container,
+  Header,
+  MarvelLogo,
+  Search,
+  Content,
+  CardContainer,
+  CardTitleHeader,
+  DescriptionContainer,
+  Welcome,
+  Choose,
+  About,
+} from "./styles";
+import { useMarvel } from "@/presentation/hooks/providers/marvel";
+import { StatusBar } from "react-native";
+import { ShortCardInfo } from "@/presentation/components";
+import { FlatList } from "react-native-gesture-handler";
+import { scale } from "@/shared/styles";
+import { manufactureRemoteGetCharacters } from "@/main";
+import { ICharactersResultsModel } from "@/domain";
 
 export const HomeScreen: React.FC = () => {
-  return <Container></Container>;
+  const { characters, handleGetCharacters } = useMarvel();
+
+  const handleCreateUrlImage = (item: ICharactersResultsModel["thumbnail"]) => {
+    try {
+      const extension = item.extension;
+      const url = item.path;
+      return `${url}.${extension}`;
+    } catch (error) {
+      return "";
+    }
+  };
+
+  return (
+    <Container>
+      <StatusBar barStyle="dark-content" hidden={false} />
+      <Header>
+        <MarvelLogo />
+        <Search iconName="Search" color="black" size="large" />
+      </Header>
+      <DescriptionContainer>
+        <Welcome>Bem vindo ao Pontua Marvel</Welcome>
+        <Choose>Escolha o seu personagem</Choose>
+        <About>
+          O Universo Marvel é o universo compartilhado onde ocorrem as histórias
+          na maioria dos títulos de quadrinhos americanos e outras mídias
+          publicadas pela Marvel Entertainment.
+        </About>
+      </DescriptionContainer>
+      <Content>
+        <CardContainer>
+          <CardTitleHeader>Heróis</CardTitleHeader>
+          {characters?.results && (
+            <FlatList
+              data={characters?.results?.slice(0, 22)}
+              renderItem={({ item }) => (
+                <ShortCardInfo
+                  url={handleCreateUrlImage(item.thumbnail)}
+                  title={item.name}
+                />
+              )}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+              horizontal
+              contentContainerStyle={{
+                paddingHorizontal: scale(16),
+              }}
+            />
+          )}
+        </CardContainer>
+      </Content>
+    </Container>
+  );
 };
