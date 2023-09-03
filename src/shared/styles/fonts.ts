@@ -12,7 +12,7 @@ export const Font = {
     `,
     Heavy: css`
       font-family: "Gilroy-Heavy";
-      font-weight: 500;
+      font-weight: 900;
     `,
     Medium: css`
       font-family: "Gilroy-Medium";

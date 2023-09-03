@@ -8,6 +8,7 @@ export const Colors = {
     white: "#FFFFFF",
     title: "#EFEFEF",
     green: "#3CBA92",
+    pink: "#F2264B",
   },
   text: {
     title: "#EFEFEF",
