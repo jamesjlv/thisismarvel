@@ -18,11 +18,11 @@ import { StatusBar } from "react-native";
 import { ShortCardInfo } from "@/presentation/components";
 import { FlatList } from "react-native-gesture-handler";
 import { scale } from "@/shared/styles";
-import { manufactureRemoteGetCharacters } from "@/main";
+
 import { ICharactersResultsModel } from "@/domain";
 
 export const HomeScreen: React.FC = () => {
-  const { characters, handleGetCharacters } = useMarvel();
+  const { characters } = useMarvel();
 
   const handleCreateUrlImage = (item: ICharactersResultsModel["thumbnail"]) => {
     try {

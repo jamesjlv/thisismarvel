@@ -1,8 +1,12 @@
-import { GetCharacterServiceNamespace } from "@/domain";
+import {
+  GetCharacterServiceNamespace,
+  GetComicsServiceNamespace,
+} from "@/domain";
 
 export interface MarvelContextData {
   characters: GetCharacterServiceNamespace.Model["data"];
-  handleGetCharacters: () => Promise<void>;
+  comics: GetComicsServiceNamespace.Model["data"];
+  handleGetMarvelData: () => Promise<void>;
 }
 
 export interface MarvelProviderProps {
