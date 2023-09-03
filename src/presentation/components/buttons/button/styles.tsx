@@ -52,6 +52,14 @@ export const TextSecondary = styled(Subtitle)`
   text-align: center;
   align-self: center;
 `;
+export const TextThird = styled(Subtitle)`
+  font-size: ${({ theme }) => theme.moderateSize.xxMedium};
+  line-height: ${scale(47)}px;
+  color: ${({ theme }) => theme.colors.primary.grey};
+  border-radius: ${scale(15)}px;
+  text-align: center;
+  align-self: center;
+`;
 
 export const Gradient = styled(LinearGradient).attrs({
   start: { x: 0.0, y: 1.0 },

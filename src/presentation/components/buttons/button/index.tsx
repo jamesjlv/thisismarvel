@@ -9,6 +9,7 @@ import {
   Spinner,
   Text,
   TextSecondary,
+  TextThird,
 } from "./styles";
 import { ButtonProps } from "./props";
 
@@ -36,6 +37,13 @@ export const Button: React.FC<ButtonProps> = ({
           <SecondaryContainer {...rest}>
             {loading ? <Spinner /> : <TextSecondary text={title} />}
           </SecondaryContainer>
+        </Gradient>
+      )}
+      {types === "third" && (
+        <Gradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0)"]}>
+          <Container {...rest}>
+            {loading ? <Spinner /> : <TextThird text={title} />}
+          </Container>
         </Gradient>
       )}
     </>
