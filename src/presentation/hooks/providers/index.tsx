@@ -18,20 +18,20 @@ export const ApplicationContextProviderManagement: React.FC<
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <RealDatabaseProvider>
-        <AuthProvider>
-          <AppThemeProvider>
-            <AlertProvider>
-              <NavigationProvider>
+        <NavigationProvider>
+          <AuthProvider>
+            <AppThemeProvider>
+              <AlertProvider>
                 <MarvelProvider>
                   <>
                     {children}
                     <GlobalComponents />
                   </>
                 </MarvelProvider>
-              </NavigationProvider>
-            </AlertProvider>
-          </AppThemeProvider>
-        </AuthProvider>
+              </AlertProvider>
+            </AppThemeProvider>
+          </AuthProvider>
+        </NavigationProvider>
       </RealDatabaseProvider>
     </GestureHandlerRootView>
   );

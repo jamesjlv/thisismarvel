@@ -35,3 +35,7 @@ export const CreateAccountButton = styled(Button).attrs(
 )``;
 
 export const SignInButton = styled(Button)``;
+
+export const DoItLater = styled(Button)`
+  margin-top: ${({ theme }) => theme.moderateSize.regular};
+`;

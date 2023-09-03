@@ -6,11 +6,12 @@ import {
   ButtonWrapper,
   Container,
   CreateAccountButton,
+  DoItLater,
   SignInButton,
   WelcomeTitle,
   WelcomeWrapper,
 } from "./styles";
-import { Routes } from "@/main/routes/enums/Routes";
+import { Routes, Stacks } from "@/main/routes/enums/Routes";
 
 export const WelcomeScreen: React.FC = () => {
   const { navigate } = useNavigation();
@@ -18,6 +19,13 @@ export const WelcomeScreen: React.FC = () => {
   const handleNavigateLogin = () => {
     try {
       navigate(Routes.Login);
+    } catch (error) {
+      console.error("Não foi possível redirecionar para o login.");
+    }
+  };
+  const handleNavigateHome = () => {
+    try {
+      navigate(Stacks.Authorized, { screen: Routes.Home });
     } catch (error) {
       console.error("Não foi possível redirecionar para o login.");
     }
@@ -46,6 +54,11 @@ export const WelcomeScreen: React.FC = () => {
               title="Faça login"
               onPress={handleNavigateLogin}
               types="secondary"
+            />
+            <DoItLater
+              title="Continuar sem login  →"
+              onPress={handleNavigateHome}
+              types="third"
             />
           </ButtonWrapper>
         </WelcomeWrapper>
