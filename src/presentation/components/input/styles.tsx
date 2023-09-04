@@ -6,7 +6,8 @@ import { ContainerInputStyleProps, InputWrapperStyleProps } from "./props";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 
 export const Container = styled.View<ContainerInputStyleProps>`
-  min-height: ${({ hasError }) => (hasError ? scale(109) : scale(88))}px;
+  min-height: ${({ hasError = false }) =>
+    hasError ? scale(109) : scale(88)}px;
   width: 100%;
   margin-bottom: ${({ theme }) => theme.moderateSize.regular};
 `;
