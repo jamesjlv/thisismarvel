@@ -1,4 +1,5 @@
 import {
+  ICharacterComicsResultsModel,
   ICharactersResultsModel,
   IComicsResultsModel,
   IEventsResultsModel,
@@ -13,5 +14,7 @@ export type ShortCardInfoProps = {
     | ICharactersResultsModel
     | ISeriesResultsModel
     | IComicsResultsModel
-    | IEventsResultsModel;
+    | IEventsResultsModel
+    | ICharacterComicsResultsModel;
+  id?: string;
 };

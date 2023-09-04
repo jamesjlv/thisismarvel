@@ -15,3 +15,4 @@ export * from "./divider/props";
 export * from "./buttons/buttonIcon";
 export * from "./buttons/buttonIcon/props";
 export * from "./cards";
+export * from "./timeline";
