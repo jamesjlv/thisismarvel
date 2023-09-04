@@ -7,7 +7,7 @@ interface IGetComicsService {
 }
 
 export namespace GetComicsServiceNamespace {
-  export type Params = {};
+  export type Params = { filter?: string };
 
   export type Model = IComicsModel;
 

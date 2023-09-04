@@ -27,6 +27,7 @@ import { Routes, Stacks } from "@/main/routes/enums/Routes";
 export const HomeScreen: React.FC = () => {
   const { characters, comics, series, events } = useMarvel();
   const { navigate } = useNavigation();
+
   return (
     <Container>
       <StatusBar barStyle="dark-content" hidden={false} />
@@ -35,7 +36,7 @@ export const HomeScreen: React.FC = () => {
         <SearchButtonWrapper
           onPress={() => navigate(Stacks.Authorized, { screen: Routes.Search })}
         >
-          <Search iconName="Search" color="black" size="large" />
+          <Search iconName="Search" color="black" size="large" disabled />
         </SearchButtonWrapper>
       </Header>
       <DescriptionContainer>
