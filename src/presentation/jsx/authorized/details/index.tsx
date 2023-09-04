@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import GoBackSVG from "@assets/icons/Arrow-Left.svg";
+import { manufactureRemoteGetCharactersComicsById } from "@/main/services/characters";
+import {
+  ShortCardInfo,
+  Timeline as TimeLineComponent,
+} from "@/presentation/components";
 
 import {
   BackGroundOpacity,
+  COLORS,
+  CardContainer,
+  CardTitleHeader,
   Container,
   ContentDetails,
   Description,
@@ -9,32 +19,86 @@ import {
   GoBackButton,
   Header,
   ImageDetails,
-  ItemContent,
-  ItemTitle,
-  ItemWrapper,
   Primary,
   Qtd,
   QtdInfo,
   Secondary,
-  Separator,
   ShortDetails,
   ShortDetailsWrapper,
-  TimeDate,
-  TimeLine,
-  TimeLineWrapper,
-  TimelineContent,
-  TimelineHeader,
-  Years,
-  YearsTitle,
 } from "./styles";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import { DetailsRouteParams } from "./props";
-import GoBackSVG from "@assets/icons/Arrow-Left.svg";
-import ListIcon from "@assets/icons/sort-amount-down.svg";
+
+import { DetailsRouteParams, TimelineProps } from "./props";
+import { FlatList } from "react-native";
+import { handleCreateUrlImage } from "@/shared";
+import { scale } from "@/shared/styles";
+import { GetCharacterComicsByIdServiceNamespace } from "@/domain";
 
 export const DetailsScreen = () => {
   const params = useRoute()?.params as DetailsRouteParams;
   const { goBack } = useNavigation();
+  const [timeline, setTimeline] = useState<TimelineProps[]>([]);
+  const [comics, setComics] =
+    useState<GetCharacterComicsByIdServiceNamespace.Model["data"]>();
+
+  const handleTimelineData = async () => {
+    try {
+      if (params.type === "characters") {
+        const promises = [
+          manufactureRemoteGetCharactersComicsById().exec({
+            id: params?.id!,
+            orderBy: "onsaleDate",
+            qtd: 1,
+          }),
+          manufactureRemoteGetCharactersComicsById().exec({
+            id: params?.id!,
+            orderBy: "-onsaleDate",
+            qtd: 1,
+          }),
+        ];
+
+        const responses = await Promise.allSettled(promises);
+        let timelineArray: TimelineProps[] = [];
+
+        for (let i = 0; i < responses.length; i++) {
+          //@ts-ignore
+          const title = responses[i]?.value?.results?.[0]?.title || "";
+          //@ts-ignore
+          const dateFiltered = responses[i]?.value?.results?.[0]?.dates?.filter(
+            //@ts-ignore
+            (date) => date.type === "onsaleDate",
+          )[0].date as unknown as Date;
+
+          const year = dateFiltered
+            ? new Date(dateFiltered).getFullYear()
+            : undefined;
+          year &&
+            timelineArray.push({ year: year === -1 ? "---" : year, title });
+        }
+
+        setTimeline(timelineArray);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleGetComics = async () => {
+    try {
+      const response = await manufactureRemoteGetCharactersComicsById().exec({
+        id: params?.id!,
+        qtd: 22,
+        orderBy: "-onsaleDate",
+      });
+
+      setComics(response);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    handleGetComics();
+    handleTimelineData();
+  }, [params?.type]);
+
   return (
     <Container>
       <ImageDetails
@@ -42,15 +106,7 @@ export const DetailsScreen = () => {
           uri: params.url,
         }}
       >
-        <BackGroundOpacity
-          colors={[
-            "rgba(0, 0, 0, 0.0)",
-            "rgba(0, 0, 0, 0.37)",
-            "rgba(0, 0, 0, 0.57)",
-            "rgba(0, 0, 0, 0.97)",
-            "rgba(0, 0, 0, 1)",
-          ]}
-        >
+        <BackGroundOpacity colors={COLORS}>
           <Header>
             <GoBackButton onPress={() => goBack()}>
               <GoBackSVG />
@@ -69,29 +125,31 @@ export const DetailsScreen = () => {
             ))}
           </ShortDetailsWrapper>
           <ContentDetails>
-            <Description>{params.description}</Description>
-            <TimeLineWrapper>
-              <TimelineHeader>
-                <TimeDate>Data</TimeDate>
-                <TimeLine>Timeline</TimeLine>
-                <ListIcon />
-              </TimelineHeader>
-              <TimelineContent>
-                <Years>
-                  <YearsTitle>1602</YearsTitle>
-                  <YearsTitle>1602</YearsTitle>
-                </Years>
-                <Separator />
-                <ItemWrapper>
-                  <ItemContent>
-                    <ItemTitle>Spider-Man AI Apaec</ItemTitle>
-                  </ItemContent>
-                  <ItemContent lastOne>
-                    <ItemTitle>Spider-Man AI Apaec</ItemTitle>
-                  </ItemContent>
-                </ItemWrapper>
-              </TimelineContent>
-            </TimeLineWrapper>
+            {params?.description ? (
+              <Description>{params.description}</Description>
+            ) : (
+              <Description>Sem detalhes</Description>
+            )}
+            {timeline?.length > 1 && <TimeLineComponent timeline={timeline} />}
+            {params.type === "characters" && comics?.results && (
+              <CardContainer>
+                <CardTitleHeader>Quadrinhos</CardTitleHeader>
+                <FlatList
+                  data={comics?.results?.slice(0, 22)}
+                  renderItem={({ item }) => (
+                    <ShortCardInfo
+                      url={handleCreateUrlImage(item.thumbnail)}
+                      title={item.title}
+                      type="events"
+                      data={item}
+                    />
+                  )}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal
+                />
+              </CardContainer>
+            )}
           </ContentDetails>
         </BackGroundOpacity>
       </ImageDetails>

@@ -5,6 +5,7 @@ export type DetailsRouteParams = {
   subtitle: string;
   interesting?: Interesting[] | null;
   description: string;
+  id?: string;
 };
 export interface DetailsProps {
   title: string;
@@ -14,4 +15,9 @@ export interface DetailsProps {
 export interface Interesting {
   title: string;
   qtd: number;
+}
+
+export interface TimelineProps {
+  year: number | string;
+  title: string;
 }

@@ -6,6 +6,14 @@ import {
   getStatusBarHeight,
 } from "react-native-iphone-x-helper";
 
+export const COLORS = [
+  "rgba(0, 0, 0, 0.0)",
+  "rgba(0, 0, 0, 0.37)",
+  "rgba(0, 0, 0, 0.57)",
+  "rgba(0, 0, 0, 0.97)",
+  "rgba(0, 0, 0, 1)",
+];
+
 export const Container = styled.ScrollView.attrs({
   contentContainerStyle: {
     paddingBottom: getBottomSpace() + scale(48),
@@ -223,4 +231,19 @@ export const ItemTitle = styled.Text`
     color: ${theme.colors.primary.white};
     text-align: center;
   `};
+`;
+
+export const CardContainer = styled.View`
+  margin-bottom: ${({ theme }) => theme.moderateSize.xxLarge};
+`;
+
+export const CardTitleHeader = styled.Text`
+  ${({ theme }) => css`
+    ${theme.text.Gilroy.Bold}
+    font-size: ${theme.moderateSize.xxMedium};
+    line-height: ${theme.moderateSize.xxMedium};
+    color: ${theme.colors.primary.white};
+    margin-bottom: ${theme.moderateSize.medium};
+    margin-top: ${({ theme }) => theme.moderateSize.xmLarge};
+  `}
 `;
