@@ -20,19 +20,10 @@ import { FlatList } from "react-native-gesture-handler";
 import { scale } from "@/shared/styles";
 
 import { ICharactersResultsModel } from "@/domain";
+import { handleCreateUrlImage } from "@/shared";
 
 export const HomeScreen: React.FC = () => {
   const { characters, comics, series, events } = useMarvel();
-
-  const handleCreateUrlImage = (item: ICharactersResultsModel["thumbnail"]) => {
-    try {
-      const extension = item.extension;
-      const url = item.path;
-      return `${url}.${extension}`;
-    } catch (error) {
-      return "";
-    }
-  };
 
   return (
     <Container>
