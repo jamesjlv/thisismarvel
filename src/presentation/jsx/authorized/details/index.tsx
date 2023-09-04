@@ -28,10 +28,10 @@ import {
 } from "./styles";
 
 import { DetailsRouteParams, TimelineProps } from "./props";
-import { FlatList } from "react-native";
+import { FlashList } from "@shopify/flash-list";
 import { handleCreateUrlImage } from "@/shared";
-import { scale } from "@/shared/styles";
 import { GetCharacterComicsByIdServiceNamespace } from "@/domain";
+import { scale } from "@/shared/styles";
 
 export const DetailsScreen = () => {
   const params = useRoute()?.params as DetailsRouteParams;
@@ -134,7 +134,7 @@ export const DetailsScreen = () => {
             {params.type === "characters" && comics?.results && (
               <CardContainer>
                 <CardTitleHeader>Quadrinhos</CardTitleHeader>
-                <FlatList
+                <FlashList
                   data={comics?.results?.slice(0, 22)}
                   renderItem={({ item }) => (
                     <ShortCardInfo
@@ -147,6 +147,8 @@ export const DetailsScreen = () => {
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false}
                   horizontal
+                  estimatedItemSize={scale(144)}
+                  keyExtractor={(item) => `${item.id}`}
                 />
               </CardContainer>
             )}
