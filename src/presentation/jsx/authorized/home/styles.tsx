@@ -19,10 +19,14 @@ export const Header = styled.View`
   padding: ${({ theme }) => theme.moderateSize.large};
 `;
 
-export const Search = styled(Icons)`
+export const SearchButtonWrapper = styled.TouchableOpacity.attrs({
+  activeOpacity: 0.7,
+})`
   position: absolute;
   right: ${scale(28)}px;
 `;
+
+export const Search = styled(Icons)``;
 
 export const MarvelLogo = styled(MarvelLogoSVG)`
   width: ${scale(71)}px;

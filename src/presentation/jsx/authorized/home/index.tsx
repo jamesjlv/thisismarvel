@@ -12,6 +12,7 @@ import {
   Welcome,
   Choose,
   About,
+  SearchButtonWrapper,
 } from "./styles";
 import { useMarvel } from "@/presentation/hooks/providers/marvel";
 import { StatusBar } from "react-native";
@@ -19,18 +20,23 @@ import { ShortCardInfo } from "@/presentation/components";
 import { FlatList } from "react-native-gesture-handler";
 import { scale } from "@/shared/styles";
 
-import { ICharactersResultsModel } from "@/domain";
 import { handleCreateUrlImage } from "@/shared";
+import { useNavigation } from "@react-navigation/native";
+import { Routes, Stacks } from "@/main/routes/enums/Routes";
 
 export const HomeScreen: React.FC = () => {
   const { characters, comics, series, events } = useMarvel();
-
+  const { navigate } = useNavigation();
   return (
     <Container>
       <StatusBar barStyle="dark-content" hidden={false} />
       <Header>
         <MarvelLogo />
-        <Search iconName="Search" color="black" size="large" />
+        <SearchButtonWrapper
+          onPress={() => navigate(Stacks.Authorized, { screen: Routes.Search })}
+        >
+          <Search iconName="Search" color="black" size="large" />
+        </SearchButtonWrapper>
       </Header>
       <DescriptionContainer>
         <Welcome>Bem vindo ao Pontua Marvel</Welcome>
