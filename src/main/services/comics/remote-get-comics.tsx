@@ -4,5 +4,5 @@ import { manufactureApiUrl, manufactureHttpClient } from "@/main/factories";
 export const manufactureRemoteGetComics = (): GetRemoteComicsService =>
   new GetRemoteComicsService(
     manufactureHttpClient(),
-    manufactureApiUrl("public/comics?&limit=23&orderBy=focDate"),
+    manufactureApiUrl("public/comics?&orderBy=focDate"),
   );

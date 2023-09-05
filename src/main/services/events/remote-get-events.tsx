@@ -4,5 +4,5 @@ import { manufactureApiUrl, manufactureHttpClient } from "@/main/factories";
 export const manufactureRemoteGetEvents = (): GetRemoteEventsService =>
   new GetRemoteEventsService(
     manufactureHttpClient(),
-    manufactureApiUrl("public/events?orderBy=-startDate&limit=23"),
+    manufactureApiUrl("public/events?orderBy=-startDate"),
   );
