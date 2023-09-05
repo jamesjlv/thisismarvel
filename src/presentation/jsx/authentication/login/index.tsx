@@ -133,7 +133,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                       type="primary"
                       iconName="Person"
                       defaultValue={params?.email}
-                      onChangeText={(e) => onChange(e.toLowerCase())}
+                      onChangeText={onChange}
                       onBlur={onBlur}
                       value={value}
                       hasError={!!errors?.email?.message}
