@@ -7,7 +7,7 @@ interface IGetCharactersService {
 }
 
 export namespace GetCharacterServiceNamespace {
-  export type Params = { filter?: string };
+  export type Params = { filter?: string; limit?: number };
 
   export type Model = ICharactersModel;
 

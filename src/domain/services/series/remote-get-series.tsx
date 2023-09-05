@@ -7,7 +7,7 @@ interface IGetSeriesService {
 }
 
 export namespace GetSeriesServiceNamespace {
-  export type Params = { filter?: string };
+  export type Params = { filter?: string; limit?: number };
 
   export type Model = ISeriesModel;
 
