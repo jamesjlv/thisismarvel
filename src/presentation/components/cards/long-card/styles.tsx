@@ -20,7 +20,20 @@ export const Image = styled.Image`
   overflow: hidden;
   margin-right: ${({ theme }) => theme.moderateSize.xRegular};
 `;
-export const Title = styled.Text`
+export const ImageLoading = styled.ActivityIndicator`
+  width: ${scale(96)}px;
+  height: ${scale(119)}px;
+  border-radius: ${({ theme }) => theme.moderateSize.xRegular};
+  overflow: hidden;
+  background-color: ${({ theme }) => theme.colors.primary.grey};
+  position: absolute;
+  left: ${({ theme }) => theme.moderateSize.regular};
+  top: ${({ theme }) => theme.moderateSize.regular};
+`;
+export const Title = styled.Text.attrs({
+  ellipsizeMode: "tail",
+  numberOfLines: 2,
+})`
   ${({ theme }) => css`
     ${theme.text.Gilroy.Medium}
     font-size: ${theme.moderateSize.xMedium};
@@ -31,7 +44,7 @@ export const Title = styled.Text`
 `;
 export const Description = styled.Text.attrs({
   ellipsizeMode: "tail",
-  numberOfLines: 6,
+  numberOfLines: 5,
 })`
   ${({ theme }) => css`
     ${theme.text.Gilroy.Light}
@@ -39,6 +52,7 @@ export const Description = styled.Text.attrs({
     line-height: ${theme.moderateSize.xRegular};
     color: ${theme.colors.primary.white};
     flex: 1;
+    flex-wrap: wrap;
   `}
 `;
 export const SeeDetails = styled.TouchableOpacity.attrs({ activeOpacity: 0.7 })`

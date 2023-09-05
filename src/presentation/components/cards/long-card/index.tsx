@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   ListItem,
@@ -8,6 +8,7 @@ import {
   SeeDetails,
   ArrowIcon,
   ContentList,
+  ImageLoading,
 } from "./styles";
 import { LongCardProps } from "./props";
 import { useNavigation } from "@react-navigation/native";
@@ -23,6 +24,7 @@ export const LongCard: React.FC<LongCardProps> = ({
   id,
 }) => {
   const { navigate } = useNavigation();
+  const [isLoading, setIsLoading] = useState(true);
 
   return (
     <ListItem
@@ -39,7 +41,9 @@ export const LongCard: React.FC<LongCardProps> = ({
         source={{
           uri: imageUrl,
         }}
+        onLoadEnd={() => setIsLoading(false)}
       />
+      {isLoading && <ImageLoading size="large" />}
       <ContentList>
         <Title>{title}</Title>
         <Description>{description}</Description>
