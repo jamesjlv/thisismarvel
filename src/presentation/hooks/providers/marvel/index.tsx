@@ -27,13 +27,16 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
   const [events, setEvents] =
     useState<GetEventsServiceNamespace.Model["data"]>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleGetMarvelData = async () => {
     try {
+      setIsLoading(true);
       const promises = [
-        manufactureRemoteGetCharacters().exec(),
-        manufactureRemoteGetComics().exec(),
-        manufactureRemoteGetSeries().exec(),
-        manufactureRemoteGetEvents().exec(),
+        manufactureRemoteGetCharacters().exec({}),
+        manufactureRemoteGetComics().exec({}),
+        manufactureRemoteGetSeries().exec({}),
+        manufactureRemoteGetEvents().exec({}),
       ];
 
       const [
@@ -63,7 +66,11 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
           eventsResponse.value as GetEventsServiceNamespace.Model["data"],
         );
       }
-    } catch (error) {}
+    } catch (error) {
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -72,7 +79,14 @@ export const MarvelProvider = ({ children }: MarvelProviderProps) => {
 
   return (
     <MarvelContext.Provider
-      value={{ characters, handleGetMarvelData, comics, series, events }}
+      value={{
+        characters,
+        handleGetMarvelData,
+        comics,
+        series,
+        events,
+        isLoading,
+      }}
     >
       {children}
     </MarvelContext.Provider>

@@ -11,6 +11,7 @@ export interface MarvelContextData {
   series: GetSeriesServiceNamespace.Model["data"];
   events: GetEventsServiceNamespace.Model["data"];
   handleGetMarvelData: () => Promise<void>;
+  isLoading: boolean;
 }
 
 export interface MarvelProviderProps {
