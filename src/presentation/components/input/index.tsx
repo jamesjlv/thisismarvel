@@ -19,6 +19,7 @@ export const Input: React.FC<InputProps> = ({
   hasError = false,
   errorMessage = "Campo inválido",
   elements,
+  type = "primary",
   ...rest
 }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(isPassword);
@@ -29,6 +30,7 @@ export const Input: React.FC<InputProps> = ({
       <Gradient
         colors={["rgba(255, 255, 255, 0.231)", "rgba(16, 14, 14, 0.244)"]}
         hasError={hasError}
+        type={type}
         {...elements?.gradient}
       >
         <>
@@ -36,6 +38,7 @@ export const Input: React.FC<InputProps> = ({
             <Icon iconName={iconName} color="silver" size="large" disabled />
           )}
           <InputText
+            type={type}
             placeholder={placeHolder}
             {...rest}
             {...elements?.textInput}

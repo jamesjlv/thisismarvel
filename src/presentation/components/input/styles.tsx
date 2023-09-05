@@ -1,8 +1,12 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { Subtitle } from "../words/subtitle";
 import { Icons } from "../icons";
 import { scale } from "@/shared/styles";
-import { ContainerInputStyleProps, InputWrapperStyleProps } from "./props";
+import {
+  ContainerInputStyleProps,
+  InputPropsStyle,
+  InputWrapperStyleProps,
+} from "./props";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 
 export const Container = styled.View<ContainerInputStyleProps>`
@@ -49,27 +53,40 @@ export const Gradient = styled(LinearGradient).attrs({
   },
 } as LinearGradientProps)<InputWrapperStyleProps>`
   flex-direction: row;
-  margin-top: ${({ theme }) => theme.moderateSize.regular};
-  max-height: ${scale(55)}px;
-  border-radius: ${({ theme }) => theme.moderateSize.small};
-  overflow: hidden;
-  align-items: center;
+  ${({ theme, hasError, type }) => css`
+    margin-top: ${theme.moderateSize.regular};
+    max-height: ${scale(55)}px;
+    border-radius: ${type === "primary"
+      ? theme.moderateSize.small
+      : theme.moderateSize.xRegular};
+    overflow: hidden;
+    align-items: center;
 
-  border-color: ${({ hasError, theme }) =>
-    hasError ? theme.colors.primary.red : "#A09CA0"};
-  border-width: 0.3px;
+    border-color: ${hasError
+      ? theme.colors.primary.red
+      : type === "primary"
+      ? "#A09CA0"
+      : theme.colors.primary.dark};
+    border-width: ${type === "primary" ? 0.5 : 1}px;
+  `}
 `;
 
-export const InputText = styled.TextInput.attrs(({ theme }) => ({
-  autoCapitalize: "none",
-  inputMode: "email",
-  placeholderTextColor: theme.colors.text.subtitle,
-}))`
+export const InputText = styled.TextInput.attrs<InputPropsStyle>(
+  ({ theme, type }) => ({
+    autoCapitalize: "none",
+    placeholderTextColor:
+      type === "primary" ? theme.colors.text.subtitle : theme.colors.text.dark,
+  }),
+)<InputPropsStyle>`
   flex: 1;
-  color: ${({ theme }) => theme.colors.text.subtitle};
-  ${({ theme }) => theme.text.Gilroy.Medium}
-  font-size: ${({ theme }) => theme.moderateSize.xRegular};
-  min-height: ${scale(55)}px;
+  ${({ theme, type }) => css`
+    ${({ theme }) => theme.text.Gilroy.Medium}
+    color: ${type === "primary"
+      ? theme.colors.text.subtitle
+      : theme.colors.text.dark};
+    font-size: ${({ theme }) => theme.moderateSize.xRegular};
+    min-height: ${scale(55)}px;
+  `}
 `;
 
 export const ErrorWrapper = styled.View``;

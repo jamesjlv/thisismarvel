@@ -8,7 +8,7 @@ export interface InputProps extends TextInputProps {
   mask?: "email" | "text";
   title?: string;
   placeHolder: string;
-  type: "primary" | "secondary";
+  type?: "primary" | "secondary" | "third";
   iconName?: IconProps["iconName"];
   isPassword?: boolean;
   elements?: {
@@ -24,4 +24,9 @@ export type ContainerInputStyleProps = {
 };
 export type InputWrapperStyleProps = {
   hasError: boolean;
+  type: "primary" | "secondary" | "third";
+};
+
+export type InputPropsStyle = {
+  type: "primary" | "secondary" | "third";
 };
