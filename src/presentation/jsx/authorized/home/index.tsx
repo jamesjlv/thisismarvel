@@ -15,7 +15,7 @@ import {
   SearchButtonWrapper,
 } from "./styles";
 import { useMarvel } from "@/presentation/hooks/providers/marvel";
-import { StatusBar } from "react-native";
+import { ActivityIndicator, StatusBar } from "react-native";
 import { ShortCardInfo } from "@/presentation/components";
 import { FlatList } from "react-native-gesture-handler";
 import { scale } from "@/shared/styles";
@@ -25,7 +25,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Routes, Stacks } from "@/main/routes/enums/Routes";
 
 export const HomeScreen: React.FC = () => {
-  const { characters, comics, series, events } = useMarvel();
+  const { characters, comics, series, events, isLoading } = useMarvel();
   const { navigate } = useNavigation();
 
   return (
@@ -49,94 +49,100 @@ export const HomeScreen: React.FC = () => {
         </About>
       </DescriptionContainer>
       <Content>
-        <CardContainer>
-          <CardTitleHeader>Heróis</CardTitleHeader>
-          {characters?.results && (
-            <FlatList
-              data={characters?.results?.slice(0, 22)}
-              renderItem={({ item }) => (
-                <ShortCardInfo
-                  url={handleCreateUrlImage(item.thumbnail)}
-                  title={item.name}
-                  type="characters"
-                  data={item}
+        {isLoading ? (
+          <ActivityIndicator size="large" />
+        ) : (
+          <>
+            <CardContainer>
+              <CardTitleHeader>Heróis</CardTitleHeader>
+              {characters?.results && (
+                <FlatList
+                  data={characters?.results?.slice(0, 22)}
+                  renderItem={({ item }) => (
+                    <ShortCardInfo
+                      url={handleCreateUrlImage(item.thumbnail)}
+                      title={item.name}
+                      type="characters"
+                      data={item}
+                    />
+                  )}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal
+                  contentContainerStyle={{
+                    paddingHorizontal: scale(16),
+                  }}
                 />
               )}
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-              horizontal
-              contentContainerStyle={{
-                paddingHorizontal: scale(16),
-              }}
-            />
-          )}
-        </CardContainer>
-        <CardContainer>
-          <CardTitleHeader>Quadrinhos</CardTitleHeader>
-          {comics?.results && (
-            <FlatList
-              data={comics?.results?.slice(0, 22)}
-              renderItem={({ item }) => (
-                <ShortCardInfo
-                  url={handleCreateUrlImage(item.thumbnail)}
-                  title={item.title}
-                  type="comics"
-                  data={item}
+            </CardContainer>
+            <CardContainer>
+              <CardTitleHeader>Quadrinhos</CardTitleHeader>
+              {comics?.results && (
+                <FlatList
+                  data={comics?.results?.slice(0, 22)}
+                  renderItem={({ item }) => (
+                    <ShortCardInfo
+                      url={handleCreateUrlImage(item.thumbnail)}
+                      title={item.title}
+                      type="comics"
+                      data={item}
+                    />
+                  )}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal
+                  contentContainerStyle={{
+                    paddingHorizontal: scale(16),
+                  }}
                 />
               )}
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-              horizontal
-              contentContainerStyle={{
-                paddingHorizontal: scale(16),
-              }}
-            />
-          )}
-        </CardContainer>
-        <CardContainer>
-          <CardTitleHeader>Séries</CardTitleHeader>
-          {series?.results && (
-            <FlatList
-              data={series?.results?.slice(0, 22)}
-              renderItem={({ item }) => (
-                <ShortCardInfo
-                  url={handleCreateUrlImage(item.thumbnail)}
-                  title={item.title}
-                  type="series"
-                  data={item}
+            </CardContainer>
+            <CardContainer>
+              <CardTitleHeader>Séries</CardTitleHeader>
+              {series?.results && (
+                <FlatList
+                  data={series?.results?.slice(0, 22)}
+                  renderItem={({ item }) => (
+                    <ShortCardInfo
+                      url={handleCreateUrlImage(item.thumbnail)}
+                      title={item.title}
+                      type="series"
+                      data={item}
+                    />
+                  )}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal
+                  contentContainerStyle={{
+                    paddingHorizontal: scale(16),
+                  }}
                 />
               )}
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-              horizontal
-              contentContainerStyle={{
-                paddingHorizontal: scale(16),
-              }}
-            />
-          )}
-        </CardContainer>
-        <CardContainer>
-          <CardTitleHeader>Eventos</CardTitleHeader>
-          {events?.results && (
-            <FlatList
-              data={events?.results?.slice(0, 22)}
-              renderItem={({ item }) => (
-                <ShortCardInfo
-                  url={handleCreateUrlImage(item.thumbnail)}
-                  title={item.title}
-                  type="events"
-                  data={item}
+            </CardContainer>
+            <CardContainer>
+              <CardTitleHeader>Eventos</CardTitleHeader>
+              {events?.results && (
+                <FlatList
+                  data={events?.results?.slice(0, 22)}
+                  renderItem={({ item }) => (
+                    <ShortCardInfo
+                      url={handleCreateUrlImage(item.thumbnail)}
+                      title={item.title}
+                      type="events"
+                      data={item}
+                    />
+                  )}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal
+                  contentContainerStyle={{
+                    paddingHorizontal: scale(16),
+                  }}
                 />
               )}
-              showsVerticalScrollIndicator={false}
-              showsHorizontalScrollIndicator={false}
-              horizontal
-              contentContainerStyle={{
-                paddingHorizontal: scale(16),
-              }}
-            />
-          )}
-        </CardContainer>
+            </CardContainer>
+          </>
+        )}
       </Content>
     </Container>
   );
