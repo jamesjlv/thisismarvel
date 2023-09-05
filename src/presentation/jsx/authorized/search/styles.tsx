@@ -7,6 +7,7 @@ export const Container = styled.View`
   flex: 1;
   margin-top: ${getStatusBarHeight() + scale(48)}px;
   padding: ${({ theme }) => theme.moderateSize.xsmall};
+  padding-bottom: 0;
 `;
 
 export const Header = styled.View``;
