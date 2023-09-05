@@ -9,10 +9,16 @@ export class GetRemoteEventsService
     private readonly url: string,
   ) {}
 
-  async exec(): Promise<GetEventsServiceNamespace.Model["data"]> {
+  async exec(
+    params: GetEventsServiceNamespace.Params,
+  ): Promise<GetEventsServiceNamespace.Model["data"]> {
+    const url = `${this.url}&limit=${params?.limit || 23}${
+      params?.filter ? `&nameStartsWith=${params?.filter}` : undefined
+    }`;
+
     let response = await this.httpClient.request({
       method: HttpMethod.Get,
-      url: this.url,
+      url,
     });
 
     switch (response.statusCode) {

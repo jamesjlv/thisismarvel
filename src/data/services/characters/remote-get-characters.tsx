@@ -9,10 +9,16 @@ export class GetRemoteCharactersService
     private readonly url: string,
   ) {}
 
-  async exec(): Promise<GetCharacterServiceNamespace.Model["data"]> {
+  async exec(
+    params: GetCharacterServiceNamespace.Params,
+  ): Promise<GetCharacterServiceNamespace.Model["data"]> {
+    const url = `${this.url}?&limit=${params?.limit || 23}${
+      params?.filter ? `&nameStartsWith=${params?.filter}` : undefined
+    }`;
+
     let response = await this.httpClient.request({
       method: HttpMethod.Get,
-      url: this.url,
+      url,
     });
 
     switch (response.statusCode) {

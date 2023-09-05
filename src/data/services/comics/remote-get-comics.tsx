@@ -9,10 +9,16 @@ export class GetRemoteComicsService
     private readonly url: string,
   ) {}
 
-  async exec(): Promise<GetComicsServiceNamespace.Model["data"]> {
+  async exec(
+    params: GetComicsServiceNamespace.Params,
+  ): Promise<GetComicsServiceNamespace.Model["data"]> {
+    const url = `${this.url}&limit=${params?.limit || 23}${
+      params?.filter ? `&titleStartsWith=${params?.filter}` : undefined
+    }`;
+
     let response = await this.httpClient.request({
       method: HttpMethod.Get,
-      url: this.url,
+      url,
     });
 
     switch (response.statusCode) {

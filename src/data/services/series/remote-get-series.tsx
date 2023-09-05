@@ -9,10 +9,16 @@ export class GetRemoteSeriesService
     private readonly url: string,
   ) {}
 
-  async exec(): Promise<GetSeriesServiceNamespace.Model["data"]> {
+  async exec(
+    params: GetSeriesServiceNamespace.Params,
+  ): Promise<GetSeriesServiceNamespace.Model["data"]> {
+    const url = `${this.url}&orderBy=title&limit=${params?.limit || 23}${
+      params?.filter ? `&titleStartsWith=${params?.filter}` : undefined
+    }`;
+
     let response = await this.httpClient.request({
       method: HttpMethod.Get,
-      url: this.url,
+      url,
     });
 
     switch (response.statusCode) {
