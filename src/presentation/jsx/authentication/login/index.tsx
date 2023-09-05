@@ -139,6 +139,9 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                       hasError={!!errors?.email?.message}
                       errorMessage={errors?.email?.message}
                       autoCapitalize="none"
+                      textContentType="emailAddress"
+                      keyboardType="email-address"
+                      secureTextEntry
                     />
                   )}
                   name="email"
