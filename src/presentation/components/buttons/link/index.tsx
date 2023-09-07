@@ -9,8 +9,12 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
   ...rest
 }) => {
   return (
-    <Container {...rest}>
-      <Title text={text} {...elements?.textProps} />
+    <Container testID="LinkButtonComponent" {...rest}>
+      <Title
+        testID="LinkButtonComponent-Title"
+        text={text}
+        {...elements?.textProps}
+      />
     </Container>
   );
 };
