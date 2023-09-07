@@ -5,9 +5,9 @@ import { DividerProps } from "./props";
 
 export const Divider: React.FC<DividerProps> = ({ text = "", ...rest }) => {
   return (
-    <Container {...rest}>
+    <Container testID="DividerComponent" {...rest}>
       <Line />
-      <Description text={text} />
+      <Description testID="DividerComponent-TextDivider" text={text} />
       <LineInverted />
     </Container>
   );
