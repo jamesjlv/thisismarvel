@@ -25,8 +25,13 @@ export const Input: React.FC<InputProps> = ({
   const [isPasswordVisible, setIsPasswordVisible] = useState(isPassword);
 
   return (
-    <Container hasError={hasError} {...rest} {...elements?.container}>
-      {title && <Description text={title} />}
+    <Container
+      testID="InputComponent"
+      hasError={hasError}
+      {...rest}
+      {...elements?.container}
+    >
+      {title && <Description testID="InputComponent-Title" text={title} />}
       <Gradient
         colors={["rgba(255, 255, 255, 0.231)", "rgba(16, 14, 14, 0.244)"]}
         hasError={hasError}
@@ -35,9 +40,16 @@ export const Input: React.FC<InputProps> = ({
       >
         <>
           {iconName && (
-            <Icon iconName={iconName} color="silver" size="large" disabled />
+            <Icon
+              testID="InputComponent-Icon"
+              iconName={iconName}
+              color="silver"
+              size="large"
+              disabled
+            />
           )}
           <InputText
+            testID="InputComponent-InputText"
             type={type}
             placeholder={placeHolder}
             {...rest}
@@ -46,6 +58,7 @@ export const Input: React.FC<InputProps> = ({
           />
           {isPassword && (
             <Icon
+              testID="InputComponent-PasswordIcon"
               iconName={isPasswordVisible ? "EyeOutline" : "Eye"}
               color="silver"
               size="large"
@@ -54,7 +67,12 @@ export const Input: React.FC<InputProps> = ({
           )}
         </>
       </Gradient>
-      {hasError && <ErrorMessage text={errorMessage} />}
+      {hasError && (
+        <ErrorMessage
+          testID="InputComponent-ErrorMessage"
+          text={errorMessage}
+        />
+      )}
     </Container>
   );
 };
