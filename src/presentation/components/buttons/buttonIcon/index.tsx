@@ -9,7 +9,7 @@ export const ButtonIcon: React.FC<ButtonIconProps> = ({
   ...rest
 }) => {
   return (
-    <Container onPress={onPress} {...rest}>
+    <Container testID="ButtonIconComponent" onPress={onPress} {...rest}>
       <Wrapper source={require("../../../../assets/images/ButtonIcon.png")}>
         <Image
           source={require("../../../../assets/images/Google.png")}
