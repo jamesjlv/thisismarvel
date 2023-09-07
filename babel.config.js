@@ -24,6 +24,7 @@ module.exports = function (api) {
       ],
       "optional-require",
       "react-native-reanimated/plugin",
+      "babel-plugin-styled-components",
     ],
   };
 };
