@@ -8,9 +8,9 @@ export const Alert: React.FC<AlertProps> = ({
   type = "error",
 }) => {
   return (
-    <Container type={type}>
+    <Container testID="AlertComponent" type={type}>
       <ErrorSVG color="#FFFFFF" />
-      <ErrorMessage text={message} />
+      <ErrorMessage testID="AlertComponent-Text" text={message} />
     </Container>
   );
 };
