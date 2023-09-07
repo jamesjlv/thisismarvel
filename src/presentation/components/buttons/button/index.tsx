@@ -24,25 +24,41 @@ export const Button: React.FC<ButtonProps> = ({
     <>
       {types === "primary" && (
         <Background
+          testID="ButtonComponent-Primary"
           source={require("../../../../assets/images/ButtonBackground.png")}
           {...elements?.containerProps}
         >
           <Container {...rest}>
-            {loading ? <Spinner /> : <Text text={title} />}
+            {loading ? (
+              <Spinner testID="ButtonComponent-PrimaryLoading" />
+            ) : (
+              <Text testID="ButtonComponent-PrimaryText" text={title} />
+            )}
           </Container>
         </Background>
       )}
       {types === "secondary" && (
-        <Gradient colors={COLORS}>
+        <Gradient testID="ButtonComponent-Secondary" colors={COLORS}>
           <SecondaryContainer {...rest}>
-            {loading ? <Spinner /> : <TextSecondary text={title} />}
+            {loading ? (
+              <Spinner testID="ButtonComponent-SecondaryLoading" />
+            ) : (
+              <TextSecondary text={title} />
+            )}
           </SecondaryContainer>
         </Gradient>
       )}
       {types === "third" && (
-        <Gradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0)"]}>
+        <Gradient
+          testID="ButtonComponent-Third"
+          colors={["rgba(0,0,0,0)", "rgba(0,0,0,0)"]}
+        >
           <Container {...rest}>
-            {loading ? <Spinner /> : <TextThird text={title} />}
+            {loading ? (
+              <Spinner testID="ButtonComponent-ThirdLoading" />
+            ) : (
+              <TextThird testID="ButtonComponent-ThirdText" text={title} />
+            )}
           </Container>
         </Gradient>
       )}
