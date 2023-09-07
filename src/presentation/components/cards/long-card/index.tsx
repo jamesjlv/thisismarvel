@@ -28,6 +28,7 @@ export const LongCard: React.FC<LongCardProps> = ({
 
   return (
     <ListItem
+      testID="LongCardComponent"
       onPress={() =>
         navigate(Routes.Details, {
           id,
@@ -38,14 +39,17 @@ export const LongCard: React.FC<LongCardProps> = ({
       }
     >
       <Image
+        testID="LongCardInfoComponent-Image"
         source={{
           uri: imageUrl,
         }}
         onLoadEnd={() => setIsLoading(false)}
       />
-      {isLoading && <ImageLoading size="large" />}
+      {isLoading && (
+        <ImageLoading testID="LongCardComponent-Loading" size="large" />
+      )}
       <ContentList>
-        <Title>{title}</Title>
+        <Title testID="LongCardComponent-Title">{title}</Title>
         <Description>{description}</Description>
       </ContentList>
       <SeeDetails>
