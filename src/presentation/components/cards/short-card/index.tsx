@@ -17,11 +17,13 @@ export const ShortCardInfo: React.FC<ShortCardInfoProps> = ({
 
   return (
     <Press
+      testID="ShortCardInfoComponent"
       onPress={() =>
         navigate(Routes.Details, { type, url, ...handleInfo(data, type) })
       }
     >
       <Card
+        testID="ShortCardInfoComponent-Image"
         source={{
           uri: url.includes("image_not_available")
             ? "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_incredible.jpg"
@@ -31,12 +33,13 @@ export const ShortCardInfo: React.FC<ShortCardInfoProps> = ({
       >
         {isLoading ? (
           <ActivityIndicator
+            testID="ShortCardInfoComponent-ActivityIndicator"
             size="small"
             style={{ flex: 1, backgroundColor: "#ccc" }}
           />
         ) : (
           <CardOpacity colors={["rgba(0, 0, 0, 0.00)", "rgba(0, 0, 0, 0.41)"]}>
-            <CardTitle>{title}</CardTitle>
+            <CardTitle testID="ShortCardInfoComponent-Title">{title}</CardTitle>
           </CardOpacity>
         )}
       </Card>
