@@ -52,7 +52,7 @@ export const Icons: React.FC<IconProps> = ({
   const IconSelected = iconsMatch[iconName];
 
   return (
-    <Touchable {...rest}>
+    <Touchable testID="IconComponent" {...rest}>
       <IconSelected />
     </Touchable>
   );
