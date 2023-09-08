@@ -116,3 +116,5 @@ Nesse projeto, todas as dependências estão fixas para garantir que o mesmo ser
 ## Funcionamento
 
 Abaixo você poderá ver o funcionamento da ferramenta, desde o cadastro até a visualização das informações
+
+https://raw.githubusercontent.com/jamesjlv/thisismarvel/main/src/assets/public/AppApresentation.mov
