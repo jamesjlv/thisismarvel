@@ -40,8 +40,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const params = useRoute()?.params as LoginRouteParams;
   const { navigate } = useNavigation();
   const { alert } = useAlert();
-  const { handleUpdateProfile, handleUpdateToken, token, handleLogoff } =
-    useAuthHook();
+  const { handleUpdateProfile, handleUpdateToken } = useAuthHook();
 
   const {
     control,
@@ -90,7 +89,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
     try {
       navigate(Stacks.Authorization, { screen: Routes.ForgotPassword });
     } catch (error) {
-      console.error(error);
+      alert({ type: "error", message: "Erro ao tentar recuperar a senha." });
     }
   };
 
@@ -99,12 +98,12 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
   const handleAppleLogin = () =>
     alert({ type: "error", message: "Login com Apple não disponível." });
   const handleFacebookLogin = () =>
-    alert({ type: "error", message: "Login com Facebook disponível." });
+    alert({ type: "error", message: "Login com Facebook não disponível." });
 
   return (
     <>
       <StatusBar hidden />
-      <Container>
+      <Container testID="LoginScreenContainer">
         <BackGroundImage
           source={require("../../../../assets/images/BlackPanther.png")}
         >
@@ -128,6 +127,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <UserInput
+                      testID="LoginScreen-User"
                       title="Usuário"
                       placeHolder="exemplo@mail.com.br"
                       type="primary"
@@ -154,6 +154,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <PasswordInput
+                      testID="LoginScreen-Password"
                       placeHolder="Informe sua senha"
                       iconName="Key"
                       title="Senha"
@@ -170,19 +171,30 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({
                   name="password"
                 />
                 <ForgetPassword
+                  testID="LoginScreen-ForgotPassword"
                   text="Forgot Password?"
                   onPress={handleNavigateForgotPassword}
                 />
                 <ConfirmButton
+                  testID="LoginScreen-Login"
                   title="entrar"
                   onPress={handleSubmit(handleSimpleLogin)}
                   loading={isLoading}
                 />
                 <SocialLoginDivider text="Faça login com" />
                 <SocialLoginWrapper>
-                  <Google onPress={handleGoogleLogin} />
-                  <Apple onPress={handleAppleLogin} />
-                  <Facebook onPress={handleFacebookLogin} />
+                  <Google
+                    testID="LoginScreen-Google"
+                    onPress={handleGoogleLogin}
+                  />
+                  <Apple
+                    testID="LoginScreen-Apple"
+                    onPress={handleAppleLogin}
+                  />
+                  <Facebook
+                    testID="LoginScreen-Facebook"
+                    onPress={handleFacebookLogin}
+                  />
                 </SocialLoginWrapper>
               </FormContainer>
             </Content>

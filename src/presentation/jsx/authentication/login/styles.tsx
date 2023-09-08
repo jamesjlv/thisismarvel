@@ -31,9 +31,9 @@ export const BackGroundImage = styled.ImageBackground.attrs({
   flex: 1;
 `;
 
-export const BlackGradient = styled(LinearGradient).attrs(({ theme }) => ({
+export const BlackGradient = styled(LinearGradient).attrs({
   locations: [0.02, 0.45],
-}))`
+})`
   flex: 1;
 `;
 
@@ -105,13 +105,6 @@ export const ForgetPassword = styled(LinkButton)`
   width: ${scale(314)}px;
 `;
 
-export const CreateAccount = styled(LinkButton).attrs({
-  elements: { textProps: { style: { textDecorationLine: "underline" } } },
-} as LinkButtonProps)`
-  align-self: center;
-  font-size: ${({ theme }) => theme.moderateSize.regular};
-`;
-
 export const ConfirmButton = styled(Button).attrs(
   ({ theme }) =>
     ({
@@ -137,7 +130,7 @@ export const SocialLoginWrapper = styled.View`
   margin-bottom: ${({ theme }) => theme.moderateSize.largest};
 `;
 
-export const Google = styled(ButtonIcon)``;
+export const Google = styled(ButtonIcon)<{ testID: string }>``;
 export const Facebook = styled(ButtonIcon).attrs({
   elements: {
     imageContainer: {
@@ -148,7 +141,7 @@ export const Facebook = styled(ButtonIcon).attrs({
       },
     },
   },
-})``;
+})<{ testID: string }>``;
 export const Apple = styled(ButtonIcon).attrs({
   elements: {
     imageContainer: {
@@ -159,4 +152,4 @@ export const Apple = styled(ButtonIcon).attrs({
       },
     },
   },
-})``;
+})<{ testID: string }>``;
