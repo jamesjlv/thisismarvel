@@ -60,7 +60,7 @@ describe("Welcome screen", () => {
   it("Should not redirect to home", () => {
     const { getByTestId } = makeSut();
     mockConsoleError.mockClear();
-    mockHandleNavigate = undefined;
+    mockHandleNavigate = undefined as unknown as typeof mockHandleNavigate;
 
     const welcomeScreenRedirectToHome = getByTestId(
       "WelcomeScreen-RedirectHome",
@@ -75,7 +75,7 @@ describe("Welcome screen", () => {
   it("Should not redirect to login", () => {
     const { getByTestId } = makeSut();
     mockConsoleError.mockClear();
-    mockHandleNavigate = undefined;
+    mockHandleNavigate = undefined as unknown as typeof mockHandleNavigate;
     const welcomeScreenRedirectToLogin = getByTestId("WelcomeScreen-Login");
     fireEvent.press(welcomeScreenRedirectToLogin);
 
@@ -86,7 +86,7 @@ describe("Welcome screen", () => {
 
   it("Should not redirect to signup", () => {
     const { getByTestId } = makeSut();
-    mockHandleNavigate = undefined;
+    mockHandleNavigate = undefined as unknown as typeof mockHandleNavigate;
     const welcomeScreenRedirectToSignin = getByTestId("WelcomeScreen-Signup");
     fireEvent.press(welcomeScreenRedirectToSignin);
 

@@ -3,7 +3,7 @@ import { act, cleanup, fireEvent, render } from "@testing-library/react-native";
 import { PasswordRecoveryScreen } from "./index";
 import { PasswordRecoveryScreenProps } from "./props";
 import { AppThemeProvider } from "@/presentation/hooks";
-import { Routes, Stacks } from "@/main/routes/enums/Routes";
+
 import faker from "@faker-js/faker";
 
 const makeSut = (props: PasswordRecoveryScreenProps) => {
@@ -13,7 +13,6 @@ const makeSut = (props: PasswordRecoveryScreenProps) => {
 };
 
 let mockHandleNavigate = jest.fn();
-let mockConsoleError = jest.fn();
 
 let mockParams = {
   email: faker.internet.email(),
@@ -50,7 +49,7 @@ describe("Password Recovery Screen", () => {
     const mockHandleUpdatePassword = (props: any) => jest.fn(props);
     const { getByTestId } = makeSut({
       handleUpdatePassword: { exec: mockHandleUpdatePassword },
-    });
+    } as unknown as PasswordRecoveryScreenProps);
 
     const onscreen = getByTestId("PasswordRecovery-Screen");
     expect(onscreen.children).toBeTruthy();
@@ -59,7 +58,7 @@ describe("Password Recovery Screen", () => {
     const mockHandleUpdatePassword = (props: any) => jest.fn(props);
     const { getAllByTestId } = makeSut({
       handleUpdatePassword: { exec: mockHandleUpdatePassword },
-    });
+    } as unknown as PasswordRecoveryScreenProps);
 
     const inputPassword = getAllByTestId("PasswordRecovery-Input");
     fireEvent.changeText(inputPassword[1], "123!@#qwe");
@@ -71,7 +70,7 @@ describe("Password Recovery Screen", () => {
     const mockHandleUpdatePassword = (props: any) => jest.fn(props);
     const { getAllByTestId, queryByTestId } = makeSut({
       handleUpdatePassword: { exec: mockHandleUpdatePassword },
-    });
+    } as unknown as PasswordRecoveryScreenProps);
 
     const inputPassword = getAllByTestId("PasswordRecovery-Input");
     const inputConfirmPassword = getAllByTestId(
@@ -93,7 +92,7 @@ describe("Password Recovery Screen", () => {
     const mockHandleUpdatePassword = (props: any) => jest.fn(props);
     const { getAllByTestId, queryByTestId } = makeSut({
       handleUpdatePassword: { exec: mockHandleUpdatePassword },
-    });
+    } as unknown as PasswordRecoveryScreenProps);
 
     const inputPassword = getAllByTestId("PasswordRecovery-Input");
     const inputConfirmPassword = getAllByTestId(
@@ -107,7 +106,7 @@ describe("Password Recovery Screen", () => {
 
     const buttonRecovery = queryByTestId("PasswordRecovery-RecoveryButton");
     await act(() => {
-      mockHandleNavigate = undefined;
+      mockHandleNavigate = undefined as unknown as typeof mockHandleNavigate;
       fireEvent.press(buttonRecovery);
     });
   });

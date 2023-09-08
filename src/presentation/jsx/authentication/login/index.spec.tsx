@@ -3,7 +3,6 @@ import { act, cleanup, fireEvent, render } from "@testing-library/react-native";
 import { LoginScreen } from "./index";
 import { LoginScreenProps } from "./props";
 import { AppThemeProvider } from "@/presentation/hooks";
-import { Routes, Stacks } from "@/main/routes/enums/Routes";
 import faker from "@faker-js/faker";
 
 const makeSut = (props: LoginScreenProps) => {
