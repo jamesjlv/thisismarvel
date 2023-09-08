@@ -12,11 +12,10 @@ export interface InputProps extends TextInputProps {
   iconName?: IconProps["iconName"];
   isPassword?: boolean;
   elements?: {
-    textInput?: TextInputProps;
+    textInput?: InputText;
     container?: ViewProps;
     gradient?: LinearGradientProps;
   };
-  ref?: React.RefObject<TextInput>;
 }
 
 export type ContainerInputStyleProps = {
@@ -30,3 +29,7 @@ export type InputWrapperStyleProps = {
 export type InputPropsStyle = {
   type: "primary" | "secondary" | "third";
 };
+
+export interface InputText extends TextInputProps {
+  ref: React.RefObject<any>;
+}
