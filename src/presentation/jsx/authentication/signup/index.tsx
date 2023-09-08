@@ -154,6 +154,7 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({
                   placeHolder="Informe sua senha"
                   iconName="Key"
                   title="Senha"
+                  textContentType={"oneTimeCode"}
                   secureTextEntry
                   type="primary"
                   onChangeText={(e) => onChange(e)}
@@ -187,6 +188,7 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({
                   title="Confirmação de Senha"
                   secureTextEntry
                   isPassword
+                  textContentType={"oneTimeCode"}
                   type="primary"
                   onChangeText={(e) => onChange(e)}
                   onBlur={onBlur}
