@@ -33,7 +33,7 @@ export const WelcomeScreen: React.FC = () => {
 
   const handleNavigateNewAccount = () => {
     try {
-      navigate(Routes.SignIn);
+      navigate(Routes.SignUp);
     } catch (error) {
       console.error("Não foi possível redirecionar para o cadastro.");
     }
@@ -47,7 +47,7 @@ export const WelcomeScreen: React.FC = () => {
           <WelcomeTitle text="O universo Marvel na palma da sua mão." />
           <ButtonWrapper>
             <CreateAccountButton
-              testID="WelcomeScreen-Signin"
+              testID="WelcomeScreen-Signup"
               title="Cadastrar-se"
               onPress={handleNavigateNewAccount}
             />

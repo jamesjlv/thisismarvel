@@ -50,12 +50,12 @@ describe("Welcome screen", () => {
 
     expect(mockHandleNavigate).toBeCalledWith(Routes.Login);
   });
-  it("Should redirect to signin", () => {
+  it("Should redirect to signUp", () => {
     const { getByTestId } = makeSut();
-    const welcomeScreenRedirectToSignin = getByTestId("WelcomeScreen-Signin");
+    const welcomeScreenRedirectToSignin = getByTestId("WelcomeScreen-Signup");
     fireEvent.press(welcomeScreenRedirectToSignin);
 
-    expect(mockHandleNavigate).toBeCalledWith(Routes.SignIn);
+    expect(mockHandleNavigate).toBeCalledWith(Routes.SignUp);
   });
   it("Should not redirect to home", () => {
     const { getByTestId } = makeSut();

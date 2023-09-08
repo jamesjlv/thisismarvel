@@ -18,14 +18,14 @@ import {
 } from "./styles";
 import {
   InputOutlineMethods,
-  SignInFormInputs,
-  SignInScreenProps,
+  SignUpFormInputs,
+  SignUpScreenProps,
 } from "./props";
 import { Routes } from "@/main/routes/enums/Routes";
 import { ErrorTranslate, YUP_VALIDATION } from "./helpers";
 import { useAlert } from "@/presentation/hooks/methods/alert";
 
-export const SignInScreen: React.FC<SignInScreenProps> = ({
+export const SignUpScreen: React.FC<SignUpScreenProps> = ({
   handleCreateNewUserAccount,
 }) => {
   const { alert } = useAlert();
@@ -40,7 +40,7 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignInFormInputs>({
+  } = useForm<SignUpFormInputs>({
     defaultValues: {
       name: "",
       email: "",
@@ -50,7 +50,7 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({
     resolver: yupResolver(YUP_VALIDATION),
   });
 
-  const onSubmit: SubmitHandler<SignInFormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
     try {
       setIsLoading(true);
       const currentDate = new Date().getTime();

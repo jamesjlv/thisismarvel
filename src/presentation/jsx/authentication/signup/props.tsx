@@ -1,13 +1,13 @@
 import { SetRegisterUserNamespace } from "@/domain";
 
-export interface SignInFormInputs {
+export interface SignUpFormInputs {
   name: string;
   email: string;
   password: string;
   confirmPassword: string;
 }
 
-export interface SignInScreenProps {
+export interface SignUpScreenProps {
   handleCreateNewUserAccount: SetRegisterUserNamespace.Interface;
 }
 
