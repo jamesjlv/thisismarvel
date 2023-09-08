@@ -201,6 +201,7 @@ export const OneTimeCodePasswordScreen: React.FC<OTPScreenParams> = ({
 
                   return (
                     <TouchableOneTimePassword
+                      testID="OTP-TouchableOTP"
                       key={index}
                       onPress={() =>
                         oneTimePasswordTextInputRefs.current[
@@ -209,6 +210,7 @@ export const OneTimeCodePasswordScreen: React.FC<OTPScreenParams> = ({
                       }
                     >
                       <CodeInput
+                        testID="OTP-Input"
                         elements={{
                           textInput: {
                             //@ts-ignore
@@ -238,12 +240,14 @@ export const OneTimeCodePasswordScreen: React.FC<OTPScreenParams> = ({
           </FormContainer>
           <ButtonContainer>
             <NextButton
+              testID="OTP-Next"
               title="avançar"
               onPress={handleVerifyOTPCode}
               loading={isLoading}
               disabled={isLoading}
             />
             <ResendButton
+              testID="OTP-ResendCode"
               title={
                 enableResendOneTimePasswordButton
                   ? "re-enviar código"

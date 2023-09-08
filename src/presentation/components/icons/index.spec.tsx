@@ -33,9 +33,7 @@ describe("IconComponent", () => {
     const { getByTestId } = makeSut({
       iconName: "Antihero",
       onPress: handlePress,
-      size: "small",
-      color: "title",
-    });
+    } as unknown as IconProps);
 
     const iconComponentButton = getByTestId("IconComponent");
     expect(handlePress).not.toBeCalled();

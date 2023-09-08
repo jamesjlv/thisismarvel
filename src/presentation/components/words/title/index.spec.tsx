@@ -20,7 +20,6 @@ describe("Title component", () => {
       wrapper: AppThemeProvider,
     });
     const TitleComponent = getByTestId("TitleComponent");
-    console.log(TitleComponent);
 
     expect(TitleComponent.children[0]).toBe(Text);
   });
