@@ -69,7 +69,7 @@ export const PasswordRecoveryScreen: React.FC<PasswordRecoveryScreenProps> = ({
   return (
     <Container source={require("@assets/images/PasswordRecovery.png")}>
       <KeyboardAvoid>
-        <Content>
+        <Content testID="PasswordRecovery-Screen">
           <Header>
             <PasswordRecoveryTitle text="Informe a nova senha" />
             <PasswordRecoveryDescription text="Informe abaixo a nova senha para sua conta." />
@@ -82,6 +82,7 @@ export const PasswordRecoveryScreen: React.FC<PasswordRecoveryScreenProps> = ({
               }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <PasswordInput
+                  testID="PasswordRecovery-Input"
                   placeHolder="Informe sua senha"
                   iconName="Key"
                   title="Senha"
@@ -104,6 +105,7 @@ export const PasswordRecoveryScreen: React.FC<PasswordRecoveryScreenProps> = ({
               }}
               render={({ field: { onChange, onBlur, value } }) => (
                 <PasswordInput
+                  testID="PasswordRecovery-InputConfirm"
                   placeHolder="Confirme sua senha"
                   iconName="Key"
                   title="Confirmação de Senha"
@@ -121,6 +123,7 @@ export const PasswordRecoveryScreen: React.FC<PasswordRecoveryScreenProps> = ({
             />
             <ButtonContainer>
               <RecoverButton
+                testID="PasswordRecovery-RecoveryButton"
                 title="recuperar"
                 onPress={handleSubmit(handleRecoveryPassword)}
                 loading={isLoading}
