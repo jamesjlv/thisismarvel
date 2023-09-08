@@ -43,19 +43,22 @@ export const WelcomeScreen: React.FC = () => {
     <>
       <StatusBar hidden backgroundColor="transparent" translucent />
       <Container source={require("@assets/images/Welcome.jpg")}>
-        <WelcomeWrapper>
+        <WelcomeWrapper testID="WelcomeScreen">
           <WelcomeTitle text="O universo Marvel na palma da sua mão." />
           <ButtonWrapper>
             <CreateAccountButton
+              testID="WelcomeScreen-Signin"
               title="Cadastrar-se"
               onPress={handleNavigateNewAccount}
             />
             <SignInButton
+              testID="WelcomeScreen-Login"
               title="Faça login"
               onPress={handleNavigateLogin}
               types="secondary"
             />
             <DoItLater
+              testID="WelcomeScreen-RedirectHome"
               title="Continuar sem login  →"
               onPress={handleNavigateHome}
               types="third"
