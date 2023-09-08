@@ -235,6 +235,8 @@ export const ItemTitle = styled.Text`
 
 export const CardContainer = styled.View`
   margin-bottom: ${({ theme }) => theme.moderateSize.xxLarge};
+  margin-left: -${({ theme }) => theme.moderateSize.large};
+  margin-right: -${({ theme }) => theme.moderateSize.large};
 `;
 
 export const CardTitleHeader = styled.Text`
@@ -245,5 +247,6 @@ export const CardTitleHeader = styled.Text`
     color: ${theme.colors.primary.white};
     margin-bottom: ${theme.moderateSize.medium};
     margin-top: ${({ theme }) => theme.moderateSize.xmLarge};
+    margin-left: ${({ theme }) => theme.moderateSize.large};
   `}
 `;

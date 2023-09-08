@@ -25,6 +25,9 @@ export const LongCard: React.FC<LongCardProps> = ({
 }) => {
   const { navigate } = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
+  const urlFormatted = imageUrl.includes("image_not_available")
+    ? "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_incredible.jpg"
+    : imageUrl.replace("http", "https");
 
   return (
     <ListItem

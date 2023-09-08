@@ -32,6 +32,7 @@ import { FlashList } from "@shopify/flash-list";
 import { handleCreateUrlImage } from "@/shared";
 import { GetCharacterComicsByIdServiceNamespace } from "@/domain";
 import { scale } from "@/shared/styles";
+import { TouchableWithoutFeedback } from "react-native";
 
 export const DetailsScreen = () => {
   const params = useRoute()?.params as DetailsRouteParams;
@@ -137,18 +138,24 @@ export const DetailsScreen = () => {
                 <FlashList
                   data={comics?.results?.slice(0, 22)}
                   renderItem={({ item }) => (
-                    <ShortCardInfo
-                      url={handleCreateUrlImage(item.thumbnail)}
-                      title={item.title}
-                      type="events"
-                      data={item}
-                    />
+                    <TouchableWithoutFeedback>
+                      <ShortCardInfo
+                        url={handleCreateUrlImage(item.thumbnail)}
+                        title={item.title}
+                        type="events"
+                        data={item}
+                      />
+                    </TouchableWithoutFeedback>
                   )}
                   showsVerticalScrollIndicator={false}
                   showsHorizontalScrollIndicator={false}
                   horizontal
                   estimatedItemSize={scale(144)}
                   keyExtractor={(item) => `${item.id}`}
+                  scrollEnabled
+                  contentContainerStyle={{
+                    paddingHorizontal: scale(24),
+                  }}
                 />
               </CardContainer>
             )}

@@ -18,12 +18,16 @@ export const InitialAuthorizedRoutes: React.FC = () => (
     initialRouteName={Routes.Home}
     screenOptions={{
       headerShown: false,
-      gestureEnabled: true,
+
       ...TransitionPresets.ScaleFromCenterAndroid,
     }}
   >
     <Stack.Screen name={Routes.Home} component={ManufactureHomeScreen} />
-    <Stack.Screen name={Routes.Details} component={ManufactureDetailsScreen} />
+    <Stack.Screen
+      name={Routes.Details}
+      component={ManufactureDetailsScreen}
+      options={{}}
+    />
     <Stack.Screen name={Routes.Search} component={ManufactureSearchScreen} />
   </Stack.Navigator>
 );

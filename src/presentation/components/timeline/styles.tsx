@@ -52,7 +52,9 @@ export const TimeLineTitle = styled.Text`
 
 export const TimeLineDetail = styled.View``;
 
-export const TimeLine = styled.Text`
+export const TimeLine = styled.Text.attrs({
+  numberOfLines: 1,
+})`
   flex: 1;
   ${({ theme }) => css`
     ${theme.text.Gilroy.Medium}
@@ -113,12 +115,15 @@ export const ItemContent = styled.View<{ lastOne?: boolean }>`
   `}
 `;
 
-export const ItemTitle = styled.Text`
+export const ItemTitle = styled.Text.attrs({
+  numberOfLines: 1,
+})`
   ${({ theme }) => css`
     ${theme.text.Gilroy.SemiBold}
     font-size: ${theme.moderateSize.medium};
     line-height: ${theme.moderateSize.medium};
     color: ${theme.colors.primary.white};
     text-align: center;
+    padding-right: ${theme.moderateSize.medium};
   `};
 `;

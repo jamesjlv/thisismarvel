@@ -1,11 +1,14 @@
 import { scale } from "@/shared/styles";
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
-
 import styled, { css } from "styled-components/native";
+import { ImageBackground } from "react-native";
 
 export const Press = styled.TouchableOpacity.attrs({ activeOpacity: 0.7 })``;
 
-export const Card = styled.ImageBackground`
+export const Card = styled(ImageBackground).attrs({
+  width: scale(140),
+  height: scale(230),
+})`
   width: ${scale(140)}px;
   height: ${scale(230)}px;
   border-radius: ${({ theme }) => theme.moderateSize.medium};

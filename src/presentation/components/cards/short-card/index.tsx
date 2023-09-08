@@ -14,6 +14,9 @@ export const ShortCardInfo: React.FC<ShortCardInfoProps> = ({
 }) => {
   const { navigate } = useNavigation();
   const [isLoading, setIsLoading] = useState(true);
+  const urlFormatted = url.includes("image_not_available")
+    ? "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_incredible.jpg"
+    : url.replace("http", "https");
 
   return (
     <Press
@@ -24,11 +27,7 @@ export const ShortCardInfo: React.FC<ShortCardInfoProps> = ({
     >
       <Card
         testID="ShortCardInfoComponent-Image"
-        source={{
-          uri: url.includes("image_not_available")
-            ? "https://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available/portrait_incredible.jpg"
-            : url,
-        }}
+        source={{ uri: urlFormatted }}
         onLoadEnd={() => setIsLoading(false)}
       >
         {isLoading ? (
