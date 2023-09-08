@@ -39,13 +39,22 @@ jest.mock("@/presentation/hooks/methods/alert", () => ({
   }),
 }));
 
+let mockPlatform = "android";
+
+jest.mock("react-native/Libraries/Utilities/Platform", () => ({
+  OS: mockPlatform,
+  select: () => null,
+}));
+
 describe("Password Recovery Screen", () => {
   beforeEach(() => {
     cleanup();
     mockHandleNavigate.mockReset();
+    mockPlatform = "android";
   });
 
   it("Should render", () => {
+    mockPlatform = "ios";
     const mockHandleUpdatePassword = (props: any) => jest.fn(props);
     const { getByTestId } = makeSut({
       handleUpdatePassword: { exec: mockHandleUpdatePassword },

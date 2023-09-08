@@ -7,7 +7,6 @@ import {
   Gradient,
   Icon,
   InputText,
-  InputWrapper,
 } from "./styles";
 import { InputProps } from "./props";
 

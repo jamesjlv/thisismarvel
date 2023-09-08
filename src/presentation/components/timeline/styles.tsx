@@ -28,28 +28,6 @@ export const TimeDate = styled.Text`
   `}
 `;
 
-export const TimeLineDateTime = styled.Text`
-  ${({ theme }) => css`
-    ${theme.text.Gilroy.Medium}
-    opacity: 0.75;
-    font-size: ${theme.moderateSize.xRegular};
-    line-height: ${theme.moderateSize.xRegular};
-    color: ${theme.colors.primary.white};
-    margin-bottom: ${theme.moderateSize.regular};
-  `}
-`;
-
-export const TimeLineTitle = styled.Text`
-  ${({ theme }) => css`
-    ${theme.text.Gilroy.Medium}
-    opacity: 0.75;
-    font-size: ${theme.moderateSize.xRegular};
-    line-height: ${theme.moderateSize.xRegular};
-    color: ${theme.colors.primary.white};
-    margin-bottom: ${theme.moderateSize.regular};
-  `}
-`;
-
 export const TimeLineDetail = styled.View``;
 
 export const TimeLine = styled.Text.attrs({
@@ -100,7 +78,7 @@ export const ItemWrapper = styled.View`
 `;
 
 export const ItemContent = styled.View<{ lastOne?: boolean }>`
-  ${({ theme, lastOne = false }) => css`
+  ${({ theme, lastOne }) => css`
     background-color: ${lastOne
       ? theme.colors.primary.dark
       : theme.colors.primary.pink};

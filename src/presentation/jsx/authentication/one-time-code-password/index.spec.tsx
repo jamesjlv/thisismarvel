@@ -10,13 +10,6 @@ import { OneTimeCodePasswordScreen } from "./index";
 import { AppThemeProvider } from "@/presentation/hooks";
 import { OTPScreenParams } from "./props";
 import faker from "@faker-js/faker";
-import { NavigationContext } from "@react-navigation/native";
-
-const navContext = {
-  isFocused: () => true,
-  // addListener returns an unscubscribe function.
-  addListener: jest.fn(() => jest.fn()),
-};
 
 const makeSut = (props: OTPScreenParams) => {
   return render(<OneTimeCodePasswordScreen {...props} />, {
@@ -36,7 +29,7 @@ jest.mock("@react-navigation/native", () => ({
   useRoute: () => ({
     params: mockParams,
   }),
-  useFocusEffect: (callback) => callback(),
+  useFocusEffect: (callback: any) => callback(),
 }));
 
 const mockHandleVerifyOTP = { exec: jest.fn() };
@@ -98,6 +91,37 @@ describe("OneTimeCodePasswordScreen", () => {
       inputs[3].props.onChangeText("1");
       inputs[4].props.onChangeText("1");
       inputs[5].props.onChangeText("1");
+    });
+  });
+  it("Should be able erase the code", async () => {
+    const { getAllByTestId, rerender } = makeSut({
+      handleVerifyOTP: mockHandleVerifyOTP,
+    });
+    await act(() => {
+      jest.advanceTimersByTime(45001);
+      jest.advanceTimersByTimeAsync(45001);
+    });
+    const inputs = getAllByTestId("OTP-Input");
+    await act(() => {
+      inputs[0].props.onChangeText("1");
+      inputs[1].props.onChangeText("1");
+      inputs[2].props.onChangeText("1");
+      inputs[3].props.onChangeText("1");
+      inputs[4].props.onChangeText("1");
+      inputs[5].props.onChangeText("1");
+    });
+    rerender(
+      <OneTimeCodePasswordScreen
+        {...{
+          handleVerifyOTP: mockHandleVerifyOTP,
+        }}
+      />,
+    );
+    const inputs2 = getAllByTestId("OTP-Input");
+    await act(() => {
+      inputs2[4].props.onKeyPress({ nativeEvent: { key: "Backspace" } });
+      inputs2[5].props.onChangeText("");
+      inputs2[5].props.onKeyPress({ nativeEvent: { key: "Backspace" } });
     });
   });
   it("Should be able to resend the code", async () => {

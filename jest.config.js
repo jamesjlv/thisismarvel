@@ -10,9 +10,10 @@ module.exports = {
   },
   collectCoverageFrom: [
     "./src/presentation/**/*.{ts,tsx}",
-    "./src/data/**/*.{ts,tsx}",
+    "./src/data/services/**/*.{ts,tsx}",
     // "!./src/presentation/**/styles.{ts,tsx}",
     "!./src/main/**/*",
+    "!./src/**/tests/**/*",
     "!./src/domain/**/*",
     "!./src/constants/**/*",
     "!./src/assets/**/*",

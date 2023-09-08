@@ -52,8 +52,6 @@ export class SetRemoteForgotPasswordService
         return response.body as RemoteForgotPasswordServiveNamespace.Model;
       case DatabaseReturnStatusCode.notFound:
         throw new Error("Email not found.");
-      default:
-        throw new Error("Unknown error, please try again later.");
     }
   }
 }

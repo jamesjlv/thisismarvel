@@ -10,8 +10,7 @@ import {
 import { LinearGradient, LinearGradientProps } from "expo-linear-gradient";
 
 export const Container = styled.View<ContainerInputStyleProps>`
-  min-height: ${({ hasError = false }) =>
-    hasError ? scale(109) : scale(88)}px;
+  min-height: ${({ hasError }) => (hasError ? scale(109) : scale(88))}px;
   width: 100%;
   margin-bottom: ${({ theme }) => theme.moderateSize.regular};
 `;
@@ -24,23 +23,6 @@ export const ErrorMessage = styled(Subtitle)`
 
 export const Icon = styled(Icons)`
   margin: ${({ theme }) => theme.moderateSize.medium};
-`;
-
-export const InputWrapper = styled.ImageBackground.attrs({
-  resizeMode: "stretch",
-  width: scale(55),
-})<InputWrapperStyleProps>`
-  flex: 1;
-  flex-direction: row;
-  margin-top: ${({ theme }) => theme.moderateSize.regular};
-  max-height: ${scale(55)}px;
-  border-radius: ${({ theme }) => theme.moderateSize.small};
-  overflow: hidden;
-  align-items: center;
-  padding: ${({ theme }) => theme.moderateSize.medium};
-  border-color: ${({ hasError, theme }) =>
-    hasError ? theme.colors.primary.red : "#FFFFFF"};
-  border-width: 1px;
 `;
 
 export const Gradient = styled(LinearGradient).attrs({
