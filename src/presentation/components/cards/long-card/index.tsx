@@ -36,7 +36,7 @@ export const LongCard: React.FC<LongCardProps> = ({
         navigate(Routes.Details, {
           id,
           type,
-          url: imageUrl,
+          url: urlFormatted,
           ...handleInfo(data, type),
         })
       }
@@ -44,7 +44,7 @@ export const LongCard: React.FC<LongCardProps> = ({
       <Image
         testID="LongCardInfoComponent-Image"
         source={{
-          uri: imageUrl,
+          uri: urlFormatted,
         }}
         onLoadEnd={() => setIsLoading(false)}
       />

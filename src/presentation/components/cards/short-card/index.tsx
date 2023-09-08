@@ -22,7 +22,11 @@ export const ShortCardInfo: React.FC<ShortCardInfoProps> = ({
     <Press
       testID="ShortCardInfoComponent"
       onPress={() =>
-        navigate(Routes.Details, { type, url, ...handleInfo(data, type) })
+        navigate(Routes.Details, {
+          type,
+          url: urlFormatted,
+          ...handleInfo(data, type),
+        })
       }
     >
       <Card
