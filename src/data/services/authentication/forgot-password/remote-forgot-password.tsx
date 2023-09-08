@@ -30,7 +30,7 @@ export class SetRemoteForgotPasswordService
       ],
     });
 
-    if (response.body.email) {
+    if (response?.body?.email) {
       const code = Math.floor(100000 + Math.random() * 900000);
 
       await this.databaseClient.create({
