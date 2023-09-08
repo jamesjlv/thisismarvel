@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import GoBackSVG from "@assets/icons/Arrow-Left.svg";
-import { manufactureRemoteGetCharactersComicsById } from "@/main/services/characters";
+import {
+  manufactureRemoteGetCharacters,
+  manufactureRemoteGetCharactersComicsById,
+} from "@/main/services/characters";
 import {
   ShortCardInfo,
   Timeline as TimeLineComponent,
@@ -30,7 +33,10 @@ import {
 import { DetailsRouteParams, TimelineProps } from "./props";
 import { FlashList } from "@shopify/flash-list";
 import { handleCreateUrlImage } from "@/shared";
-import { GetCharacterComicsByIdServiceNamespace } from "@/domain";
+import {
+  GetCharacterComicsByIdServiceNamespace,
+  GetCharacterServiceNamespace,
+} from "@/domain";
 import { scale } from "@/shared/styles";
 import { TouchableWithoutFeedback } from "react-native";
 
@@ -40,6 +46,8 @@ export const DetailsScreen = () => {
   const [timeline, setTimeline] = useState<TimelineProps[]>([]);
   const [comics, setComics] =
     useState<GetCharacterComicsByIdServiceNamespace.Model["data"]>();
+  const [characters, setCharacters] =
+    useState<GetCharacterServiceNamespace.Model["data"]>();
 
   const handleTimelineData = async () => {
     try {
@@ -95,8 +103,39 @@ export const DetailsScreen = () => {
     } catch (error) {}
   };
 
+  const handleGetCharacters = async () => {
+    try {
+      const paramsFilter = {
+        comics: params.type === "comics" ? params.id : undefined,
+        characters: params.type === "characters" ? params.id : undefined,
+        events: params.type === "events" ? params.id : undefined,
+        series: params.type === "series" ? params.id : undefined,
+      };
+
+      const response = await manufactureRemoteGetCharacters().exec({
+        limit: 22,
+        ...paramsFilter,
+      });
+
+      setCharacters(response);
+    } catch (error) {}
+  };
+
+  const handleCarouselData = () => {
+    switch (params.type) {
+      case "characters":
+        handleGetComics();
+        break;
+
+      default:
+        handleGetCharacters();
+
+        break;
+    }
+  };
+
   useEffect(() => {
-    handleGetComics();
+    handleCarouselData();
     handleTimelineData();
   }, [params?.type]);
 
@@ -142,6 +181,33 @@ export const DetailsScreen = () => {
                       <ShortCardInfo
                         url={handleCreateUrlImage(item.thumbnail)}
                         title={item.title}
+                        type="events"
+                        data={item}
+                      />
+                    </TouchableWithoutFeedback>
+                  )}
+                  showsVerticalScrollIndicator={false}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal
+                  estimatedItemSize={scale(144)}
+                  keyExtractor={(item) => `${item.id}`}
+                  scrollEnabled
+                  contentContainerStyle={{
+                    paddingHorizontal: scale(24),
+                  }}
+                />
+              </CardContainer>
+            )}
+            {params.type !== "characters" && characters?.results && (
+              <CardContainer>
+                <CardTitleHeader>Personagens</CardTitleHeader>
+                <FlashList
+                  data={characters?.results?.slice(0, 22)}
+                  renderItem={({ item }) => (
+                    <TouchableWithoutFeedback>
+                      <ShortCardInfo
+                        url={handleCreateUrlImage(item.thumbnail)}
+                        title={item.name}
                         type="events"
                         data={item}
                       />

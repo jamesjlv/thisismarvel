@@ -12,9 +12,25 @@ export class GetRemoteCharactersService
   async exec(
     params: GetCharacterServiceNamespace.Params,
   ): Promise<GetCharacterServiceNamespace.Model["data"]> {
-    const url = `${this.url}?&limit=${params?.limit || 23}${
+    let url = `${this.url}?&limit=${params?.limit || 23}${
       params?.filter ? `&nameStartsWith=${params?.filter}` : undefined
     }`;
+
+    if (params?.comics) {
+      url = `${
+        url + GetCharacterServiceNamespace.Filters.comics + params?.comics
+      }`;
+    }
+    if (params?.events) {
+      url = `${
+        url + GetCharacterServiceNamespace.Filters.events + params?.events
+      }`;
+    }
+    if (params?.series) {
+      url = `${
+        url + GetCharacterServiceNamespace.Filters.series + params?.series
+      }`;
+    }
 
     let response = await this.httpClient.request({
       method: HttpMethod.Get,
