@@ -11,7 +11,7 @@ module.exports = {
   collectCoverageFrom: [
     "./src/presentation/**/*.{ts,tsx}",
     "./src/data/**/*.{ts,tsx}",
-    "!./src/presentation/**/styles.{ts,tsx}",
+    // "!./src/presentation/**/styles.{ts,tsx}",
     "!./src/main/**/*",
     "!./src/domain/**/*",
     "!./src/constants/**/*",
