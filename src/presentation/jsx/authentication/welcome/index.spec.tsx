@@ -84,10 +84,10 @@ describe("Welcome screen", () => {
     );
   });
 
-  it("Should not redirect to signin", () => {
+  it("Should not redirect to signup", () => {
     const { getByTestId } = makeSut();
     mockHandleNavigate = undefined;
-    const welcomeScreenRedirectToSignin = getByTestId("WelcomeScreen-Signin");
+    const welcomeScreenRedirectToSignin = getByTestId("WelcomeScreen-Signup");
     fireEvent.press(welcomeScreenRedirectToSignin);
 
     expect(mockConsoleError).toBeCalledWith(
