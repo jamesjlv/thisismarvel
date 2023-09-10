@@ -71,6 +71,10 @@ Para criar uma versão de release do aplicativo, basta executar o comando
 yarn build:android:production
 ```
 
+O arquivo SDK estará salvo em ./android/app/build/outputs/apk/release/app-release.apk
+
+**_ Caso deseje, já vai ter um arquivo .sdk salvo nesse diretório acima, para que assim você não precise fazer nenhuma configuração, para instalar, rode yarn install:apk _**
+
 ### iOS
 
 ##### Desenvolvimento
@@ -80,10 +84,6 @@ Para iniciar o projeto em modo desenvolvimento, basta abrir um terminal na raiz 
 ```shell
 yarn ios
 ```
-
-O arquivo SDK estará salvo em ./android/app/build/outputs/apk/release/app-release.apk
-
-**_ Caso deseje, já vai ter um arquivo .sdk salvo nesse diretório acima, para que assim você não precise fazer nenhuma configuração, para instalar, rode yarn install:apk _**
 
 ##### Production
 
