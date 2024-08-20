@@ -1,53 +1,50 @@
 # This is Marvel
 
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+![Badge in Development](http://img.shields.io/static/v1?label=STATUS&message=IN%20DEVELOPMENT&color=GREEN&style=for-the-badge)
 
-## Descrição
+## Description
 
-- Este app traz todo o universo Marvel na palma de sua mão, pesquise seus heróis favoritos, quadrinhos e até eventos com a maior facilidade.
+- This app brings the entire Marvel universe to the palm of your hand. Easily search for your favorite heroes, comics, and even events.
 
-## Tecnologias
+## Technologies
 
-![Badge Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black) ![Badge React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Badge React ](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Badge Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white) ![Badge JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white) ![Badge Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white) ![Badge Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![Badge Typescript](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![Badge Realm](https://img.shields.io/badge/Realm-39477F?style=for-the-badge&logo=realm&logoColor=white)
+![Badge Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black) ![Badge React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Badge React ](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Badge Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white) ![Badge JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white) ![Badge Expo](https://img.shields.io/badge/Expo-1B1F23?style=for-the-badge&logo=expo&logoColor=white) ![Badge Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) ![Badge styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white) ![Badge Realm](https://img.shields.io/badge/Realm-39477F?style=for-the-badge&logo=realm&logoColor=white)
 
-## Arquitetura
+## Architecture
 
-Para esse aplicativo, foi aplicado os conceitos de Clean Architecture + SOLID, para que assim toda parte de logica que faz conexão da camada de presentation com a camada de data, não tenham conhecimento de qual é o provedor ou framework utilizado na conexão, podendo assim ter um impacto muito menor no aplicativo quando o mesmo escalar, sendo assim, quando for necessário mudar uma técnologia de conexão, tipo de axios para alguma outra ferramenta de fetch, iremos apenas sofrer poucas alterações na camada infra e main, que é onde os factories são feitos para utilização na camada de data.
+For this application, the concepts of Clean Architecture + SOLID were applied. This ensures that the logic connecting the presentation layer with the data layer doesn't rely on a specific provider or framework. This minimizes the impact on the application when scaling. For instance, if a change is needed from Axios to another fetch tool, only minor adjustments will be required in the infra and main layers, where the factories are used in the data layer.
 
-## Decisões
+## Decisions
 
-Para ter todas as funcionabilidades funcionando, foi levantado técnicologias como Firestore do Firebase para conexão ao banco de dados e salvamento do cadastro de usuário + envio de códigos para restauração de senha.
-Para conexão com a API da Marvel, foi utilizado o axios como ferramenta.
-Para salvamento dos token localmente, foi utilizado o Realmdb.
+To enable all functionalities, technologies like Firebase's Firestore were selected for database connection, user registration, and sending password reset codes. Axios was used for the connection with the Marvel API. RealmDB was utilized for locally storing tokens.
 
-## Comunicação
+## Communication
 
-Os componentes e telas não se comunicam diretamente com o axios ou firestore, eles se integram via factories na camada de main, que irá importar classes com implementações padrões de execução para aquele fim específico e injetar os serviços necessários para funcionamento.
-Essa camada main que cria a factorie, junta os factories do httpclient ou databaseclient e injeta no usecase do data da função, fazendo assim ele estar habilitado a receber a execução da função, apóis isso, ele injeta no factory da tela para que a mesma use.
+The components and screens do not directly interact with Axios or Firestore. They integrate via factories in the main layer, which imports classes with standard execution implementations for specific purposes and injects the necessary services for proper functioning. The main layer creates the factory, combining the httpClient or databaseClient factories, and injects them into the use case of the data function, enabling it to receive the function execution. After that, it injects the factory into the screen, allowing it to use the necessary functions.
 
-## Api Marvel
+## Marvel API
 
-Para esse projeto, é necessário que você tenha chaves da API marvel que deverão estar informadas no arquivo .env, favor, informe de acordo as chaves utilizando o arquivo .env.example que está no repositório.
+For this project, you will need Marvel API keys, which should be specified in the `.env` file. Please follow the instructions in the `.env.example` file located in the repository.
 
-Para gerar as chaves, siga os passos nesse link [Marvel Documentation](https://developer.marvel.com/documentation/getting_started "Marvel Documentation")
+To generate the keys, follow the steps at this link: [Marvel Documentation](https://developer.marvel.com/documentation/getting_started "Marvel Documentation")
 
 ## Firebase
 
-Para esse projeto, é necessário ativar algumas funções do firebase como o firestore, além da extensão **Trigger Email from Firestore **
+For this project, some Firebase functions need to be enabled, such as Firestore, as well as the **Trigger Email from Firestore** extension.
 
-Para configurar o firebase, basta seguir os passos a passos do link [Google Firebase](https://firebase.google.com/?hl=pt "Google Firebase") no botão "Começar"
+To configure Firebase, follow the step-by-step guide at [Google Firebase](https://firebase.google.com/?hl=en "Google Firebase") by clicking the "Get Started" button.
 
 ## UI
 
 [![UI](https://raw.githubusercontent.com/jamesjlv/thisismarvel/main/src/assets/images/App.png)](https://raw.githubusercontent.com/jamesjlv/thisismarvel/main/src/assets/images/App.png)
 
-## Ambiente
+## Environment
 
-Para que tudo funcione como esperado, é necessário que seu dispositivo esteja com todos os recursos necessários, caso você não tenha certeza se seu dispositivo conseguirá rodar a aplicação, por favor, veja o link [Configuração do ambiente](https://react-native.rocketseat.dev/ "Configuração do ambiente")
+To ensure everything functions as expected, your device must have all the necessary resources. If you're unsure whether your device can run the application, please check this link: [Environment Setup](https://react-native.rocketseat.dev/ "Environment Setup")
 
-## Como iniciar
+## How to Start
 
-- Baixe o projeto em seu dispositivo e instale todos os pacotes necessários
+- Download the project to your device and install all necessary packages.
 
 ```shell
 yarn
@@ -55,31 +52,31 @@ yarn
 
 ### Android
 
-##### Desenvolvimento
+##### Development
 
-Para o modo desenvolvimento, basta abrir um terminal na raiz do projeto e rodar o comando
+For development mode, simply open a terminal at the project root and run the command:
 
 ```shell
 yarn android
 ```
 
-##### Produção/Release
+##### Production/Release
 
-Para criar uma versão de release do aplicativo, basta executar o comando
+To create a release version of the app, execute the following command:
 
 ```shell
 yarn build:android:production
 ```
 
-O arquivo SDK estará salvo em ./android/app/build/outputs/apk/release/app-release.apk
+The SDK file will be saved in `./android/app/build/outputs/apk/release/app-release.apk`.
 
-**_ Caso deseje, já vai ter um arquivo .sdk salvo nesse diretório acima, para que assim você não precise fazer nenhuma configuração, para instalar, rode yarn install:apk _**
+**_If desired, there will already be an `.sdk` file saved in the directory above, so you won't need to do any configuration. To install, run `yarn install:apk`._**
 
 ### iOS
 
-##### Desenvolvimento
+##### Development
 
-Para iniciar o projeto em modo desenvolvimento, basta abrir um terminal na raiz do projeto e rodar o comando
+To start the project in development mode, simply open a terminal at the project root and run the command:
 
 ```shell
 yarn ios
@@ -87,36 +84,34 @@ yarn ios
 
 ##### Production
 
-Para gerar um apk, será necessário primeiro ter uma conta apple, com isso, siga os passo a passo do link [Publicação iOS](https://medium.com/timeless/adding-react-native-app-to-app-store-connect-c4d45571df0d "Publicação iOS")
+To generate an apk, you will first need an Apple account. Follow the step-by-step guide at this link: [iOS Publication](https://medium.com/timeless/adding-react-native-app-to-app-store-connect-c4d45571df0d "iOS Publication")
 
-## Testes? nós temos.
+## Tests? Yes, we have them.
 
-Constantemente melhorando os testes, é possível garantir um aplicativo funcional e com menos possibilidade de erros.
+Constantly improving the tests ensures a functional app with fewer errors.
 
-Para ver o coverage do aplicativo, basta rodar o comando abaixo na raiz do terminal
+To view the application's coverage, simply run the following command in the terminal at the project root:
 
 ```shell
 yarn test:ci
 ```
 
-ele irá apresentar direto no console como está o coverage da aplicação, mas também irá criar os arquivos de coverage que poderá ser visto direto no seu navegador web.
+It will display the coverage status directly in the console, but it will also create coverage files that can be viewed directly in your web browser.
 
-Para abrir esse aquivo, navegue e abra o arquivo em coverage/lcov-report/index.html
+To open this file, navigate to and open the file in `coverage/lcov-report/index.html`.
 
-##### Progresso dos testes
+##### Test Progress
 
-- Componentes: 100%
-- Telas: 30%
-- Camada de data: 5%
+- Components: 100%
+- Screens: 30%
+- Data Layer: 5%
 
-## Dependências
+## Dependencies
 
-Nesse projeto, todas as dependências estão fixas para garantir que o mesmo será executado em sua maquina, mas enquanto em desenvolvimento, o mesmo será atualizado e testado para possiveis mudanças nas versões.
+In this project, all dependencies are fixed to ensure the application runs on your machine. However, during development, it will be updated and tested for potential version changes.
 
-## Funcionamento
+## Functionality
 
-Abaixo você poderá ver o funcionamento da ferramenta, desde o cadastro até a visualização das informações
+Below you can see the tool in action, from registration to viewing information:
 
 https://github.com/jamesjlv/thisismarvel/assets/63821594/3b3fc31d-900c-4973-b256-d112d0af4699
-
-
